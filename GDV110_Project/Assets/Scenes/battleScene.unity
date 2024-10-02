@@ -811,7 +811,7 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0}
   entityLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   atkLine: {fileID: 1563659310}
   atkLineLength: 0
   enemies: []

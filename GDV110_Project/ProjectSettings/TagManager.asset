@@ -4,21 +4,24 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - entity
+  - PlayCards
   - enemy
   - waffle
+  - Characters
+  - Hand
+  - Canvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Entities
   - Water
   - UI
   - 
   - 
   - 
   - 
-  - entityLayer
+  - 
   - 
   - 
   - 

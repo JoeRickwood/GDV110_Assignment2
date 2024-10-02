@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class battleManager : MonoBehaviour
 {
+    public static battleManager Instance;
+
     public Vector2 mousePos;
     public LayerMask entityLayer;
 
@@ -17,19 +20,23 @@ public class battleManager : MonoBehaviour
     public GameObject enemySelected;
     public GameObject entitySelected;
 
+    public LayerMask Entitylayer;
+
     public int turnInt;
+
+    bool inTurn;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        waffleSelected = GameObject.FindGameObjectsWithTag("waffle")[0];
-        enemySelected = GameObject.FindGameObjectsWithTag("enemy")[0];
-        Cursor.lockState = CursorLockMode.None;
+        //enemies = new List<GameObject>();
+        waffles = new List<GameObject>();
 
-        for(int i = 0; i < 3; i++)
-        {
-            waffles.Add(GameObject.FindGameObjectsWithTag("waffle")[i]);
-            enemies.Add(GameObject.FindGameObjectsWithTag("enemy")[i]);
-        }
+        Cursor.lockState = CursorLockMode.None;
 
         turnInt = 0;
     }
@@ -39,7 +46,7 @@ public class battleManager : MonoBehaviour
 
         for (int i = 0; i < waffles.Count; i++)
         {
-            if (waffles[i].activeInHierarchy == false)
+            if (waffles[i] == null)
             {
                 waffles.RemoveAt(i);
             }
@@ -47,10 +54,21 @@ public class battleManager : MonoBehaviour
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i].activeInHierarchy == false)
+            if (enemies[i] == null)
             {
                 enemies.RemoveAt(i);
             }
+        }
+
+        if (waffles.Count <= 0 || enemies.Count <= 0)
+        {
+            atkLine.enabled = false;
+            return;
+        }
+
+        if(waffleSelected != null && enemySelected != null)
+        {
+            atkLine.enabled = true;
         }
 
         if (turnInt == 0)
@@ -65,8 +83,7 @@ public class battleManager : MonoBehaviour
 
     GameObject mouseClick()
     {
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        Debug.Log(hit.transform.name);
+        Collider2D hit = Physics2D.OverlapPoint(mousePos, Entitylayer);
 
         if(hit != null)
         {
@@ -82,6 +99,7 @@ public class battleManager : MonoBehaviour
 
     void playerTurn()
     {
+        inTurn = true;
         if (Input.GetMouseButtonDown(0) && mouseClick() != null)
         {
             if (entitySelected.tag == "waffle")
@@ -95,7 +113,7 @@ public class battleManager : MonoBehaviour
             }
         }
 
-        if(waffleSelected != null && enemySelected != null)
+        if (waffleSelected != null && enemySelected != null)
         {
             atkLineLength = Vector2.Distance(waffleSelected.transform.position, enemySelected.transform.position);
             atkLine.SetPosition(0, waffleSelected.transform.position);
@@ -105,17 +123,24 @@ public class battleManager : MonoBehaviour
                 playerDamageEnemy();
                 Debug.Log("Player Attacked");
                 turnInt = 1;
+                inTurn = false;
             }
         }
     }
 
     void playerDamageEnemy()
     {
-        waffleSelected.GetComponent<entity>().dealDamage(waffleSelected.GetComponent<waffle>().damage, enemySelected);
+        waffleSelected.GetComponent<entity>().dealDamage(waffleSelected.GetComponent<Character>().damage, enemySelected);
     }
 
-    void enemyTurn()
+    async void enemyTurn()
     {
+        if (inTurn == true)
+        {
+            return;
+        }
+
+        inTurn = true;
         System.Random rand = new System.Random();
 
         int randomWaffle = rand.Next(0, waffles.Count);
@@ -129,10 +154,12 @@ public class battleManager : MonoBehaviour
             atkLineLength = Vector2.Distance(enemySelected.transform.position, waffleSelected.transform.position);
             atkLine.SetPosition(0, enemySelected.transform.position);
             atkLine.SetPosition(1, waffleSelected.transform.position);
-         
+            await Task.Delay(500);
+
             enemyDamagePlayer();
             Debug.Log("Enemy Attacked");
             turnInt = 0;
+            inTurn = false;
         }
     }
 
