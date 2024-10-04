@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum WaffleType
 {
     Classic
@@ -13,6 +12,12 @@ public class Deck
     //Hold References To The Current Deck For The Fight, This Gets Reset To The Static Deck AFter Each Fight Ends
     public List<Card> currentDeck;
     public List<Card> staticDeck;
+
+    public Deck()
+    {
+        currentDeck = new List<Card>();
+        staticDeck = new List<Card>();
+    }
 
     //Resets The Current Deck To The Static Deck
     public void ResetDeck()
@@ -82,11 +87,24 @@ public class Deck
 //Card Types
 public class Card
 {
+    public int level;
+    public int ID;
+
+    public Card(int _ID)
+    {
+        ID = _ID;
+    }
+
+    public Card Clone()
+    {
+        return (Card)this.MemberwiseClone();
+    }
+
     public virtual void Initialize() { }
 
     public virtual void OnHover() { }
 
-    public virtual void OnDrop(GameObject obj) { }
+    public virtual void OnDrop(GameObject _Obj) { }
 }
 
 //Upgrades
@@ -116,9 +134,6 @@ public class Upgrade
     }
 }
 
-
-
-
 //CHARACTERS are loaded from the resources folder, 
 //The File Names Should Be 'Waffle_' Followed By The Waffle Type As A Prefab,
 //For Example 'Waffle_Classic.prefab'
@@ -128,18 +143,34 @@ public class Upgrade
 public class CharacterCard : Card
 {
     //Reference To Character Prefab????
+    public WaffleType character;
+
     GameObject characterPrefab = null;
+
+    public CharacterCard(int _ID, WaffleType _Type) : base(_ID)
+    {
+        character = _Type;
+        level = 1;
+
+        Initialize();
+    }
 
     public override void Initialize()
     {
-        characterPrefab = Resources.Load<GameObject>("Waffle_" + nameof(WaffleType.Classic));
+        characterPrefab = Resources.Load<GameObject>("Waffle_" + nameof(character));
     }
 }
 
 //Topping Card To Be Played On The Player's Waffles
 public class ToppingCard : Card
 {
-    public Upgrade upgrade;
+    public Upgrade[] upgrade;
+
+    public ToppingCard(int _ID, params Upgrade[] _Upgrade) : base(_ID)
+    {
+        level = 1;
+        upgrade = _Upgrade;
+    }
 
     public override void OnDrop(GameObject obj)
     {

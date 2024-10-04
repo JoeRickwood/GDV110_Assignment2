@@ -6,9 +6,19 @@ public class RunManagerTesting : MonoBehaviour
     {
         RunManager.Instance.NewRun(100);
 
-        RunManager.Instance.SaveRun();
 
-        RunManager.Instance.LoadRun();
+        RunManager.Instance.deck.AddCardStatic(RunManager.Instance.GetRandomCard());
+
+
+        RunManager.Instance.deck.ResetDeck();
+
+        Card c = RunManager.Instance.deck.DrawCard(0);
+
+        Debug.Log(c.ID);
+
+        //RunManager.Instance.SaveRun();
+
+        //RunManager.Instance.LoadRun();
     }
 
     private void Update()

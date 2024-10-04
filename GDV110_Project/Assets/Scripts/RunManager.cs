@@ -2,8 +2,8 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class RunManager : MonoBehaviour
 {
@@ -18,7 +18,9 @@ public class RunManager : MonoBehaviour
     public int randIteration;
 
     public Deck deck;
-    private Upgrade[] upgrades;
+
+    //[Rarity][Cards]
+    private Card[][] allCards;
 
     private System.Random random;
 
@@ -67,19 +69,31 @@ public class RunManager : MonoBehaviour
         Instance = this;
 
         //Initialize Upgrade Database
-        InitializeUpgrades();
+        InitializeDeck();
+        InitializeCards();
     }
 
+    public void InitializeDeck()
+    {
+        deck = new Deck();
+    }
 
     //Adds All Upgrades To The Array
-    public void InitializeUpgrades()
+    public void InitializeCards()
     {
-        //IMPLEMENT 
+        //Initialize All Cards
+        allCards = new Card[][]
+        {
+            new Card[] //Common
+            {
+                new CharacterCard(0, WaffleType.Classic),
+                new ToppingCard(1, new Upgrade())
+            }
+        };
     }
 
-
     //Loads Saved Run From Continue File
-    public void LoadRun()
+    /* public void LoadRun()
     {
         //If No File Exists Creates A New Run Instead
         //Also Creates New Run If Theres A Problem With The Save File
@@ -115,24 +129,42 @@ public class RunManager : MonoBehaviour
         }
 
         Debug.Log($"{seed} > {money} > {randIteration} > {nameof(currentState)}");
-    }
+    } */
 
 
     //The Order When Saving Goes Seed -> Money -> RandIteration -> Game State
-    public void SaveRun()
+    /*public void SaveRun()
     {
         //Saves Current Run To Continue File
 
         string path = Application.persistentDataPath + "/" + GameManager.Instance.continueRunPath;
 
-        string runString = $"{ToHex((int)seed)}-{ToHex((int)money)}-{ToHex((int)randIteration)}-{ToHex((int)currentState)}";
+        string currentCards = "";
+        string staticCards = "";
+
+        for (int i = 0; i < deck.currentDeck.Count; i++)
+        {
+            currentCards = $"{deck.currentDeck[i].ID}-";
+        }
+
+        for (int i = 0; i < deck.staticDeck.Count; i++)
+        {
+            staticCards = $"{deck.staticDeck[i].ID}-";
+        }
+
+        string[] runString =
+        {
+            $"{ToHex((int)seed)}-{ToHex((int)money)}-{ToHex((int)randIteration)}-{ToHex((int)currentState)}", //RunManagerData
+            staticCards, //Static Cards
+            currentCards, //Current Cards
+        };
 
         //Maybe Encrypt??????
 
-        Debug.Log(runString);
+        Debug.Log(runString[0] + "\n" + runString[1] + "\n" + runString[2]);
 
-        File.WriteAllText(path, runString);
-    }
+        File.WriteAllText(path, runString[0] + "\n" + runString[1] + "\n" + runString[2]);
+    } */
 
     //Creates New Run And Initializes The Random
     public void NewRun(int _Seed)
@@ -144,14 +176,44 @@ public class RunManager : MonoBehaviour
         currentState = GameState.Fight;
     }
 
+
+    //----------------------------- CARD GETTING ----------------------------------------
+    //Will Be Weighted On Rarity Unless Got With A Specific ID Of The Card
+
+    public Card GetCardWithID(int _ID)
+    {
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            for(int j = 0; j < allCards[i].Length; j++)
+            {
+                if (allCards[i][j].ID == _ID)
+                {
+                    return allCards[i][j].Clone(); //Return Card If IDs Match, Clone It
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Card GetRandomCard()
+    {
+        //Use Random Generation From The Game To Give Card
+
+        int randomRarity = GetRandomInt(0, allCards.Length);
+        int randomCard = GetRandomInt(0, allCards[randomRarity].Length);
+
+        return allCards[randomRarity][randomCard].Clone(); //Clone Card At Index
+    }
+
     //----------------------------- RANDOM NUMBER GENERATING ----------------------------
     //Only Use These Methods When Generating Run-Changing Mechanics,
     //For Example Items In Shops, Upgrades, Enemies To Spawn Ect
 
-    public float GetRandomFloat(float min, float max)
+    public float GetRandomFloat(float _Min, float _Max)
     {
         randIteration++;
-        return min + ((max - min) * (float)random.NextDouble());
+        return _Min + ((_Max - _Min) * (float)random.NextDouble());
     }
 
     public int GetRandomInt(int min, int max)
@@ -162,6 +224,7 @@ public class RunManager : MonoBehaviour
 
         return (int)(n - (n % 1));
     }
+
 }
 
 public enum GameState
