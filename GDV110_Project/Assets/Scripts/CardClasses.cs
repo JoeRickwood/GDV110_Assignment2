@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,10 @@ public enum WaffleType
 }
 
 //Main Deck
+[System.Serializable]
 public class Deck
 {
-    //Hold References To The Current Deck For The Fight, This Gets Reset To The Static Deck AFter Each Fight Ends
+    //Hold References To The Current Deck For The Fight, This Gets Reset To The Static Deck After Each Fight Ends
     public List<Card> currentDeck;
     public List<Card> staticDeck;
 
@@ -22,7 +24,12 @@ public class Deck
     //Resets The Current Deck To The Static Deck
     public void ResetDeck()
     {
-        currentDeck = staticDeck;
+        currentDeck = new List<Card>();
+
+        for (int i = 0; i < staticDeck.Count; i++)
+        {
+            currentDeck.Add(staticDeck[i]);
+        }
     }
 
     //Draws Card From Index From Deck
@@ -85,14 +92,17 @@ public class Deck
 }
 
 //Card Types
+[System.Serializable]
 public class Card
 {
     public int level;
     public int ID;
+    public int price;
 
-    public Card(int _ID)
+    public Card(int _ID, int price)
     {
         ID = _ID;
+        this.price = price;
     }
 
     public Card Clone()
@@ -108,6 +118,7 @@ public class Card
 }
 
 //Upgrades
+[System.Serializable]
 public class Upgrade
 {
     public string name;
@@ -140,6 +151,7 @@ public class Upgrade
 
 
 //Character Cards To Be Played On The Field To Create Waffles
+[System.Serializable]
 public class CharacterCard : Card
 {
     //Reference To Character Prefab????
@@ -147,7 +159,7 @@ public class CharacterCard : Card
 
     GameObject characterPrefab = null;
 
-    public CharacterCard(int _ID, WaffleType _Type) : base(_ID)
+    public CharacterCard(int _ID, int price, WaffleType _Type) : base(_ID, price)
     {
         character = _Type;
         level = 1;
@@ -162,11 +174,12 @@ public class CharacterCard : Card
 }
 
 //Topping Card To Be Played On The Player's Waffles
+[System.Serializable]
 public class ToppingCard : Card
 {
     public Upgrade[] upgrade;
 
-    public ToppingCard(int _ID, params Upgrade[] _Upgrade) : base(_ID)
+    public ToppingCard(int _ID, int price, params Upgrade[] _Upgrade) : base(_ID, price)
     {
         level = 1;
         upgrade = _Upgrade;

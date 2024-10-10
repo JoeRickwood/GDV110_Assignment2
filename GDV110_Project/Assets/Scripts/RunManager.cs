@@ -19,7 +19,7 @@ public class RunManager : MonoBehaviour
 
     public Deck deck;
 
-    //[Rarity][Cards]
+    //[CardType][Cards]
     private Card[][] allCards;
 
     private System.Random random;
@@ -84,11 +84,15 @@ public class RunManager : MonoBehaviour
         //Initialize All Cards
         allCards = new Card[][]
         {
-            new Card[] //Common
+            new Card[] //Waffles
             {
-                new CharacterCard(0, WaffleType.Classic),
-                new ToppingCard(1, new Upgrade())
-            }
+                new CharacterCard(0, 4, WaffleType.Classic),
+            },
+
+            new Card[] //Toppings
+            { 
+                new ToppingCard(1, 3, new Upgrade())
+            },
         };
     }
 
@@ -196,14 +200,14 @@ public class RunManager : MonoBehaviour
         return null;
     }
 
-    public Card GetRandomCard()
+    public Card GetRandomCard(CardTypeReturn cardTypeReturn = CardTypeReturn.Any)
     {
         //Use Random Generation From The Game To Give Card
 
-        int randomRarity = GetRandomInt(0, allCards.Length);
-        int randomCard = GetRandomInt(0, allCards[randomRarity].Length);
+        int first = cardTypeReturn == CardTypeReturn.Any ? GetRandomInt(0, 1) : (int)cardTypeReturn;
+        int randomCard = GetRandomInt(0, allCards[first].Length);
 
-        return allCards[randomRarity][randomCard].Clone(); //Clone Card At Index
+        return allCards[first][randomCard].Clone(); //Clone Card At Index
     }
 
     //----------------------------- RANDOM NUMBER GENERATING ----------------------------
@@ -232,4 +236,11 @@ public enum GameState
     Fight,
     PostFight,
     Shop
+}
+
+public enum CardTypeReturn : int
+{
+    Waffle = 0,
+    Topping = 1,
+    Any = 2
 }

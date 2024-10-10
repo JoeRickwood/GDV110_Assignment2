@@ -43,7 +43,7 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
         mouseOver = stateChange;
         timer = 0f;
 
-        if(stateChange == true && clickSource != null)
+        if(stateChange == true && clickSource != null && isActive == true)
         {
             clickSource.Play();
         }

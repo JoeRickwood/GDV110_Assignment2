@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
@@ -11,25 +14,37 @@ public class ShopManager : MonoBehaviour
     public int waffleCardsSpawned = 2;
     public int restockPrice;
 
+    bool canRestock = true;
+
     public GameObject cardPrefab;
 
     public AudioSource source;
     public Text restockButtonText;
 
     public ActivationIndicator activationIndicator;
+
+    public ScreenTransition transition;
+
     private void Start()
     {
-        RestockShop(false);
+        StartCoroutine(RestockShop(false));
+    }
+
+    public void StartRestockShop(bool costs = false)
+    {
+        StartCoroutine(RestockShop(costs));
     }
 
 
-    public async void RestockShop(bool costs = false) //We Dont Charge The Player For Restocking The Shop Directly From The Method, Instead Do It On Button Call
+    public IEnumerator RestockShop(bool costs = false) //We Dont Charge The Player For Restocking The Shop Directly From The Method, Instead Do It On Button Call
     {
-        if (RunManager.Instance.money < restockPrice)
+        if (RunManager.Instance.money < restockPrice || !canRestock)
         {
-            Debug.Log("Not Enough Money");   
-            return;
+            yield break;
         }
+
+        StopCoroutine(RestockShop());
+        canRestock = false;
 
         if (costs == true)
         {
@@ -54,10 +69,10 @@ public class ShopManager : MonoBehaviour
         {
             GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
             cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard();
+            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard(CardTypeReturn.Topping);
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
-            await Task.Delay(100);
+            yield return new WaitForSeconds(0.1f);
         }
 
         //Now The Waffles
@@ -65,10 +80,10 @@ public class ShopManager : MonoBehaviour
         {
             GameObject cur = Instantiate(cardPrefab, waffleCardTransform);
             cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard();
+            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard(CardTypeReturn.Waffle);
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
-            await Task.Delay(100);
+            yield return new WaitForSeconds(0.1f);
         }
 
         if (costs == true)
@@ -77,5 +92,30 @@ public class ShopManager : MonoBehaviour
         }
 
         restockButtonText.text = $"Restock (${restockPrice})";
+        canRestock = true;
+    }
+
+    public void StartNextRound()
+    {
+        StartCoroutine(StartNextRoundCoroutine());
+    }
+
+    public IEnumerator StartNextRoundCoroutine()
+    {
+        float t = 1f / transition.speed;
+        StartCoroutine(transition.StartScreenTransition(false));
+
+        while (t > 0) 
+        {
+            t -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+        while (!operation.isDone) 
+        { 
+           yield return null;
+        }
     }
 }

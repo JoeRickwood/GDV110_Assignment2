@@ -29,8 +29,9 @@ public class ActivationIndicator : MonoBehaviour
     public AudioSource source;
 
 
-    public void Activate()
+    public void Activate(string textSet)
     {
+        textTransform.GetComponent<Text>().text = textSet;
         t = 0f;
         allVisuals.SetActive(true);
     }

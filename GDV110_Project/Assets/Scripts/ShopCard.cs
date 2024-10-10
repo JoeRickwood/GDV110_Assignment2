@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -10,6 +11,7 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject cardVisual;
     public GameObject buyVisual;
     public GameObject boughtVisual;
+    public Text priceText;
 
     public ShopManager shop;
     public EnlargeOnMouseOver mouseOverEnlarge;
@@ -37,6 +39,8 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void Update()
     {
+        priceText.text = $"${data.price}";
+
         if(bought)
         {
             buyVisual.SetActive(false);
@@ -59,11 +63,21 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if(selected == true) 
         {
+            if(RunManager.Instance.money < data.price)
+            {
+                shop.activationIndicator.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+                shop.activationIndicator.Activate("Not Enough Money");
+                return;
+            }
+
+
             //Buy Card
             bought = true;
             mouseOverEnlarge.isActive = false;
+            RunManager.Instance.deck.AddCardStatic(data);
+            RunManager.Instance.money -= data.price;
             shop.activationIndicator.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
-            shop.activationIndicator.Activate();
+            shop.activationIndicator.Activate("Added");
         }else
         {
             selected = true;
