@@ -25,6 +25,8 @@ public class ShopManager : MonoBehaviour
 
     public ScreenTransition transition;
 
+    bool roundStarting = false;
+
     private void Start()
     {
         StartCoroutine(RestockShop(false));
@@ -97,11 +99,17 @@ public class ShopManager : MonoBehaviour
 
     public void StartNextRound()
     {
+        if (roundStarting)
+        {
+            return;
+        }
+
         StartCoroutine(StartNextRoundCoroutine());
     }
 
     public IEnumerator StartNextRoundCoroutine()
     {
+        roundStarting = true;
         float t = 1f / transition.speed;
         StartCoroutine(transition.StartScreenTransition(false));
 

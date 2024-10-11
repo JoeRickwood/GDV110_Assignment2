@@ -6,8 +6,11 @@ public class RunManagerTesting : MonoBehaviour
     {
         RunManager.Instance.NewRun(100);
 
-
-        RunManager.Instance.deck.AddCardStatic(RunManager.Instance.GetRandomCard());
+        for (int i = 0; i < 52; i++)
+        {
+            RunManager.Instance.deck.AddCardStatic(RunManager.Instance.GetRandomCard());
+        }
+        
 
 
         RunManager.Instance.deck.ResetDeck();
