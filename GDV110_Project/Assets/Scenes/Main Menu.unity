@@ -1933,6 +1933,22 @@ PrefabInstance:
       propertyPath: m_MinValue
       value: -80
       objectReference: {fileID: 0}
+    - target: {fileID: 903829826335743530, guid: 69e41355bb9244a468447a4e342748c4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 903829826335743530, guid: 69e41355bb9244a468447a4e342748c4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 903829826335743530, guid: 69e41355bb9244a468447a4e342748c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 903829826335743530, guid: 69e41355bb9244a468447a4e342748c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1363157597447924624, guid: 69e41355bb9244a468447a4e342748c4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
