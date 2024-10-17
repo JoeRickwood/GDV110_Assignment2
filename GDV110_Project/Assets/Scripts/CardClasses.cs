@@ -121,25 +121,21 @@ public class Card
 [System.Serializable]
 public class Upgrade
 {
-    public string name;
-    public string description;
     public int price;
+    public EntityClass connectedEntity;
 
     public Upgrade Clone()
     {
         return (Upgrade)this.MemberwiseClone();
     }
 
-    //Initialize Variables
-    public virtual void Initialize()
+    public Upgrade(int _Price)
     {
-        name = "";
-        description = "";
-        price = 0;
+        price = _Price;
     }
 
     //Activate Item
-    public virtual void Activate(/* Reference To Entity Its Placed On */)
+    public virtual void Activate(EntityClass entity)
     {
         Debug.Log("Item Activated");
     }
@@ -188,5 +184,37 @@ public class ToppingCard : Card
     public override void OnDrop(GameObject obj)
     {
         //Add Upgrade To Entity
+    }
+}
+
+
+enum Operation
+{
+    Add,
+    Multiply
+}
+
+class StrengthUpgrade : Upgrade
+{
+    int increase;
+    Operation operation;
+
+    public StrengthUpgrade(int _Price, int _Increase, Operation _Operation) : base(_Price) 
+    { 
+        increase = _Increase;
+        operation = _Operation;
+    }
+
+    public override void Activate(EntityClass entity)
+    {
+        switch (operation) 
+        { 
+            case Operation.Add:
+                //Increase Entity Strength
+                break;
+            case Operation.Multiply:
+                //Multiply Entity Strength
+                break;
+        }
     }
 }
