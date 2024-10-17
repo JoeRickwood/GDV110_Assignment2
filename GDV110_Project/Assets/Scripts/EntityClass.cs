@@ -10,9 +10,20 @@ public class EntityClass : MonoBehaviour
     public float entityBaseDamage;
     public float entityDamage;
     public float entitySpeed;
+    public float entityAttackDelay;
 
     public List<Upgrade> entityUpgrades = new List<Upgrade>();
     public GameObject battleManager;
+
+    void Start()
+    {
+        if(battleManager == null)
+        {
+            battleManager = GameObject.Find("BattleManager");
+        }
+
+        entityAttackDelay = 1f;
+    }
 
     //Damages entity
     public void TakeDamage(float _Damage)
