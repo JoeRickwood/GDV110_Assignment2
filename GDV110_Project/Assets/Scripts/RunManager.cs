@@ -91,7 +91,7 @@ public class RunManager : MonoBehaviour
 
             new Card[] //Toppings
             { 
-                new ToppingCard(1, 3, new Upgrade()),
+                new ToppingCard(1, 3, new StrengthUpgrade(1, 1, Operation.Add)),
             },
         };
     }
