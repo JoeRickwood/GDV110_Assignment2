@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+
 public class BattleManager : MonoBehaviour
 {
     public GameObject selectedEntity;
@@ -17,14 +18,14 @@ public class BattleManager : MonoBehaviour
     {
         //find all waffles and enemies in the scene and adds them to their respective list (just needed for making the system, probably can be taken out when properly implemented because waffles and enemies won't exist before scene start)
         waffleList = GameObject.FindGameObjectsWithTag("waffle").ToList();
-        waffleList = waffleList.OrderByDescending(x => x.GetComponent<EntityClass>().entitySpeed).ToList();
+        waffleList = waffleList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList();
         for (int i = 0; i < waffleList.Count; i++)
         {
             waffleList[i].transform.position = new Vector2(-2 - (i * 2), waffleList[i].transform.position.y);
         }
 
         enemyList = GameObject.FindGameObjectsWithTag("enemy").ToList();
-        enemyList = enemyList.OrderByDescending(x => x.GetComponent<EntityClass>().entitySpeed).ToList();
+        enemyList = enemyList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList();
         for (int i = 0; i < enemyList.Count; i++)
         {
             enemyList[i].transform.position = new Vector2(2 + (i * 2), enemyList[i].transform.position.y);
@@ -113,14 +114,14 @@ public class BattleManager : MonoBehaviour
     void updateEntityLists()
     {
         waffleList = new List<GameObject>(GameObject.FindGameObjectsWithTag("waffle").ToList());
-        waffleList = new List<GameObject>(waffleList.OrderByDescending(x => x.GetComponent<EntityClass>().entitySpeed).ToList());
+        waffleList = new List<GameObject>(waffleList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList());
         for (int i = 0; i < waffleList.Count; i++)
         {
             waffleList[i].transform.position = new Vector2(-2 - (i * 2), waffleList[i].transform.position.y);
         }
 
         enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("enemy").ToList());
-        enemyList = new List<GameObject>(enemyList.OrderByDescending(x => x.GetComponent<EntityClass>().entitySpeed).ToList());
+        enemyList = new List<GameObject>(enemyList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList());
         for (int i = 0; i < enemyList.Count; i++)
         {
             enemyList[i].transform.position = new Vector2(2 + (i * 2), enemyList[i].transform.position.y);
@@ -144,7 +145,7 @@ public class BattleManager : MonoBehaviour
         }
         
         yield return new WaitForSeconds(dealer.GetComponent<EntityClass>().entityAttackDelay);
-        receiver.GetComponent<EntityClass>().TakeDamage(dealer.GetComponent<EntityClass>().entityDamage);
+        receiver.GetComponent<EntityClass>().TakeDamage(dealer.GetComponent<EntityClass>().stats[(int)StatType.Damage].currentValue);
         isPlayerTurn = !isPlayerTurn;
         attacking = false;
     }

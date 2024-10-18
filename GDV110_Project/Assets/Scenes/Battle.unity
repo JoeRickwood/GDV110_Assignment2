@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedEntity: {fileID: 0}
-  selectedWaffle: {fileID: 0}
-  selectedEnemy: {fileID: 0}
   waffleList: []
   enemyList: []
+  isPlayerTurn: 0
+  attacking: 0
+  battleOngoing: 0
 --- !u!4 &392894052
 Transform:
   m_ObjectHideFlags: 0
@@ -231,8 +232,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.103773594, g: 0.07391421, b: 0.07391421, a: 1}
+  m_Sprite: {fileID: 1048019278, guid: 5d881f4b2d14da043b296936d1728eea, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -251,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 535497483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -4.142, y: -1.235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,13 +306,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 6
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!1 &759864252
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,13 +348,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 4
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!58 &759864254
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -427,8 +434,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8018868, g: 0.23829654, b: 0.23829654, a: 1}
+  m_Sprite: {fileID: 1048019278, guid: 5d881f4b2d14da043b296936d1728eea, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -447,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 759864252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -2.846, y: -0.021, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -577,13 +584,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 5
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!61 &1393588385
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -620,7 +630,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.221258, y: 1.0002232}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -670,9 +680,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -62438813, guid: 1e30b13ec86c10549b1207e4013ab6e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -690,7 +700,7 @@ Transform:
   m_GameObject: {fileID: 1393588383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 4.265, y: -0.715, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -756,9 +766,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: -62438813, guid: 1e30b13ec86c10549b1207e4013ab6e9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -818,7 +828,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.221258, y: 1.0002232}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -840,13 +850,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 6
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!1 &2028483242
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,13 +892,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 5
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!58 &2028483244
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -962,7 +978,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1048019278, guid: 5d881f4b2d14da043b296936d1728eea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1020,13 +1036,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
-  entityCurrentHealth: 10
-  entityMaxHealth: 10
-  entityBaseDamage: 0
-  entityDamage: 10
-  entitySpeed: 4
+  entityAttackDelay: 0.5
   entityUpgrades: []
   battleManager: {fileID: 392894050}
+  stats:
+  - baseValue: 100
+    currentValue: 0
+  - baseValue: 10
+    currentValue: 0
+  - baseValue: 1
+    currentValue: 0
 --- !u!61 &2056246376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1063,7 +1082,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.221258, y: 1.0002232}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1113,9 +1132,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: -62438813, guid: 1e30b13ec86c10549b1207e4013ab6e9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -1133,7 +1152,7 @@ Transform:
   m_GameObject: {fileID: 2056246374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1.702, y: -1.194, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

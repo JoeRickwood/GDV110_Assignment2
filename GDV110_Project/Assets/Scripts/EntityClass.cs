@@ -5,15 +5,12 @@ using UnityEngine;
 public class EntityClass : MonoBehaviour
 {
     public string entityName;
-    public float entityCurrentHealth;
-    public float entityMaxHealth;
-    public float entityBaseDamage;
-    public float entityDamage;
-    public float entitySpeed;
     public float entityAttackDelay;
 
     public List<Upgrade> entityUpgrades = new List<Upgrade>();
     public GameObject battleManager;
+
+    public List<Stat> stats;
 
     void Start()
     {
@@ -23,14 +20,19 @@ public class EntityClass : MonoBehaviour
         }
 
         entityAttackDelay = 1f;
+
+        for (int i = 0; i < stats.Count; i++)
+        {
+            stats[i].Reset();
+        }
     }
 
     //Damages entity
     public void TakeDamage(float _Damage)
     {
-        entityCurrentHealth -= _Damage;
+        stats[(int)StatType.Health].currentValue -= _Damage;
 
-        if(entityCurrentHealth <= 0 ) 
+        if(stats[(int)StatType.Health].currentValue <= 0 ) 
         {
             Die();
         }
@@ -39,8 +41,8 @@ public class EntityClass : MonoBehaviour
     //Heals entity and clamps the health value so the entity does not heal over max health
     public void Heal(float _HealthGained)
     {
-        entityCurrentHealth += _HealthGained;
-        entityCurrentHealth = Mathf.Clamp(entityCurrentHealth, entityCurrentHealth, entityMaxHealth);
+        stats[(int)StatType.Health].currentValue += _HealthGained;
+        stats[(int)StatType.Health].currentValue = Mathf.Clamp(stats[(int)StatType.Health].currentValue, stats[(int)StatType.Health].currentValue, stats[(int)StatType.Health].baseValue);
     }
 
     //Destroys the entity
@@ -65,5 +67,40 @@ public class EntityClass : MonoBehaviour
     public void RemoveUpgrade(Upgrade _UpgradeToRemove)
     {
         entityUpgrades.Remove(_UpgradeToRemove);
+    }
+
+    private void OnValidate()
+    {
+        if(stats.Count < (int)StatType.MaxStatType)
+        {
+            for (int i = 0; i < ((int)StatType.MaxStatType - stats.Count); i++)
+            {
+                stats.Add(new Stat(0));
+            }
+        }
+    }
+}
+public enum StatType : int
+{
+    Health = 0,
+    Damage = 1,
+    Speed = 2, 
+    MaxStatType = 3
+}
+
+[System.Serializable]
+public class Stat
+{
+    public float baseValue;
+    public float currentValue;
+
+    public Stat(float _BaseValue)
+    {
+        baseValue = _BaseValue;
+    }
+
+    public void Reset()
+    {
+        currentValue = baseValue;
     }
 }
