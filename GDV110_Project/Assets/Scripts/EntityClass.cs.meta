@@ -3,7 +3,9 @@ guid: 0f9e03ba33f49f642a7f7d59632d3288
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - battleManager: {instanceID: 0}
+  - entityHealthBar: {fileID: 6995111531094027344, guid: 2dbd68139dc629346a03d299b0e1b718, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

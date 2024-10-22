@@ -9,6 +9,7 @@ public class EntityClass : MonoBehaviour
 
     public List<Upgrade> entityUpgrades = new List<Upgrade>();
     public GameObject battleManager;
+    public GameObject entityHealthBar;
 
     public List<Stat> stats;
 
@@ -25,6 +26,15 @@ public class EntityClass : MonoBehaviour
         {
             stats[i].Reset();
         }
+
+        entityHealthBar = Instantiate(entityHealthBar, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f), Quaternion.identity);
+        entityHealthBar.transform.parent = this.gameObject.transform;
+    }
+
+    void Update()
+    {
+        entityHealthBar.transform.localScale = new Vector2((stats[(int)StatType.Health].currentValue / stats[(int)StatType.Health].baseValue) / 2f, 0.05f);
+        entityHealthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f);
     }
 
     //Damages entity

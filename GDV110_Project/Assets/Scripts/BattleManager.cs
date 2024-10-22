@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro; 
 
 public class BattleManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class BattleManager : MonoBehaviour
 
     public List<GameObject> waffleList = new List<GameObject>();
     public List<GameObject> enemyList = new List<GameObject>();
+
+    public Canvas battleUI;
+    public TMP_Text turnText;
 
     public bool isPlayerTurn;
     public bool attacking;
@@ -59,14 +63,17 @@ public class BattleManager : MonoBehaviour
             if (isPlayerTurn == true)
             {
                 playerTurn();
+                turnText.text = "Player is attacking";
             }
             else
             {
                 enemyTurn();
+                turnText.text = "Enemy is attacking";
             }
         }
         else
         {
+            turnText.text = "Battle Over";
             battleOver();
         }
         
