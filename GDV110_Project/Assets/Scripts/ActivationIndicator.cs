@@ -34,12 +34,12 @@ public class ActivationIndicator : MonoBehaviour
         textTransform.GetComponent<Text>().text = textSet;
         t = 0f;
         allVisuals.SetActive(true);
+        source.Play();
     }
 
     private void Start()
     {
         allVisuals.SetActive(false);
-        source.Play();
     }
 
     private void Update()

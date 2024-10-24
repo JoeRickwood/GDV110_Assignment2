@@ -13,7 +13,7 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public bool isActive = true;
 
-    public AudioSource clickSource;
+    public SoundEffect soundType;
 
     private void Update()
     {
@@ -43,9 +43,14 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
         mouseOver = stateChange;
         timer = 0f;
 
-        if(stateChange == true && clickSource != null && isActive == true)
+        if(stateChange == true && isActive == true)
         {
-            clickSource.Play();
+            if(GameManager.Instance == null)
+            {
+                return;
+            }
+
+            GameManager.Instance.PlaySFX(soundType);
         }
     }
 

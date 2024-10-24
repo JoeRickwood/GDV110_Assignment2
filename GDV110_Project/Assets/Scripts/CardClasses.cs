@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum WaffleType
 {
-    Classic
+    Classic,
+    Square
 }
 
 //Main Deck
@@ -95,12 +96,14 @@ public class Deck
 [System.Serializable]
 public class Card
 {
+    public string name;
     public int level;
     public int ID;
     public int price;
 
-    public Card(int _ID, int price)
+    public Card(string _Name, int _ID, int price)
     {
+        name = _Name;
         ID = _ID;
         this.price = price;
     }
@@ -112,9 +115,9 @@ public class Card
 
     public virtual void Initialize() { }
 
-    public virtual void OnHover() { }
+    public virtual void OnHover(GameObject cardObj) { }
 
-    public virtual void OnDrop(GameObject _Obj) { }
+    public virtual bool OnDrop() { return false; }
 }
 
 //Upgrades
@@ -155,7 +158,7 @@ public class CharacterCard : Card
 
     GameObject characterPrefab = null;
 
-    public CharacterCard(int _ID, int price, WaffleType _Type) : base(_ID, price)
+    public CharacterCard(string _Name, int _ID, int price, WaffleType _Type) : base(_Name, _ID, price)
     {
         character = _Type;
         level = 1;
@@ -165,7 +168,23 @@ public class CharacterCard : Card
 
     public override void Initialize()
     {
-        characterPrefab = Resources.Load<GameObject>("Waffle_" + nameof(character));
+        characterPrefab = Resources.Load<GameObject>("Waffle_" + name);
+    }
+
+    public override bool OnDrop()
+    {
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
+        {
+            return false;
+        }
+
+        GameObject cur = GameObject.Instantiate(characterPrefab);
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0f;
+
+        cur.transform.position = pos;
+
+        return true;
     }
 }
 
@@ -175,15 +194,98 @@ public class ToppingCard : Card
 {
     public Upgrade[] upgrade;
 
-    public ToppingCard(int _ID, int price, params Upgrade[] _Upgrade) : base(_ID, price)
+    public EntityClass currentTarget;
+
+    public ToppingCard(string _Name, int _ID, int price, params Upgrade[] _Upgrade) : base(_Name, _ID, price)
     {
         level = 1;
         upgrade = _Upgrade;
     }
 
-    public override void OnDrop(GameObject obj)
+    public override void OnHover(GameObject cardObj)
     {
+        GameObject.FindObjectOfType<CardPlayManager>().dropLine.enabled = true;
+
+        if (currentTarget != null)
+        {
+            if(currentTarget.transform.position.x > cardObj.transform.position.x)
+            {
+                Vector3 pos = Camera.main.ScreenToWorldPoint(cardObj.transform.position);
+                pos.z = 0f;
+
+                GameObject.FindObjectOfType<CardPlayManager>().dropLine.SetPositions(new Vector3[] 
+                { 
+                    currentTarget.transform.position,
+                    pos
+                });
+            }
+            else
+            {
+                Vector3 pos = Camera.main.ScreenToWorldPoint(cardObj.transform.position);
+                pos.z = 0f;
+
+                GameObject.FindObjectOfType<CardPlayManager>().dropLine.SetPositions(new Vector3[] 
+                {
+                    currentTarget.transform.position,
+                    pos
+                });
+            }
+        }
+
+
+        GameObject[] entities = GameObject.FindGameObjectsWithTag("waffle");
+
+        if(entities.Length < 1)
+        {
+            return;
+        }
+
+        int currentIndex = 0;
+        float distance = Vector2.Distance(entities[0].transform.position, Camera.main.ScreenToWorldPoint(cardObj.transform.position));
+        for (int i = 1; i < entities.Length; i++) 
+        { 
+            float tmpDist = Vector2.Distance(entities[i].transform.position, Camera.main.ScreenToWorldPoint(cardObj.transform.position));
+            if (tmpDist < distance)
+            {
+                currentIndex = i;
+                distance = tmpDist;
+            }
+        }
+
+        currentTarget = entities[currentIndex].GetComponent<EntityClass>();
+
+
+        for (int i = 0; i < entities.Length; i++) 
+        {
+            if (entities[i] == currentTarget.gameObject)
+            {
+                entities[i].GetComponent<SpriteOutline>().outlineSize = 5f;
+            }else
+            {
+                entities[i].GetComponent<SpriteOutline>().outlineSize = 0f;
+            }
+        }
+
+        base.OnHover(cardObj);
+    }
+
+    public override bool OnDrop()
+    {
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f || currentTarget == null)
+        {
+            return false;
+        }
+
+
         //Add Upgrade To Entity
+        for (int i = 0; i < upgrade.Length; i++)
+        {
+            currentTarget.AddUpgrade(upgrade[i]);
+        }
+
+        currentTarget.GetComponent<SpriteOutline>().outlineSize = 0f;
+
+        return true;
     }
 }
 

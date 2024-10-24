@@ -16,8 +16,6 @@ public class RotateOverTime : MonoBehaviour
     {
         t += Time.deltaTime * speed;
 
-        transform.rotation = Quaternion.Euler(axis.x > 0 ? Mathf.Sin(t) * axis.x : transform.eulerAngles.x, 
-                        axis.y > 0 ? Mathf.Sin(t) * axis.y : transform.eulerAngles.y,
-                        axis.z > 0 ? Mathf.Sin(t) * axis.z : transform.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(axis * t);
     }
 }

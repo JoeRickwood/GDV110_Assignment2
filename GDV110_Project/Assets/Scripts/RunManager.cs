@@ -1,8 +1,5 @@
 using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RunManager : MonoBehaviour
@@ -11,6 +8,8 @@ public class RunManager : MonoBehaviour
 
     [Header("Run Data")]
     public GameState currentState = GameState.Fight;
+
+    public Difficulty difficulty;
 
     public int seed;
     public int money;
@@ -67,6 +66,7 @@ public class RunManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         //Initialize Upgrade Database
         InitializeDeck();
@@ -86,12 +86,13 @@ public class RunManager : MonoBehaviour
         {
             new Card[] //Waffles
             {
-                new CharacterCard(0, 4, WaffleType.Classic),
+                new CharacterCard("Classic Waffle", 0, 4, WaffleType.Classic),
+                new CharacterCard("Square Waffle", 2, 4, WaffleType.Square),
             },
 
             new Card[] //Toppings
             { 
-                new ToppingCard(1, 3, new StrengthUpgrade(1, 1, Operation.Add)),
+                new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 1, Operation.Add)),
             },
         };
     }
@@ -171,13 +172,20 @@ public class RunManager : MonoBehaviour
     } */
 
     //Creates New Run And Initializes The Random
-    public void NewRun(int _Seed)
+    public void NewRun(int _Seed, Difficulty _Difficulty)
     {
         randIteration = 0;
         seed = _Seed;
         random = new System.Random(seed);
+        difficulty = _Difficulty;
 
         currentState = GameState.Fight;
+
+        //Add Base Cards To Deck
+        for (int i = 0; i < 20; i++)
+        {
+            deck.AddCardStatic(GetRandomCard());
+        }
     }
 
 
@@ -204,7 +212,7 @@ public class RunManager : MonoBehaviour
     {
         //Use Random Generation From The Game To Give Card
 
-        int first = cardTypeReturn == CardTypeReturn.Any ? GetRandomInt(0, 1) : (int)cardTypeReturn;
+        int first = cardTypeReturn == CardTypeReturn.Any ? GetRandomInt(0, 2) : (int)cardTypeReturn;
         int randomCard = GetRandomInt(0, allCards[first].Length);
 
         return allCards[first][randomCard].Clone(); //Clone Card At Index
@@ -243,4 +251,11 @@ public enum CardTypeReturn : int
     Waffle = 0,
     Topping = 1,
     Any = 2
+}
+
+public enum Difficulty
+{
+    Easy,
+    Normal,
+    Hard
 }

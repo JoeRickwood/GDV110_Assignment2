@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d881f4b2d14da043b296936d1728eea
+guid: 27ca791d8c8509b41b90f2958311a7b7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 461
+  spritePixelsToUnits: 343
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,17 +93,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WaffleSquare_Idle_0
+      name: Broccoli_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 922
-        width: 563
-        height: 461
+        y: 2061
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42e8271b9f4020b4ea83850121438015
-      internalID: -2087686743
+      spriteID: 5687a3c32ad84a74481a694723706d77
+      internalID: -1740482187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_1
+      name: Broccoli_Idle_1
       rect:
         serializedVersion: 2
-        x: 563
-        y: 922
-        width: 563
-        height: 461
+        x: 686
+        y: 2061
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0627f0c51c86d44885b417309f4c9ce
-      internalID: 1048019278
+      spriteID: 15956a8723aa2974693c66ebccf5c402
+      internalID: -643211203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_2
+      name: Broccoli_Idle_2
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 922
-        width: 563
-        height: 461
+        x: 1372
+        y: 2061
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3427465b7d015864ba797d26f41990f4
-      internalID: 364454608
+      spriteID: 15c7f3d9835207e4291259260d043abb
+      internalID: -2089712505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_3
+      name: Broccoli_Idle_3
       rect:
         serializedVersion: 2
-        x: 1689
-        y: 922
-        width: 563
-        height: 461
+        x: 2058
+        y: 2061
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a42f967b0728f945a169ba9c6724077
-      internalID: 1840969335
+      spriteID: 59d9e8f8a7ece504bb67f7cb85f589c3
+      internalID: 1579545628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_4
+      name: Broccoli_Idle_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 461
-        width: 563
-        height: 461
+        y: 1374
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 796e2a0f1faa9fa44b79fda391a9112f
-      internalID: -1993487753
+      spriteID: 0b6c980bd8f334245b49737583d05b8c
+      internalID: -624765884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_5
+      name: Broccoli_Idle_5
       rect:
         serializedVersion: 2
-        x: 563
-        y: 461
-        width: 563
-        height: 461
+        x: 686
+        y: 1374
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cc0d0ce4727b5d47beb31c68d953987
-      internalID: 1391087513
+      spriteID: 622ab296ff7efb14dbae1c26c3d32219
+      internalID: 495495004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_6
+      name: Broccoli_Idle_6
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 461
-        width: 563
-        height: 461
+        x: 1372
+        y: 1374
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9de30304cf83fe1418a365e66663eebd
-      internalID: -563941198
+      spriteID: 7b86900b2ab27e948ad08811c99cf1e0
+      internalID: 1122571589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_7
+      name: Broccoli_Idle_7
       rect:
         serializedVersion: 2
-        x: 1689
-        y: 461
-        width: 563
-        height: 461
+        x: 2058
+        y: 1374
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +271,104 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06ad67d64196235429ee89b53a0b7664
-      internalID: 1532937437
+      spriteID: 36b776b2640b9544c991edba988eead2
+      internalID: 336055956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_8
+      name: Broccoli_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 687
+        width: 686
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecd322218099e574180d87cf132837eb
+      internalID: 1821320202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Broccoli_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 687
+        width: 686
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51178a721a1b5d346aa919ab2b15db1a
+      internalID: -1455020436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Broccoli_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 687
+        width: 686
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a782f3f9fe04244bf25e78679ebf65
+      internalID: 1780171074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Broccoli_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 2058
+        y: 687
+        width: 686
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de0c59ca9d634a042afaf37def62f02b
+      internalID: 1457327348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Broccoli_Idle_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 563
-        height: 461
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a674c8a112b17764493d9294001be00e
-      internalID: -2096542889
+      spriteID: 5d390e67f1eea6446862ffd94bbc6929
+      internalID: -1390097148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaffleSquare_Idle_9
+      name: Broccoli_Idle_13
       rect:
         serializedVersion: 2
-        x: 563
+        x: 686
         y: 0
-        width: 563
-        height: 461
+        width: 686
+        height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,8 +397,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d468624080fb885459579eb45c2f146f
-      internalID: -472978595
+      spriteID: 91d8656f2db90f045b84394265e0766a
+      internalID: 684269520
       vertices: []
       indices: 
       edges: []
@@ -317,16 +414,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WaffleSquare_Idle_0: -2087686743
-      WaffleSquare_Idle_1: 1048019278
-      WaffleSquare_Idle_2: 364454608
-      WaffleSquare_Idle_3: 1840969335
-      WaffleSquare_Idle_4: -1993487753
-      WaffleSquare_Idle_5: 1391087513
-      WaffleSquare_Idle_6: -563941198
-      WaffleSquare_Idle_7: 1532937437
-      WaffleSquare_Idle_8: -2096542889
-      WaffleSquare_Idle_9: -472978595
+      Broccoli_Idle_0: -1740482187
+      Broccoli_Idle_1: -643211203
+      Broccoli_Idle_10: 1780171074
+      Broccoli_Idle_11: 1457327348
+      Broccoli_Idle_12: -1390097148
+      Broccoli_Idle_13: 684269520
+      Broccoli_Idle_2: -2089712505
+      Broccoli_Idle_3: 1579545628
+      Broccoli_Idle_4: -624765884
+      Broccoli_Idle_5: 495495004
+      Broccoli_Idle_6: 1122571589
+      Broccoli_Idle_7: 336055956
+      Broccoli_Idle_8: 1821320202
+      Broccoli_Idle_9: -1455020436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

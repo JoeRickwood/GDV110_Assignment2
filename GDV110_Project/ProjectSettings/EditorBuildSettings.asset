@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 03dfbb76ddfb09b49b3eb1f7d33a5a94
   - enabled: 1
+    path: Assets/Scenes/NewGameScene.unity
+    guid: 3a3972e88860c9a49ad7b8b151b3ec7c
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: ccb8ce90cb08ba84e9ea1b7f29ff310f
+  - enabled: 1
+    path: Assets/Scenes/Test_Joe.unity
+    guid: 4ab139eef82d930458b0ea55b82a67ec
+  - enabled: 1
+    path: Assets/Scenes/Battle.unity
+    guid: 80f7140622e031a4a9dfaf30257a4804
   m_configObjects: {}

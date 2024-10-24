@@ -1,6 +1,16 @@
+using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Audio;
+
+public enum SoundEffect : int
+{
+    CardPlace,
+    CardClick,
+    ActivationTrigger,
+    MaxSoundEffect
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     public static SettingsManager settingsManager;
+
+    [Header("Sound Effects")]
+    public AudioSource source;
+    public List<AudioClip> soundEffects;
 
     private void Start()
     {
@@ -30,6 +44,23 @@ public class GameManager : MonoBehaviour
 
         settingsManager.Init();
         settingsManager.LoadSettings();
+    }
+
+    public void PlaySFX(SoundEffect effect)
+    {
+        source.PlayOneShot(soundEffects[(int)effect], 1f);
+        Debug.Log($"Played Sound {soundEffects[(int)effect]}");
+    }
+
+    public void OnValidate()
+    {
+        if (soundEffects.Count < (int)SoundEffect.MaxSoundEffect)
+        {
+            for (int i = 0; i < ((int)SoundEffect.MaxSoundEffect - soundEffects.Count); i++)
+            {
+                soundEffects.Add(null);
+            }
+        }
     }
 }
 

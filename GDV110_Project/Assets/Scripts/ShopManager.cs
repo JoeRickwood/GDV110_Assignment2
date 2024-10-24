@@ -71,7 +71,7 @@ public class ShopManager : MonoBehaviour
         {
             GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
             cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard(CardTypeReturn.Topping);
+            cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Topping));
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
             yield return new WaitForSeconds(0.1f);
@@ -82,7 +82,7 @@ public class ShopManager : MonoBehaviour
         {
             GameObject cur = Instantiate(cardPrefab, waffleCardTransform);
             cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().data = RunManager.Instance.GetRandomCard(CardTypeReturn.Waffle);
+            cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Waffle));
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
             yield return new WaitForSeconds(0.1f);
@@ -120,7 +120,7 @@ public class ShopManager : MonoBehaviour
         }
 
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(3);
         while (!operation.isDone) 
         { 
            yield return null;

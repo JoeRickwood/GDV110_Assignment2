@@ -83,4 +83,10 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             selected = true;
         }
     }
+
+    public void UpdateCardData(Card _Data)
+    {
+        data = _Data;
+        GetComponent<CardRenderer>().UpdateCardData(data);
+    }
 }
