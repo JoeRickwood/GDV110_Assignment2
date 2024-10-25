@@ -10,6 +10,7 @@ public class EntityClass : MonoBehaviour
     public List<Upgrade> entityUpgrades = new List<Upgrade>();
     public GameObject battleManager;
     public GameObject entityHealthBar;
+    public float healthBarHeight;
 
     public delegate void FloatDelegate(float damageCount);
     public delegate void UpgradeDelegate(Upgrade upgrade);
@@ -23,6 +24,7 @@ public class EntityClass : MonoBehaviour
 
     void Start()
     {
+        healthBarHeight = 0.65f;
         if(battleManager == null)
         {
             battleManager = GameObject.Find("BattleManager");
@@ -32,7 +34,7 @@ public class EntityClass : MonoBehaviour
 
         ResetStats();
 
-        entityHealthBar = Instantiate(entityHealthBar, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f), Quaternion.identity);
+        entityHealthBar = Instantiate(entityHealthBar, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + healthBarHeight), Quaternion.identity);
         entityHealthBar.transform.parent = this.gameObject.transform;
     }
 
