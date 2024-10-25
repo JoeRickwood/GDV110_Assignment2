@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 27ca791d8c8509b41b90f2958311a7b7
+guid: e048ab0bc7ad0da4fa858bb0dd5aa251
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 229
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -94,7 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -106,43 +119,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Broccoli_Idle_0
+      name: Tofu_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2061
-        width: 686
-        height: 687
+        y: 2106
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5687a3c32ad84a74481a694723706d77
-      internalID: -1740482187
+      spriteID: c00ea46c4705f51469186ad6b7e23113
+      internalID: 1168482237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_1
+      name: Tofu_Idle_1
       rect:
         serializedVersion: 2
-        x: 686
-        y: 2061
-        width: 686
-        height: 687
+        x: 702
+        y: 2106
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15956a8723aa2974693c66ebccf5c402
-      internalID: -643211203
+      spriteID: 8243681509d68fa42835b290b38d4379
+      internalID: -826840375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_2
+      name: Tofu_Idle_2
       rect:
         serializedVersion: 2
-        x: 1372
-        y: 2061
-        width: 686
-        height: 687
+        x: 1404
+        y: 2106
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c7f3d9835207e4291259260d043abb
-      internalID: -2089712505
+      spriteID: bc3d26d21b118b2438073254dea19f3d
+      internalID: -626687796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_3
+      name: Tofu_Idle_3
       rect:
         serializedVersion: 2
-        x: 2058
-        y: 2061
-        width: 686
-        height: 687
+        x: 2106
+        y: 2106
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,104 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59d9e8f8a7ece504bb67f7cb85f589c3
-      internalID: 1579545628
+      spriteID: e6c868fcf16557247b719e39654994a0
+      internalID: -2086742132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1374
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b6c980bd8f334245b49737583d05b8c
-      internalID: -624765884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_5
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 1374
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 622ab296ff7efb14dbae1c26c3d32219
-      internalID: 495495004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_6
-      rect:
-        serializedVersion: 2
-        x: 1372
-        y: 1374
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b86900b2ab27e948ad08811c99cf1e0
-      internalID: 1122571589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_7
-      rect:
-        serializedVersion: 2
-        x: 2058
-        y: 1374
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36b776b2640b9544c991edba988eead2
-      internalID: 336055956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_8
+      name: Tofu_Idle_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 687
-        width: 686
-        height: 687
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd322218099e574180d87cf132837eb
-      internalID: 1821320202
+      spriteID: 0eb1f4bb3c7edac43a8e0816ff6f2605
+      internalID: -23846165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_9
+      name: Tofu_Idle_5
       rect:
         serializedVersion: 2
-        x: 686
-        y: 687
-        width: 686
-        height: 687
+        x: 702
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51178a721a1b5d346aa919ab2b15db1a
-      internalID: -1455020436
+      spriteID: aa3cbeedfa85b8740bf807f50336f48e
+      internalID: 1834632565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_10
+      name: Tofu_Idle_6
       rect:
         serializedVersion: 2
-        x: 1372
-        y: 687
-        width: 686
-        height: 687
+        x: 1404
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6a782f3f9fe04244bf25e78679ebf65
-      internalID: 1780171074
+      spriteID: e554d37076e60be4f9be0ec28f9c33f2
+      internalID: 732260978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_11
+      name: Tofu_Idle_7
       rect:
         serializedVersion: 2
-        x: 2058
-        y: 687
-        width: 686
-        height: 687
+        x: 2106
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +284,104 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de0c59ca9d634a042afaf37def62f02b
-      internalID: 1457327348
+      spriteID: ed8acc0ac5022bf42825acdde61c0de5
+      internalID: -183273986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_12
+      name: Tofu_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 702
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0e4f4a95c41334182cc69239b04e56
+      internalID: -1737845041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tofu_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 702
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 536e503ebbaaaa34fbfd429b393cd29f
+      internalID: -265690230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tofu_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 702
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3ac79e9560fba4cbd99898fe173c42
+      internalID: 9718472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tofu_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 2106
+        y: 702
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66a19e8a08172c4aa5241f5de187906
+      internalID: -32232354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tofu_Idle_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 686
-        height: 687
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,29 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d390e67f1eea6446862ffd94bbc6929
-      internalID: -1390097148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_13
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 0
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91d8656f2db90f045b84394265e0766a
-      internalID: 684269520
+      spriteID: a4ff1e793a91d5847b036208b3e8a71b
+      internalID: -1416826327
       vertices: []
       indices: 
       edges: []
@@ -440,20 +406,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Broccoli_Idle_0: -1740482187
-      Broccoli_Idle_1: -643211203
-      Broccoli_Idle_10: 1780171074
-      Broccoli_Idle_11: 1457327348
-      Broccoli_Idle_12: -1390097148
-      Broccoli_Idle_13: 684269520
-      Broccoli_Idle_2: -2089712505
-      Broccoli_Idle_3: 1579545628
-      Broccoli_Idle_4: -624765884
-      Broccoli_Idle_5: 495495004
-      Broccoli_Idle_6: 1122571589
-      Broccoli_Idle_7: 336055956
-      Broccoli_Idle_8: 1821320202
-      Broccoli_Idle_9: -1455020436
+      Tofu_Idle_0: 1168482237
+      Tofu_Idle_1: -826840375
+      Tofu_Idle_10: 9718472
+      Tofu_Idle_11: -32232354
+      Tofu_Idle_12: -1416826327
+      Tofu_Idle_2: -626687796
+      Tofu_Idle_3: -2086742132
+      Tofu_Idle_4: -23846165
+      Tofu_Idle_5: 1834632565
+      Tofu_Idle_6: 732260978
+      Tofu_Idle_7: -183273986
+      Tofu_Idle_8: -1737845041
+      Tofu_Idle_9: -265690230
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

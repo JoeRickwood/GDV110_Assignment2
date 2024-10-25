@@ -28,6 +28,7 @@ public class DeckViewer : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject cur = Instantiate(cardRendererPrefab, cardTransform);
+            cur.GetComponent<CardRenderer>().UpdateCardData(RunManager.Instance.deck.staticDeck[i]);
             yield return new WaitForSeconds(0.02f);
         }
     }

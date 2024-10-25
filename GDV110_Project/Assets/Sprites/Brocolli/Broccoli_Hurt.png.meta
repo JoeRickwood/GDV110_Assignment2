@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 27ca791d8c8509b41b90f2958311a7b7
+guid: 45651e347dbd38e4281f7eae7af76aeb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,20 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -106,42 +119,16 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Broccoli_Idle_0
+      name: Broccoli_Hurt_0
       rect:
         serializedVersion: 2
         x: 0
         y: 2061
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5687a3c32ad84a74481a694723706d77
-      internalID: -1740482187
+      spriteID: a52570040742e4a43b1e124d7f00fd8c
+      internalID: -2060367550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_1
+      name: Broccoli_Hurt_1
       rect:
         serializedVersion: 2
-        x: 686
+        x: 687
         y: 2061
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15956a8723aa2974693c66ebccf5c402
-      internalID: -643211203
+      spriteID: 7b9d2d05a78256d42bf6ab7b29561456
+      internalID: 1143879569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_2
+      name: Broccoli_Hurt_2
       rect:
         serializedVersion: 2
-        x: 1372
+        x: 1374
         y: 2061
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -192,19 +179,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c7f3d9835207e4291259260d043abb
-      internalID: -2089712505
+      spriteID: 55d6086d63434d4439ecfd68a875e454
+      internalID: 1886970626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_3
+      name: Broccoli_Hurt_3
       rect:
         serializedVersion: 2
-        x: 2058
+        x: 2061
         y: 2061
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -213,19 +200,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59d9e8f8a7ece504bb67f7cb85f589c3
-      internalID: 1579545628
+      spriteID: 678fd919aefd52c479904610f2bf88bd
+      internalID: 594489304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_4
+      name: Broccoli_Hurt_4
       rect:
         serializedVersion: 2
         x: 0
         y: 1374
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -234,19 +221,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b6c980bd8f334245b49737583d05b8c
-      internalID: -624765884
+      spriteID: a2a7de444f8bceb489818d4ff49f87ce
+      internalID: 1881767873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_5
+      name: Broccoli_Hurt_5
       rect:
         serializedVersion: 2
-        x: 686
+        x: 687
         y: 1374
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -255,19 +242,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 622ab296ff7efb14dbae1c26c3d32219
-      internalID: 495495004
+      spriteID: 6662a1a36b17e8f43b9484cddee95a17
+      internalID: -1198938910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_6
+      name: Broccoli_Hurt_6
       rect:
         serializedVersion: 2
-        x: 1372
+        x: 1374
         y: 1374
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -276,19 +263,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b86900b2ab27e948ad08811c99cf1e0
-      internalID: 1122571589
+      spriteID: 854d28762459f674b8358a20d496b104
+      internalID: 785649128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_7
+      name: Broccoli_Hurt_7
       rect:
         serializedVersion: 2
-        x: 2058
+        x: 2061
         y: 1374
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -297,19 +284,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36b776b2640b9544c991edba988eead2
-      internalID: 336055956
+      spriteID: 4f683e6924e7b7e4baf733a6eab851eb
+      internalID: 628313519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_8
+      name: Broccoli_Hurt_8
       rect:
         serializedVersion: 2
         x: 0
         y: 687
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -318,19 +305,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd322218099e574180d87cf132837eb
-      internalID: 1821320202
+      spriteID: 0c9a0fec477640d45a8330d4c4ad133d
+      internalID: -86751679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_9
+      name: Broccoli_Hurt_9
       rect:
         serializedVersion: 2
-        x: 686
+        x: 687
         y: 687
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -339,19 +326,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51178a721a1b5d346aa919ab2b15db1a
-      internalID: -1455020436
+      spriteID: 899a76f811ac1e84684f3fcec33f6ef9
+      internalID: -1408721717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_10
+      name: Broccoli_Hurt_10
       rect:
         serializedVersion: 2
-        x: 1372
+        x: 1374
         y: 687
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -360,19 +347,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6a782f3f9fe04244bf25e78679ebf65
-      internalID: 1780171074
+      spriteID: 6b1e10e5538f55840bea86a9ed4e37b5
+      internalID: 1328852717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_11
+      name: Broccoli_Hurt_11
       rect:
         serializedVersion: 2
-        x: 2058
+        x: 2061
         y: 687
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -381,19 +368,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de0c59ca9d634a042afaf37def62f02b
-      internalID: 1457327348
+      spriteID: 4569ccacfb5d3ae4c84488f79299a895
+      internalID: 815728318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broccoli_Idle_12
+      name: Broccoli_Hurt_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 686
+        width: 687
         height: 687
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -402,29 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d390e67f1eea6446862ffd94bbc6929
-      internalID: -1390097148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Broccoli_Idle_13
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 0
-        width: 686
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91d8656f2db90f045b84394265e0766a
-      internalID: 684269520
+      spriteID: 56e726aacba310e458677d0405e0dae1
+      internalID: 1917289500
       vertices: []
       indices: 
       edges: []
@@ -440,20 +406,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Broccoli_Idle_0: -1740482187
-      Broccoli_Idle_1: -643211203
-      Broccoli_Idle_10: 1780171074
-      Broccoli_Idle_11: 1457327348
-      Broccoli_Idle_12: -1390097148
-      Broccoli_Idle_13: 684269520
-      Broccoli_Idle_2: -2089712505
-      Broccoli_Idle_3: 1579545628
-      Broccoli_Idle_4: -624765884
-      Broccoli_Idle_5: 495495004
-      Broccoli_Idle_6: 1122571589
-      Broccoli_Idle_7: 336055956
-      Broccoli_Idle_8: 1821320202
-      Broccoli_Idle_9: -1455020436
+      Broccoli_Hurt_0: -2060367550
+      Broccoli_Hurt_1: 1143879569
+      Broccoli_Hurt_10: 1328852717
+      Broccoli_Hurt_11: 815728318
+      Broccoli_Hurt_12: 1917289500
+      Broccoli_Hurt_2: 1886970626
+      Broccoli_Hurt_3: 594489304
+      Broccoli_Hurt_4: 1881767873
+      Broccoli_Hurt_5: -1198938910
+      Broccoli_Hurt_6: 785649128
+      Broccoli_Hurt_7: 628313519
+      Broccoli_Hurt_8: -86751679
+      Broccoli_Hurt_9: -1408721717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

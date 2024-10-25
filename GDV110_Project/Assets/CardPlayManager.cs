@@ -28,7 +28,7 @@ public class CardPlayManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            DrawCards();
+            //DrawCards();
         }
 
         //When A Player Presses The Left Click Button
@@ -37,6 +37,11 @@ public class CardPlayManager : MonoBehaviour
             List<RaycastResult> raycastResults = GetEventSystemRaycastResults();
 
             if(raycastResults.Count < 1)
+            {
+                return;
+            }
+
+            if(raycastResults[0].gameObject.GetComponent<PlayableCard>() == null)
             {
                 return;
             }
@@ -80,7 +85,7 @@ public class CardPlayManager : MonoBehaviour
             float distanceX = (currentHeld.GetComponent<RectTransform>().position.x - Input.mousePosition.x) / 75f;
             float distanceY = (currentHeld.GetComponent<RectTransform>().position.y - Input.mousePosition.y) / 25f;
             currentHeld.GetComponent<RectTransform>().position = Vector3.Lerp(currentHeld.GetComponent<RectTransform>().position, Input.mousePosition, Time.deltaTime * 10f);
-            currentHeld.GetComponent<RectTransform>().rotation = Quaternion.Euler(distanceY, 0f, distanceX);
+            currentHeld.GetComponent<RectTransform>().rotation = Quaternion.Euler(distanceY * 2f, 0f, distanceX);
 
         }else
         {
@@ -88,9 +93,9 @@ public class CardPlayManager : MonoBehaviour
         }
     }
 
-    public void DrawCards()
+    public void DrawCards(int count)
     {
-        for (int i = 0; i < cardsDrawnPerTurn; i++) 
+        for (int i = 0; i < count; i++) 
         {
             Card card = RunManager.Instance.deck.DrawCard(0);
             GameObject cur = Instantiate(physicalCardPrefab, group.transform);

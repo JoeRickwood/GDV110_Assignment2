@@ -11,7 +11,12 @@ public class EntityClass : MonoBehaviour
     public GameObject battleManager;
     public GameObject entityHealthBar;
 
+    public delegate void FloatDelegate(float damageCount);
+    public event FloatDelegate onTakeDamage;
+
     public List<Stat> stats;
+
+    public float healthbarHeight;
 
     void Start()
     {
@@ -34,12 +39,13 @@ public class EntityClass : MonoBehaviour
     void Update()
     {
         entityHealthBar.transform.localScale = new Vector2((stats[(int)StatType.Health].currentValue / stats[(int)StatType.Health].baseValue) / 2f, 0.05f);
-        entityHealthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f);
+        entityHealthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + healthbarHeight);
     }
 
     //Damages entity
     public void TakeDamage(float _Damage)
     {
+        onTakeDamage?.Invoke(_Damage);
         stats[(int)StatType.Health].currentValue -= _Damage;
 
         if(stats[(int)StatType.Health].currentValue <= 0 ) 

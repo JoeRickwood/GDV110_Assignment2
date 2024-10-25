@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1674789179269010346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.113, z: 0}
-  m_LocalScale: {x: 0.04848632, y: 0.04848632, z: 0.04848632}
+  m_LocalPosition: {x: -0.049, y: -0.445, z: 0}
+  m_LocalScale: {x: 0.0857723, y: 0.0857723, z: 0.0857723}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2652079206676690254}
@@ -95,12 +95,12 @@ GameObject:
   - component: {fileID: 2652079206676690254}
   - component: {fileID: 4196867501817767483}
   - component: {fileID: 1386858904599988351}
+  - component: {fileID: 2455959031912341693}
   - component: {fileID: 6610857552709846547}
-  - component: {fileID: 4577334885107382931}
-  - component: {fileID: -8557139830479109762}
-  - component: {fileID: 3742245704634468543}
+  - component: {fileID: -958438607007894227}
+  - component: {fileID: -320018355912432230}
   m_Layer: 0
-  m_Name: Brocolli
+  m_Name: Tofu
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1740482187, guid: 27ca791d8c8509b41b90f2958311a7b7, type: 3}
+  m_Sprite: {fileID: 1168482237, guid: e048ab0bc7ad0da4fa858bb0dd5aa251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,7 +184,7 @@ Animator:
   m_GameObject: {fileID: 7817137307086488625}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4a5ca0da6e0217f4399d4414f9c2b80b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 493504df128758d4486bb563a5b32dbc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -195,6 +195,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2455959031912341693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817137307086488625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ff1c46fec5b2d439443f3994ef13ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0
 --- !u!114 &6610857552709846547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,33 +221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9e03ba33f49f642a7f7d59632d3288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityName: Brocolli
+  entityName: Tofu
   entityAttackDelay: 1
   entityUpgrades: []
   battleManager: {fileID: 0}
   entityHealthBar: {fileID: 6995111531094027344, guid: 2dbd68139dc629346a03d299b0e1b718, type: 3}
   stats:
-  - baseValue: 30
+  - baseValue: 200
     currentValue: 0
   - baseValue: 5
     currentValue: 0
-  - baseValue: 1
+  - baseValue: 0
     currentValue: 0
   healthbarHeight: -1.3
---- !u!114 &4577334885107382931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7817137307086488625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f181e5f90a581b3468976be563d5f02b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animHashName: Brocolli_Idle
---- !u!114 &-8557139830479109762
+--- !u!114 &-958438607007894227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basecolor: {r: 1, g: 1, b: 1, a: 1}
   damagedColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &3742245704634468543
+--- !u!114 &-320018355912432230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

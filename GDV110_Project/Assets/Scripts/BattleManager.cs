@@ -14,9 +14,17 @@ public class BattleManager : MonoBehaviour
     public Canvas battleUI;
     public TMP_Text turnText;
 
+
+    public GameObject attackBtn;
+    public GameObject nextRoundBtn;
+    public GameObject returnToMenuBtn;
+
     public bool isPlayerTurn;
     public bool attacking;
     public bool battleOngoing;
+    public bool playerWon;
+    public bool anythingPlayed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +45,8 @@ public class BattleManager : MonoBehaviour
 
         isPlayerTurn = true;
         battleOngoing = true;
+
+        FindObjectOfType<CardPlayManager>().DrawCards(7);
     }
 
     // Update is called once per frame
@@ -49,9 +59,19 @@ public class BattleManager : MonoBehaviour
         }
 
         //checks if either side has no fighters left, if not, battle ends
-        if (waffleList.Count == 0 || enemyList.Count == 0)
+        if ((waffleList.Count == 0 || enemyList.Count == 0) && anythingPlayed == true)
         {
             battleOngoing = false;
+            if(waffleList.Count > 0)
+            {
+                playerWon = true;
+            }else
+            {
+                playerWon = false;
+            }
+        }else
+        {
+            battleOngoing = true;
         }
 
         //updates lists for waffles and enemies every frame
@@ -62,18 +82,34 @@ public class BattleManager : MonoBehaviour
         {
             if (isPlayerTurn == true)
             {
-                playerTurn();
+                attackBtn.SetActive(true);
+                //playerTurn();
                 turnText.text = "Player is attacking";
             }
             else
             {
+                attackBtn.SetActive(false);
                 enemyTurn();
                 turnText.text = "Enemy is attacking";
             }
         }
         else
         {
-            turnText.text = "Battle Over";
+            if(playerWon)
+            {
+                returnToMenuBtn.SetActive(false);
+                nextRoundBtn.SetActive(true);       
+                turnText.text = "Battle Over";
+            }
+            else
+            {
+                returnToMenuBtn.SetActive(true);
+                returnToMenuBtn.SetActive(false);
+                turnText.text = "You Lose";
+            }
+
+            attackBtn.SetActive(false);
+
             battleOver();
         }
         
@@ -93,12 +129,9 @@ public class BattleManager : MonoBehaviour
     }
 
     //player turn
-    void playerTurn()
+    public void playerTurn()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(attack());
-        }
+        StartCoroutine(attack());
     }
 
     //enemy turn

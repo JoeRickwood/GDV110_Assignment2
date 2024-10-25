@@ -173,6 +173,11 @@ public class CharacterCard : Card
 
     public override bool OnDrop()
     {
+        if(GameObject.FindObjectOfType<BattleManager>().waffleList.Count >= 4)
+        {
+            return false;
+        }
+
         if(Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
         {
             return false;
@@ -181,7 +186,7 @@ public class CharacterCard : Card
         GameObject cur = GameObject.Instantiate(characterPrefab);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0f;
-
+        GameObject.FindObjectOfType<BattleManager>().anythingPlayed = true;
         cur.transform.position = pos;
 
         return true;

@@ -12,6 +12,13 @@ public class RunManager : MonoBehaviour
     public Difficulty difficulty;
 
     public int seed;
+
+    public void EndRun()
+    {
+        transform.parent = null;
+        Instance = null;
+    }
+
     public int money;
 
     public int randIteration;
