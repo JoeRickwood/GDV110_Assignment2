@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: e048ab0bc7ad0da4fa858bb0dd5aa251
+guid: b28fe5fd724de59419ae38e9a7f92837
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -81,19 +81,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -107,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tofu_Idle_0
+      name: Corn_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c00ea46c4705f51469186ad6b7e23113
-      internalID: 1168482237
+      spriteID: b9e7f2224ebdf9a479b7c169765353ed
+      internalID: -1136448721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_1
+      name: Corn_Idle_1
       rect:
         serializedVersion: 2
         x: 702
@@ -158,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8243681509d68fa42835b290b38d4379
-      internalID: -826840375
+      spriteID: dad8318fa5d89264dafca36f77bde295
+      internalID: 1460707173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_2
+      name: Corn_Idle_2
       rect:
         serializedVersion: 2
         x: 1404
@@ -179,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc3d26d21b118b2438073254dea19f3d
-      internalID: -626687796
+      spriteID: bee3833c4457aa949821be46ed0a4bae
+      internalID: 1952382256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_3
+      name: Corn_Idle_3
       rect:
         serializedVersion: 2
         x: 2106
@@ -200,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c868fcf16557247b719e39654994a0
-      internalID: -2086742132
+      spriteID: ee398da4d51717f4c80a1a02d395249d
+      internalID: 1309289050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_4
+      name: Corn_Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -221,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb1f4bb3c7edac43a8e0816ff6f2605
-      internalID: -23846165
+      spriteID: 47ed7c72268c9cc4fa6ddfc14f8d7244
+      internalID: 1688744089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_5
+      name: Corn_Idle_5
       rect:
         serializedVersion: 2
         x: 702
@@ -242,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa3cbeedfa85b8740bf807f50336f48e
-      internalID: 1834632565
+      spriteID: 81eb9d59ab2ae6848ad4ffa41340c4f3
+      internalID: -441810757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_6
+      name: Corn_Idle_6
       rect:
         serializedVersion: 2
         x: 1404
@@ -263,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e554d37076e60be4f9be0ec28f9c33f2
-      internalID: 732260978
+      spriteID: b23655e1887060b45b4bba7507938f09
+      internalID: 1109570566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_7
+      name: Corn_Idle_7
       rect:
         serializedVersion: 2
         x: 2106
@@ -284,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed8acc0ac5022bf42825acdde61c0de5
-      internalID: -183273986
+      spriteID: 04a7c06d39cc123438db0b867f871c9e
+      internalID: 858565843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_8
+      name: Corn_Idle_8
       rect:
         serializedVersion: 2
         x: 0
@@ -305,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f0e4f4a95c41334182cc69239b04e56
-      internalID: -1737845041
+      spriteID: 770b0b2619bc05c40959a68e26b07117
+      internalID: -1676667464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_9
+      name: Corn_Idle_9
       rect:
         serializedVersion: 2
         x: 702
@@ -326,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 536e503ebbaaaa34fbfd429b393cd29f
-      internalID: -265690230
+      spriteID: 2c207e7526de62843ae8057c4e747e75
+      internalID: -249161509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_10
+      name: Corn_Idle_10
       rect:
         serializedVersion: 2
         x: 1404
@@ -347,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa3ac79e9560fba4cbd99898fe173c42
-      internalID: 9718472
+      spriteID: fd9a116dfa831ee459514937bedafde4
+      internalID: 739701358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_11
+      name: Corn_Idle_11
       rect:
         serializedVersion: 2
         x: 2106
@@ -368,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f66a19e8a08172c4aa5241f5de187906
-      internalID: -32232354
+      spriteID: 7149c431681112c4db8b1e4faa2510a6
+      internalID: 599416910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tofu_Idle_12
+      name: Corn_Idle_12
       rect:
         serializedVersion: 2
         x: 0
@@ -389,8 +376,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4ff1e793a91d5847b036208b3e8a71b
-      internalID: -1416826327
+      spriteID: 94f1ba4cc102bc74eaaf5c228cf0cef9
+      internalID: 1062354871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Corn_Idle_13
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 0
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9aeb43b4ee63b049a111486ec6a35b9
+      internalID: 848812025
       vertices: []
       indices: 
       edges: []
@@ -406,19 +414,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tofu_Idle_0: 1168482237
-      Tofu_Idle_1: -826840375
-      Tofu_Idle_10: 9718472
-      Tofu_Idle_11: -32232354
-      Tofu_Idle_12: -1416826327
-      Tofu_Idle_2: -626687796
-      Tofu_Idle_3: -2086742132
-      Tofu_Idle_4: -23846165
-      Tofu_Idle_5: 1834632565
-      Tofu_Idle_6: 732260978
-      Tofu_Idle_7: -183273986
-      Tofu_Idle_8: -1737845041
-      Tofu_Idle_9: -265690230
+      Corn_Idle_0: -1136448721
+      Corn_Idle_1: 1460707173
+      Corn_Idle_10: 739701358
+      Corn_Idle_11: 599416910
+      Corn_Idle_12: 1062354871
+      Corn_Idle_13: 848812025
+      Corn_Idle_2: 1952382256
+      Corn_Idle_3: 1309289050
+      Corn_Idle_4: 1688744089
+      Corn_Idle_5: -441810757
+      Corn_Idle_6: 1109570566
+      Corn_Idle_7: 858565843
+      Corn_Idle_8: -1676667464
+      Corn_Idle_9: -249161509
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

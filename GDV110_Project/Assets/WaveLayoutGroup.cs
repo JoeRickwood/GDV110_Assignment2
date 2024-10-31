@@ -22,7 +22,9 @@ public class WaveLayoutGroup : MonoBehaviour
 
             float rotZ = (i - ((transform.childCount - 1) / 2f)) * -rotScale;
 
-            transform.GetChild(i).GetComponent<RectTransform>().position = pos + new Vector3((i - ((float)(transform.childCount - 1) / 2f)) * spacing, y, 0f);
+            Vector3 newPos = pos + new Vector3((i - ((float)(transform.childCount - 1) / 2f)) * spacing, y, 0f);
+
+            transform.GetChild(i).GetComponent<RectTransform>().position = Vector3.Lerp(transform.GetChild(i).GetComponent<RectTransform>().position, newPos, Time.deltaTime * 20f);
             transform.GetChild(i).GetComponent<RectTransform>().rotation = Quaternion.Euler(0f, 0f, rotZ);
         }
     }

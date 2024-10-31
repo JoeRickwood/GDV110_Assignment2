@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +16,7 @@ public class EntityClass : MonoBehaviour
     public List<Stat> stats;
 
     public float healthbarHeight;
+    public bool isDead;
 
     void Start()
     {
@@ -29,7 +29,10 @@ public class EntityClass : MonoBehaviour
 
         for (int i = 0; i < stats.Count; i++)
         {
-            stats[i].Reset();
+            if (i != (int)StatType.Health)
+            {
+                stats[i].Reset();
+            }    
         }
 
         entityHealthBar = Instantiate(entityHealthBar, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f), Quaternion.identity);
@@ -48,8 +51,9 @@ public class EntityClass : MonoBehaviour
         onTakeDamage?.Invoke(_Damage);
         stats[(int)StatType.Health].currentValue -= _Damage;
 
-        if(stats[(int)StatType.Health].currentValue <= 0 ) 
+        if(stats[(int)StatType.Health].currentValue <= 0) 
         {
+            isDead = true;
             Die();
         }
     }
@@ -77,6 +81,21 @@ public class EntityClass : MonoBehaviour
     public void AddUpgrade(Upgrade _UpgradeToAdd)
     {
         entityUpgrades.Add(_UpgradeToAdd);
+
+        CalculateStats();
+    }
+
+    public void CalculateStats()
+    {
+        for (int i = 0; i < stats.Count; i++)
+        {
+            stats[i].currentValue = stats[i].baseValue;
+        }
+
+        for (int i = 0; i < entityUpgrades.Count; i++)
+        {
+            entityUpgrades[i].Activate(this);
+        }
     }
 
     //Removes upgrade from the list of upgrades on the entity

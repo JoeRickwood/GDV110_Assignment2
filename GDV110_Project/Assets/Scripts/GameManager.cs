@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public AudioSource source;
     public List<AudioClip> soundEffects;
 
+    [Header("Icons")]
+    public Sprite[] icons;
+
     private void Start()
     {
         if(GameManager.Instance != null)
@@ -50,6 +53,11 @@ public class GameManager : MonoBehaviour
     {
         source.PlayOneShot(soundEffects[(int)effect], 1f);
         Debug.Log($"Played Sound {soundEffects[(int)effect]}");
+    }
+
+    public Sprite GetSprite(int ID)
+    {
+        return icons[ID];
     }
 
     public void OnValidate()

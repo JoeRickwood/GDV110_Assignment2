@@ -99,7 +99,8 @@ public class RunManager : MonoBehaviour
 
             new Card[] //Toppings
             { 
-                new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 1, Operation.Add)),
+                new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 5, Operation.Add)),
+                new ToppingCard("Butter", 3, 3, new StrengthUpgrade(1, 2, Operation.Multiply)),
             },
         };
     }
@@ -189,10 +190,21 @@ public class RunManager : MonoBehaviour
         currentState = GameState.Fight;
 
         //Add Base Cards To Deck
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 2; i++)
         {
-            deck.AddCardStatic(GetRandomCard());
+            deck.AddCardStatic(GetCardWithID(0));
+            deck.AddCardStatic(GetCardWithID(2));
         }
+
+        for (int i = 0; i < 9; i++)
+        {
+            deck.AddCardStatic(GetCardWithID(1));
+        }
+
+        deck.AddCardStatic(GetCardWithID(3));
+        deck.AddCardStatic(GetCardWithID(3));
+
+        deck.Shuffle();
     }
 
 

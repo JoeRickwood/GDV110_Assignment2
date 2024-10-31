@@ -53,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Distance: 1.0029155
+    - _Distance: 1
     - _EnableExternalAlpha: 0
     - _Fade: 0.0075
     m_Colors:
@@ -61,4 +61,5 @@ Material:
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Shape: {r: 0.8, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

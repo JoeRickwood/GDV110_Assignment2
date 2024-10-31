@@ -7,6 +7,7 @@ public class CardPlayManager : MonoBehaviour
     public int cardsDrawnPerTurn;
 
     public List<Card> cards;
+    public BattleManager battleManager;
 
     public GameObject physicalCardPrefab;
 
@@ -63,12 +64,19 @@ public class CardPlayManager : MonoBehaviour
                 return;
             }
 
-            if (!currentHeld.GetComponent<PlayableCard>().card.OnDrop())
+            if (battleManager.canPlayCards == true)
             {
-                currentHeld.transform.parent = group.transform;
+                if (!currentHeld.GetComponent<PlayableCard>().card.OnDrop())
+                {
+                    currentHeld.transform.parent = group.transform;
+                }
+                else
+                {
+                    Destroy(currentHeld);
+                }
             }else
             {
-                Destroy(currentHeld);
+                currentHeld.transform.parent = group.transform;
             }
 
             
@@ -98,8 +106,11 @@ public class CardPlayManager : MonoBehaviour
         for (int i = 0; i < count; i++) 
         {
             Card card = RunManager.Instance.deck.DrawCard(0);
-            GameObject cur = Instantiate(physicalCardPrefab, group.transform);
-            cur.GetComponent<PlayableCard>().UpdateCardData(card);
+            if(card != null)
+            {
+                GameObject cur = Instantiate(physicalCardPrefab, group.transform);
+                cur.GetComponent<PlayableCard>().UpdateCardData(card);
+            }
         }
     }
 

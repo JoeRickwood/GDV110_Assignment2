@@ -87,6 +87,30 @@ public class Deck
             currentDeck[i] = currentDeck[swapIndex];
             currentDeck[swapIndex] = tmp;
         }
+
+        //We Check If A Hand Has A Waffle In It, If It Dosent Force The First Waffle Starting from the bottom into the top position of the deck
+        bool ret = false;
+        for (int i = 0; i < Mathf.Min(5, currentDeck.Count); i++)
+        {
+            if (currentDeck[i].GetType() == typeof(CharacterCard))
+            {
+                ret = true;
+            }
+        }
+
+        if(ret == false)
+        {
+            for (int i = currentDeck.Count; i > 0; i++)
+            {
+                if (currentDeck[i].GetType() == typeof(CharacterCard))
+                {
+                    tmp = currentDeck[i];
+
+                    currentDeck[i] = currentDeck[0];
+                    currentDeck[0] = tmp;
+                }
+            }
+        }
     }
 
 
@@ -173,7 +197,9 @@ public class CharacterCard : Card
 
     public override bool OnDrop()
     {
-        if(GameObject.FindObjectOfType<BattleManager>().waffleList.Count >= 4)
+        GameObject.FindObjectOfType<BattleManager>().gameStarted = true;
+
+        if (GameObject.FindObjectOfType<BattleManager>().waffleList.Count >= 4)
         {
             return false;
         }
@@ -186,7 +212,6 @@ public class CharacterCard : Card
         GameObject cur = GameObject.Instantiate(characterPrefab);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0f;
-        GameObject.FindObjectOfType<BattleManager>().anythingPlayed = true;
         cur.transform.position = pos;
 
         return true;
@@ -276,6 +301,8 @@ public class ToppingCard : Card
 
     public override bool OnDrop()
     {
+        GameObject.FindObjectOfType<BattleManager>().gameStarted = true;
+
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f || currentTarget == null)
         {
             return false;
@@ -317,10 +344,10 @@ class StrengthUpgrade : Upgrade
         switch (operation) 
         { 
             case Operation.Add:
-                //Increase Entity Strength
+                entity.stats[(int)StatType.Damage].currentValue += increase;
                 break;
             case Operation.Multiply:
-                //Multiply Entity Strength
+                entity.stats[(int)StatType.Damage].currentValue *= increase;
                 break;
         }
     }

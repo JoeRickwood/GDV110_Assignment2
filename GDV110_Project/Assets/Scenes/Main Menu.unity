@@ -1191,6 +1191,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3456930914134471791, guid: 023197dff524f5541903d44e703ec4a4, type: 3}
+      propertyPath: icons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456930914134471791, guid: 023197dff524f5541903d44e703ec4a4, type: 3}
+      propertyPath: icons.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: adbd7f94f0f0c5e428c277d56a7fc27a, type: 3}
+    - target: {fileID: 3456930914134471791, guid: 023197dff524f5541903d44e703ec4a4, type: 3}
+      propertyPath: icons.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d151d46db4cecfe4f8e314a093405bfa, type: 3}
     - target: {fileID: 4971228173990385052, guid: 023197dff524f5541903d44e703ec4a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1540,15 +1552,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6381647802897905106, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.0963962
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6381647802897905106, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.644219
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6381647802897905106, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6859973
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6381647802897905106, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1581,18 +1593,6 @@ PrefabInstance:
     - target: {fileID: 6387359183462668597, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
       propertyPath: m_Name
       value: ScreenTransition
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121045946033315488, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121045946033315488, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
-      propertyPath: callOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121045946033315488, guid: bd83feb38a56506449b65580eb51ac14, type: 3}
-      propertyPath: onStartCallDirection
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,5 +13,6 @@ public class CardRenderer : MonoBehaviour
     {
         card = _Card;
         titleText.text = card.name;
+        image.sprite = GameManager.Instance.GetSprite(_Card.ID);
     }
 }

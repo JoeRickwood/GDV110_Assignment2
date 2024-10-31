@@ -9,6 +9,8 @@ public class ScreenTransition : MonoBehaviour
     public bool onStartCallDirection;
     public float speed;
 
+    public AnimationCurve easingCurve;
+
     private void Start()
     {
         if(!callOnStart)
@@ -30,11 +32,11 @@ public class ScreenTransition : MonoBehaviour
 
             if(direction)
             {
-                screenTransitionMat.SetFloat("_Distance", 1f - (t / time));
+                screenTransitionMat.SetFloat("_Distance", easingCurve.Evaluate(1f - (t / time)));
             }
             else
             {
-                screenTransitionMat.SetFloat("_Distance", (t / time));
+                screenTransitionMat.SetFloat("_Distance", easingCurve.Evaluate(t / time));
             }
 
             yield return new WaitForSeconds(Time.deltaTime);
