@@ -100,7 +100,7 @@ public class Deck
 
         if(ret == false)
         {
-            for (int i = currentDeck.Count; i > 0; i++)
+            for (int i = currentDeck.Count - 1; i > 0; i--)
             {
                 if (currentDeck[i].GetType() == typeof(CharacterCard))
                 {
@@ -234,6 +234,11 @@ public class ToppingCard : Card
 
     public override void OnHover(GameObject cardObj)
     {
+        if(GameObject.FindObjectOfType<BattleManager>().waffleList.Count <= 0)
+        {
+            return;
+        }
+
         GameObject.FindObjectOfType<CardPlayManager>().dropLine.enabled = true;
 
         if (currentTarget != null)
@@ -350,5 +355,20 @@ class StrengthUpgrade : Upgrade
                 entity.stats[(int)StatType.Damage].currentValue *= increase;
                 break;
         }
+    }
+}
+
+class HealUpgrade : Upgrade
+{
+    int healAmount;
+  
+    public HealUpgrade(int _Price, int _HealAmount) : base(_Price)
+    {
+        healAmount = _HealAmount;
+    }
+
+    public override void Activate(EntityClass entity)
+    {
+        entity.Heal(healAmount);
     }
 }

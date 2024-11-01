@@ -87,14 +87,12 @@ public class CardPlayManager : MonoBehaviour
         {
             currentHeld.GetComponent<PlayableCard>().card.OnHover(currentHeld);
 
-
             Debug.Log(currentHeld.GetComponent<PlayableCard>().card.GetType());
 
             float distanceX = (currentHeld.GetComponent<RectTransform>().position.x - Input.mousePosition.x) / 75f;
             float distanceY = (currentHeld.GetComponent<RectTransform>().position.y - Input.mousePosition.y) / 25f;
             currentHeld.GetComponent<RectTransform>().position = Vector3.Lerp(currentHeld.GetComponent<RectTransform>().position, Input.mousePosition, Time.deltaTime * 10f);
             currentHeld.GetComponent<RectTransform>().rotation = Quaternion.Euler(distanceY * 2f, 0f, distanceX);
-
         }else
         {
             dropLine.enabled = false;

@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 6025421943179751496}
   - component: {fileID: 624705204555785205}
   - component: {fileID: 6742693558556875342}
+  - component: {fileID: 569052439333934779}
   m_Layer: 0
   m_Name: Card_PlayPrefab
   m_TagString: Untagged
@@ -235,7 +236,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000022888184, y: 0.000015258789}
-  m_SizeDelta: {x: 100, y: 145}
+  m_SizeDelta: {x: 200, y: 290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &478281959360223013
 CanvasRenderer:
@@ -312,6 +313,71 @@ MonoBehaviour:
   descriptionText: {fileID: 0}
   titleText: {fileID: 5218884780935750799}
   image: {fileID: 4094838881216630742}
+--- !u!114 &569052439333934779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5624421417472196255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46165945c9d072d4d8f3862319236f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  endCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speed: 20
+  maxScale: 1.2
+  minScale: 1
+  isActive: 1
+  soundType: 0
 --- !u!1 &6282146658288534635
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,8 +413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21.51}
-  m_SizeDelta: {x: -20, y: 20}
+  m_AnchoredPosition: {x: -0.3769, y: -44.5017}
+  m_SizeDelta: {x: -41.1071, y: 42.6148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5212407939900204378
 CanvasRenderer:
@@ -380,11 +446,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3c7d74004fa0f4a40992e47a671036b5, type: 3}
-    m_FontSize: 10
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 10
+    m_MaxSize: 20
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -427,8 +493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: 0.5}
-  m_SizeDelta: {x: -1, y: -1}
+  m_AnchoredPosition: {x: 1.5, y: 1.5}
+  m_SizeDelta: {x: -3, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5699927061972395797
 CanvasRenderer:
@@ -460,11 +526,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3c7d74004fa0f4a40992e47a671036b5, type: 3}
-    m_FontSize: 10
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 10
+    m_MaxSize: 20
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1

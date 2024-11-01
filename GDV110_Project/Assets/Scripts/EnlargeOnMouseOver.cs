@@ -10,6 +10,8 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private AnimationCurve startCurve;
     [SerializeField] private AnimationCurve endCurve;
     [SerializeField] private float speed;
+    public float maxScale;
+    public float minScale;
 
     public bool isActive = true;
 
@@ -19,8 +21,7 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         if(isActive == false)
         {
-            float scale = startCurve.Evaluate(0f);
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(scale, scale, scale), Time.deltaTime * 10f);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * minScale, Time.deltaTime * 10f);
             return;
         }
 
@@ -28,12 +29,12 @@ public class EnlargeOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
         timer = Mathf.Clamp01(timer);
         if(mouseOver)
         {
-            float scale = startCurve.Evaluate(timer);
+            float scale = Mathf.Lerp(minScale, maxScale, startCurve.Evaluate(timer)); 
             transform.localScale = new Vector3(scale, scale, scale);
         }
         else
         {
-            float scale = endCurve.Evaluate(timer);
+            float scale = Mathf.Lerp(minScale, maxScale, endCurve.Evaluate(timer));
             transform.localScale = new Vector3(scale, scale, scale);
         }
     }

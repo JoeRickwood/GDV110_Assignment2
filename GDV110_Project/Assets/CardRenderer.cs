@@ -13,6 +13,18 @@ public class CardRenderer : MonoBehaviour
     {
         card = _Card;
         titleText.text = card.name;
-        image.sprite = GameManager.Instance.GetSprite(_Card.ID);
+        
+        Sprite spr = GameManager.Instance.GetSprite(_Card.ID);
+
+        if(spr == null)
+        {
+            image.color = new Color(0f, 0f, 0f, 0f);
+        }
+        else
+        {
+            image.sprite = spr;
+        }
+
+        
     }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1895400066088996663}
   - component: {fileID: 7397258041786582267}
   - component: {fileID: 5777229233261899621}
+  - component: {fileID: -3348923887705700905}
   m_Layer: 0
   m_Name: Corn
   m_TagString: enemy
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -715003429, guid: 59f6100225cc62a4e87d0fa6a5add663, type: 3}
+  m_Sprite: {fileID: -1136448721, guid: b28fe5fd724de59419ae38e9a7f92837, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,3 +193,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 8931915599016997072}
+--- !u!114 &-3348923887705700905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594885743694162713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83f83f5a184b3748bc69c8eed4b581f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

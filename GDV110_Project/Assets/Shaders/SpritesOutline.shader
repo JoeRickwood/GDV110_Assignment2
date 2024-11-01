@@ -102,7 +102,7 @@ Shader "Sprites/Outline"
 						fixed4 pixelRight = tex2D(_MainTex, IN.texcoord + fixed2(i * _MainTex_TexelSize.x, 0));
 						fixed4 pixelLeft = tex2D(_MainTex, IN.texcoord - fixed2(i * _MainTex_TexelSize.x, 0));
 
-						totalAlpha = totalAlpha * pixelUp.a * pixelDown.a * pixelRight.a * pixelLeft.a;
+						totalAlpha = totalAlpha * (pixelUp.a < 0.95f ? 0.f : pixelUp.a) * (pixelDown.a < 0.95f ? 0.f : pixelDown.a) * (pixelRight.a < 0.95f ? 0.f : pixelRight.a) * (pixelLeft.a < 0.95f ? 0.f : pixelLeft.a);
 					}
 
 					if (totalAlpha == 0) {

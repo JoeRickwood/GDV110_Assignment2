@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - battleManager: {instanceID: 0}
   - entityHealthBar: {fileID: 6995111531094027344, guid: 2dbd68139dc629346a03d299b0e1b718, type: 3}
-  executionOrder: 0
+  executionOrder: 450
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

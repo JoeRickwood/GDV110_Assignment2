@@ -5,8 +5,7 @@ using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
-    public GameObject selectedEntity;
-    public GameObject bell;
+    public Bell bell;
 
     public ActivationIndicator activationIndicator;
 
@@ -26,10 +25,10 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        if (bell == null)
+        /*if (bell == null)
         {
-            bell = GameObject.Find("Bell");
-        }
+            //bell = GameObject.Find("Bell");
+        }*/
 
         //Draw Cards
         RunManager.Instance.deck.Shuffle();
@@ -50,25 +49,20 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        /*if (selectedEntity == bell && battleStartable == true)
         {
-            MouseClick();
-        }
-
-        if (selectedEntity == bell && battleStartable == true)
-        {
-            bell.GetComponent<Bell>().Ding();
-        }
+            //bell.GetComponent<Bell>().Ding();
+        }*/
 
         //updates lists for waffles and enemies every frame
         updateEntityLists();
 
         if(waffleList.Count == 0)
         {
-            bell.SetActive(false);
+            bell.isActive = false;
         } else if (waffleList.Count == 0 && enemyList.Count > 0 && gameStarted == true)
         {
-            bell.SetActive(false);
+            bell.isActive = false;
             canPlayCards = false;
             gameEnded = true;
             returnToMenuBtn.SetActive(true);
@@ -77,7 +71,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (enemyList.Count == 0 && waffleList.Count > 0)
         {
-            bell.SetActive(false);
+            bell.isActive = false;
             canPlayCards = false;
             returnToMenuBtn.SetActive(false);
             moveToShopBtn.SetActive(true);
@@ -89,20 +83,7 @@ public class BattleManager : MonoBehaviour
             //Battle Over
         }else if(battleStartable)
         {
-            bell.SetActive(true);
-        }
-    }
-
-    //logic for clicking waffles/enemies in the scene
-    void MouseClick()
-    {
-        if (Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) != null)
-        {
-            selectedEntity = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)).gameObject;
-        }
-        else
-        {
-            selectedEntity = null;
+            bell.isActive = true;
         }
     }
 
@@ -151,13 +132,15 @@ public class BattleManager : MonoBehaviour
             activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(waffleList[i].transform.position + new Vector3(0f, 1.2f, 0f));
             activationIndicator.Activate("$1");
             RunManager.Instance.money++;
+            RunManager.Instance.level++;
             yield return new WaitForSeconds(1f);
         }
     }
 
     IEnumerator battlePhase()
     {
-        bell.SetActive(false);
+        canPlayCards = false;
+        bell.isActive = false;
         battleStartable = false;
         for (int i = 0; i < waffleList.Count; i++)
         {
@@ -172,7 +155,8 @@ public class BattleManager : MonoBehaviour
         }
 
         battleStartable = true;
-        bell.SetActive(true);
+        bell.isActive = true;
+        canPlayCards = true;
         cardPlayManager.DrawCards(1);
     }
 }

@@ -27,13 +27,7 @@ public class EntityClass : MonoBehaviour
 
         entityAttackDelay = 1f;
 
-        for (int i = 0; i < stats.Count; i++)
-        {
-            if (i != (int)StatType.Health)
-            {
-                stats[i].Reset();
-            }    
-        }
+        ResetStats();
 
         entityHealthBar = Instantiate(entityHealthBar, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.65f), Quaternion.identity);
         entityHealthBar.transform.parent = this.gameObject.transform;
@@ -45,7 +39,7 @@ public class EntityClass : MonoBehaviour
         entityHealthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + healthbarHeight);
     }
 
-    //Damages entity
+    //Damages Entity
     public void TakeDamage(float _Damage)
     {
         onTakeDamage?.Invoke(_Damage);
@@ -87,14 +81,25 @@ public class EntityClass : MonoBehaviour
 
     public void CalculateStats()
     {
-        for (int i = 0; i < stats.Count; i++)
-        {
-            stats[i].currentValue = stats[i].baseValue;
-        }
-
         for (int i = 0; i < entityUpgrades.Count; i++)
         {
             entityUpgrades[i].Activate(this);
+        }
+
+        for (int i = 0; i < stats.Count; i++)
+        {
+            if(i != (int)StatType.Health)
+            {
+                stats[i].currentValue = stats[i].baseValue;
+            }     
+        }
+    }
+
+    public void ResetStats()
+    {
+        for (int i = 0; i < stats.Count; i++)
+        {
+            stats[i].currentValue = stats[i].baseValue;
         }
     }
 

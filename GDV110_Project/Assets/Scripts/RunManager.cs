@@ -23,6 +23,8 @@ public class RunManager : MonoBehaviour
 
     public int randIteration;
 
+    public int level;
+
     public Deck deck;
 
     //[CardType][Cards]
@@ -34,6 +36,12 @@ public class RunManager : MonoBehaviour
     public string ToHex(int _Value)
     {
         return String.Format("0x{0:X}", _Value);
+    }
+
+
+    public float DifficultyValue()
+    {
+        return Mathf.Pow(level, 1.0f + ((int)(difficulty) / 10f));
     }
 
     //Converts From A Hexadecimal Value Back To A Integer
@@ -101,6 +109,7 @@ public class RunManager : MonoBehaviour
             { 
                 new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 5, Operation.Add)),
                 new ToppingCard("Butter", 3, 3, new StrengthUpgrade(1, 2, Operation.Multiply)),
+                new ToppingCard("Orange Juice", 4, 3, new HealUpgrade(1, 20)),
             },
         };
     }
@@ -182,6 +191,7 @@ public class RunManager : MonoBehaviour
     //Creates New Run And Initializes The Random
     public void NewRun(int _Seed, Difficulty _Difficulty)
     {
+        level = 1;
         randIteration = 0;
         seed = _Seed;
         random = new System.Random(seed);

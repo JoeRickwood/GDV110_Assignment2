@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16e90f0550e01b14684d5804e29dcb73
+guid: 10dd591b142b6b343ab00e5addb6b793
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,91 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3510
-        width: 702
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f30f6ba7c6ea5f04eb9bc6d9d68c7cb0
-      internalID: -1799056796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Waffle_Square_Hurt_1
-      rect:
-        serializedVersion: 2
-        x: 702
-        y: 3510
-        width: 702
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c92c0cad64ad174781224abd841b3b2
-      internalID: 2084633169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Waffle_Square_Hurt_2
-      rect:
-        serializedVersion: 2
-        x: 1404
-        y: 3510
-        width: 702
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2ecd01e589f6774680c9596dfd256d3
-      internalID: -1447953280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Waffle_Square_Hurt_3
-      rect:
-        serializedVersion: 2
-        x: 2106
-        y: 3510
-        width: 702
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6498e769ff9c0284095df2db6d2e7abf
-      internalID: -932453217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Waffle_Square_Hurt_4
+      name: Waffle_Square_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -221,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad66e1583de13714dba5af887926ae55
-      internalID: 1217855911
+      spriteID: 214a5932b0ad26147b0bbe87f692a123
+      internalID: 1029148157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_5
+      name: Waffle_Square_Idle_1
       rect:
         serializedVersion: 2
         x: 702
@@ -242,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c95edc120f8b91a44843e9703d9b8053
-      internalID: 2094806299
+      spriteID: 07b449e99d299024aa195edf24c0c376
+      internalID: -1097607759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_6
+      name: Waffle_Square_Idle_2
       rect:
         serializedVersion: 2
         x: 1404
@@ -263,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 564aebc170b82b247aff4efdf395046e
-      internalID: 1585951626
+      spriteID: 1d7c94393d0f334479d88712f55f4c5a
+      internalID: -2053158222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_7
+      name: Waffle_Square_Idle_3
       rect:
         serializedVersion: 2
         x: 2106
@@ -284,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 158440318f5dc9b4cb13787a58ed84cb
-      internalID: 85941116
+      spriteID: 9dd2651c96d84d84787a020be2fd7f78
+      internalID: 148554641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_8
+      name: Waffle_Square_Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -305,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a475c272ccfa0c34390bbf5f2b54c1b5
-      internalID: -2070963757
+      spriteID: c654505a083713c41a432e85075d6717
+      internalID: -2069769351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_9
+      name: Waffle_Square_Idle_5
       rect:
         serializedVersion: 2
         x: 702
@@ -326,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6214d70ed8843fb4cb1f34bb4a29b760
-      internalID: -1013877029
+      spriteID: 022c347df84d1604fb56ed9e726b2c7a
+      internalID: -6929781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_10
+      name: Waffle_Square_Idle_6
       rect:
         serializedVersion: 2
         x: 1404
@@ -347,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b92011c1b6ccce14eaf9f9f8ca541918
-      internalID: 260249902
+      spriteID: 967260599692e71468ae2c0ef59a5416
+      internalID: -461344291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_11
+      name: Waffle_Square_Idle_7
       rect:
         serializedVersion: 2
         x: 2106
@@ -368,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fb9d9fff4b05fb40b4869285b3af7db
-      internalID: -1993104676
+      spriteID: 2fddab5ee77c01548915a7f5d4eaf240
+      internalID: -1387171519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_12
+      name: Waffle_Square_Idle_8
       rect:
         serializedVersion: 2
         x: 0
@@ -389,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 872afa37dea21c84ebbd5476c504c484
-      internalID: 1467059423
+      spriteID: c9fab7d00743b4c44922aeae42ad15b3
+      internalID: -166638788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_13
+      name: Waffle_Square_Idle_9
       rect:
         serializedVersion: 2
         x: 702
@@ -410,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e723ab45ce514241863c07d635f2134
-      internalID: -1926347562
+      spriteID: 17ab4ddd32e38e94f8a4ab5c8ab570e3
+      internalID: -266385571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_14
+      name: Waffle_Square_Idle_10
       rect:
         serializedVersion: 2
         x: 1404
@@ -431,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 359d3b64c6b394b4f8bbc502d1c0e0a0
-      internalID: -1822884147
+      spriteID: d08458262c74ac84a95fa3bf86e35d1c
+      internalID: -1963425895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_15
+      name: Waffle_Square_Idle_11
       rect:
         serializedVersion: 2
         x: 2106
@@ -452,14 +368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 492822c47fe74b540a85c5218f8d3caf
-      internalID: -919280909
+      spriteID: bb579a5611bdc9d4a90e357f0abe7ff8
+      internalID: -1814786884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_16
+      name: Waffle_Square_Idle_12
       rect:
         serializedVersion: 2
         x: 0
@@ -473,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c13ff027bf3dc64ea52abadd7fca0c0
-      internalID: 410658907
+      spriteID: 605d254afddec4b4d89d9c7e76396f50
+      internalID: -1917004425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_17
+      name: Waffle_Square_Idle_13
       rect:
         serializedVersion: 2
         x: 702
@@ -494,14 +410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3d2d6cc62381db41b29ca7328f0e031
-      internalID: -1946776065
+      spriteID: 51b1c9fb2e7849d4a90c505b50f9a59d
+      internalID: -726654740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_18
+      name: Waffle_Square_Idle_14
       rect:
         serializedVersion: 2
         x: 1404
@@ -515,14 +431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 214e24f80cb41ee4393097cc8e707b8d
-      internalID: -1946552427
+      spriteID: aba6961f7efe6c34b89edea774a05bac
+      internalID: 1722464661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_19
+      name: Waffle_Square_Idle_15
       rect:
         serializedVersion: 2
         x: 2106
@@ -536,14 +452,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0064784cd5664cc43bd5118511368d6c
-      internalID: -1286147053
+      spriteID: b8372ea13f3b7654c93815ff844eb3bf
+      internalID: -1805168424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Waffle_Square_Hurt_20
+      name: Waffle_Square_Idle_16
       rect:
         serializedVersion: 2
         x: 0
@@ -557,8 +473,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2716df0148c53184e9dbd7bc70421e0d
-      internalID: -1975575217
+      spriteID: 572fc48020c8e30439cbc85a69dd41ec
+      internalID: 1587363170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Waffle_Square_Idle_17
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 0
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af6c24e81e2dd04d9e1b01ade83fce7
+      internalID: 1271940868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Waffle_Square_Idle_18
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd7d6502e0ff4a4c93055961306eb0b
+      internalID: -971769291
       vertices: []
       indices: 
       edges: []
@@ -574,27 +532,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Waffle_Square_Hurt_0: -1799056796
-      Waffle_Square_Hurt_1: 2084633169
-      Waffle_Square_Hurt_10: 260249902
-      Waffle_Square_Hurt_11: -1993104676
-      Waffle_Square_Hurt_12: 1467059423
-      Waffle_Square_Hurt_13: -1926347562
-      Waffle_Square_Hurt_14: -1822884147
-      Waffle_Square_Hurt_15: -919280909
-      Waffle_Square_Hurt_16: 410658907
-      Waffle_Square_Hurt_17: -1946776065
-      Waffle_Square_Hurt_18: -1946552427
-      Waffle_Square_Hurt_19: -1286147053
-      Waffle_Square_Hurt_2: -1447953280
-      Waffle_Square_Hurt_20: -1975575217
-      Waffle_Square_Hurt_3: -932453217
-      Waffle_Square_Hurt_4: 1217855911
-      Waffle_Square_Hurt_5: 2094806299
-      Waffle_Square_Hurt_6: 1585951626
-      Waffle_Square_Hurt_7: 85941116
-      Waffle_Square_Hurt_8: -2070963757
-      Waffle_Square_Hurt_9: -1013877029
+      Waffle_Square_Idle_0: 1029148157
+      Waffle_Square_Idle_1: -1097607759
+      Waffle_Square_Idle_10: -1963425895
+      Waffle_Square_Idle_11: -1814786884
+      Waffle_Square_Idle_12: -1917004425
+      Waffle_Square_Idle_13: -726654740
+      Waffle_Square_Idle_14: 1722464661
+      Waffle_Square_Idle_15: -1805168424
+      Waffle_Square_Idle_16: 1587363170
+      Waffle_Square_Idle_17: 1271940868
+      Waffle_Square_Idle_18: -971769291
+      Waffle_Square_Idle_2: -2053158222
+      Waffle_Square_Idle_3: 148554641
+      Waffle_Square_Idle_4: -2069769351
+      Waffle_Square_Idle_5: -6929781
+      Waffle_Square_Idle_6: -461344291
+      Waffle_Square_Idle_7: -1387171519
+      Waffle_Square_Idle_8: -166638788
+      Waffle_Square_Idle_9: -266385571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

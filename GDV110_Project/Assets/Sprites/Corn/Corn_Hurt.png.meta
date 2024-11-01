@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 1e30b13ec86c10549b1207e4013ab6e9
+guid: 284579f7cb33e304cbcc8ecf8edb69ad
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 230.5
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -94,11 +107,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: Corn_Hurt_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 922
-        width: 563
-        height: 461
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c72810c7acae4f44d8586686cc58325e
-      internalID: 925097003
+      spriteID: 52ec4a5ba5b1e9e4484984f323055c97
+      internalID: 2014356493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_1
+      name: Corn_Hurt_1
       rect:
         serializedVersion: 2
-        x: 563
-        y: 922
-        width: 563
-        height: 461
+        x: 702
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dd5295a50dc9bd4da51c469fb38df1f
-      internalID: -1530090634
+      spriteID: f7a172842272dec4688957a38974a31f
+      internalID: 375796423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_2
+      name: Corn_Hurt_2
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 922
-        width: 563
-        height: 461
+        x: 1404
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39a8c04e581a26044a03b080ab7c0d61
-      internalID: -288593620
+      spriteID: a43096776373d674fb93b7cc28aeb08b
+      internalID: 347685405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_3
+      name: Corn_Hurt_3
       rect:
         serializedVersion: 2
-        x: 1689
-        y: 922
-        width: 563
-        height: 461
+        x: 2106
+        y: 1404
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 361665848b34391479dac82c53401ba6
-      internalID: 1935884001
+      spriteID: 8bd56bef49f319b45b504c7e52d57779
+      internalID: -863948688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_4
+      name: Corn_Hurt_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 461
-        width: 563
-        height: 461
+        y: 702
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce8628ce5e165914eb02dbf4ff3e6b72
-      internalID: 36496192
+      spriteID: 7da603d2c8523c24296cb287ddb43127
+      internalID: -771254328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_5
+      name: Corn_Hurt_5
       rect:
         serializedVersion: 2
-        x: 563
-        y: 461
-        width: 563
-        height: 461
+        x: 702
+        y: 702
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a6a0a9611d0f0545972463b625985b9
-      internalID: 292209607
+      spriteID: f40736651ffbd464cb4cabef3799bfc9
+      internalID: -302846323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_6
+      name: Corn_Hurt_6
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 461
-        width: 563
-        height: 461
+        x: 1404
+        y: 702
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6558ee85db783d546aee717d5d8a70b1
-      internalID: 194693240
+      spriteID: 7154ea493b2445749a3f7a18b3d5e786
+      internalID: -1029743130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_7
+      name: Corn_Hurt_7
       rect:
         serializedVersion: 2
-        x: 1689
-        y: 461
-        width: 563
-        height: 461
+        x: 2106
+        y: 702
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 691b69488bdc86f459060d5045e5ae34
-      internalID: 854238955
+      spriteID: 097729946eada4d4ea9b6b56f0e08296
+      internalID: -1298433953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_8
+      name: Corn_Hurt_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 563
-        height: 461
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f59161ff701e40459dcddbbb55296cd
-      internalID: -62438813
+      spriteID: 147c9885da4281541a2963b059024763
+      internalID: 557920600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_9
+      name: Corn_Hurt_9
       rect:
         serializedVersion: 2
-        x: 563
+        x: 702
         y: 0
-        width: 563
-        height: 461
+        width: 702
+        height: 702
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,8 +326,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c56ff86e4c82804fbd590a7e15fae64
-      internalID: -429257887
+      spriteID: aa4a85015e8da3e4f9df73540932bc88
+      internalID: -1149094108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Corn_Hurt_10
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 702
+        height: 702
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af329926f3277c42b9e367d4e12b4a5
+      internalID: -1861669189
       vertices: []
       indices: 
       edges: []
@@ -330,16 +364,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spritesheet_0: 925097003
-      spritesheet_1: -1530090634
-      spritesheet_2: -288593620
-      spritesheet_3: 1935884001
-      spritesheet_4: 36496192
-      spritesheet_5: 292209607
-      spritesheet_6: 194693240
-      spritesheet_7: 854238955
-      spritesheet_8: -62438813
-      spritesheet_9: -429257887
+      Corn_Hurt_0: 2014356493
+      Corn_Hurt_1: 375796423
+      Corn_Hurt_10: -1861669189
+      Corn_Hurt_2: 347685405
+      Corn_Hurt_3: -863948688
+      Corn_Hurt_4: -771254328
+      Corn_Hurt_5: -302846323
+      Corn_Hurt_6: -1029743130
+      Corn_Hurt_7: -1298433953
+      Corn_Hurt_8: 557920600
+      Corn_Hurt_9: -1149094108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

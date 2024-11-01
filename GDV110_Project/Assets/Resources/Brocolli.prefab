@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4577334885107382931}
   - component: {fileID: -8557139830479109762}
   - component: {fileID: 3742245704634468543}
+  - component: {fileID: 7441282225288912112}
   m_Layer: 0
   m_Name: Brocolli
   m_TagString: enemy
@@ -220,6 +221,7 @@ MonoBehaviour:
   - baseValue: 1
     currentValue: 0
   healthbarHeight: -1.3
+  isDead: 0
 --- !u!114 &4577334885107382931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +263,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minScale: 0.8
   maxScale: 1.2
+--- !u!114 &7441282225288912112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817137307086488625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83f83f5a184b3748bc69c8eed4b581f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

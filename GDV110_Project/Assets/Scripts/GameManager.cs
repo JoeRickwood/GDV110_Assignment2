@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     public Sprite GetSprite(int ID)
     {
-        return icons[ID];
+        return icons.Length <= ID ? null : icons[ID];
     }
 
     public void OnValidate()
