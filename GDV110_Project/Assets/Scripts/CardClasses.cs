@@ -149,6 +149,7 @@ public class Card
 public class Upgrade
 {
     public int price;
+    public int ID;
     public EntityClass connectedEntity;
 
     public Upgrade Clone()
@@ -156,9 +157,10 @@ public class Upgrade
         return (Upgrade)this.MemberwiseClone();
     }
 
-    public Upgrade(int _Price)
+    public Upgrade(int _Price, int _ID)
     {
         price = _Price;
+        ID = _ID;
     }
 
     //Activate Item
@@ -310,6 +312,7 @@ public class ToppingCard : Card
 
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f || currentTarget == null)
         {
+            currentTarget.GetComponent<SpriteOutline>().outlineSize = 0f;
             return false;
         }
 
@@ -338,7 +341,7 @@ class StrengthUpgrade : Upgrade
     int increase;
     Operation operation;
 
-    public StrengthUpgrade(int _Price, int _Increase, Operation _Operation) : base(_Price) 
+    public StrengthUpgrade(int _Price, int _Increase, Operation _Operation) : base(_Price, 0) 
     { 
         increase = _Increase;
         operation = _Operation;
@@ -362,7 +365,7 @@ class HealUpgrade : Upgrade
 {
     int healAmount;
   
-    public HealUpgrade(int _Price, int _HealAmount) : base(_Price)
+    public HealUpgrade(int _Price, int _HealAmount) : base(_Price, 1)
     {
         healAmount = _HealAmount;
     }

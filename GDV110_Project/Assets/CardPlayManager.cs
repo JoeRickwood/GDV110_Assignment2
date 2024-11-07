@@ -17,15 +17,32 @@ public class CardPlayManager : MonoBehaviour
 
     public WaveLayoutGroup group;
 
+    public bool handActive;
+
+    Vector3 handPosActive;
+    Vector3 handPosInActive;
+
     //At The Start Of The Round, Reset The Played Deck
     private void Start()
     {
         RunManager.Instance.deck.ResetDeck();
+
+        handPosActive = group.GetComponent<RectTransform>().position;
+        handPosInActive = group.GetComponent<RectTransform>().position + new Vector3(0, -200, 0);
     }
 
     private void Update()
     {
         group.spacing = 2000f / group.transform.childCount;
+
+        if(!handActive)
+        {
+            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosInActive, Time.deltaTime * 10f);
+            return;
+        }else
+        {
+            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosActive, Time.deltaTime * 10f);
+        }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -86,8 +103,6 @@ public class CardPlayManager : MonoBehaviour
         if (currentHeld != null)
         {
             currentHeld.GetComponent<PlayableCard>().card.OnHover(currentHeld);
-
-            Debug.Log(currentHeld.GetComponent<PlayableCard>().card.GetType());
 
             float distanceX = (currentHeld.GetComponent<RectTransform>().position.x - Input.mousePosition.x) / 75f;
             float distanceY = (currentHeld.GetComponent<RectTransform>().position.y - Input.mousePosition.y) / 25f;

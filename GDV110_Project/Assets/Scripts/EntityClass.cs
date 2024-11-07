@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,9 @@ public class EntityClass : MonoBehaviour
     public GameObject entityHealthBar;
 
     public delegate void FloatDelegate(float damageCount);
+    public delegate void UpgradeDelegate(Upgrade upgrade);
     public event FloatDelegate onTakeDamage;
+    public event UpgradeDelegate onItemAdded;
 
     public List<Stat> stats;
 
@@ -62,6 +65,8 @@ public class EntityClass : MonoBehaviour
     //Destroys the entity
     public void Die()
     {
+        Instantiate(Resources.Load<GameObject>("Death Cloud"), transform.position, Quaternion.identity);
+
         Destroy(this.gameObject);
     }
 

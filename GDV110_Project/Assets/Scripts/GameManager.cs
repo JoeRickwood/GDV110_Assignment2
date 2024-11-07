@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Icons")]
     public Sprite[] icons;
+    public Sprite[] statIcons;
 
     private void Start()
     {
@@ -58,6 +59,11 @@ public class GameManager : MonoBehaviour
     public Sprite GetSprite(int ID)
     {
         return icons.Length <= ID ? null : icons[ID];
+    }
+
+    public Sprite GetStatIcon(int ID)
+    {
+        return statIcons.Length <= ID ? null : statIcons[ID];
     }
 
     public void OnValidate()
