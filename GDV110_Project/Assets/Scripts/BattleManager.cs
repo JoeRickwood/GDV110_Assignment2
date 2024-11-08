@@ -45,7 +45,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindObjectOfType<CardPlayManager>().handActive = battleStartable;
+        FindObjectOfType<CardPlayManager>().handActive = canPlayCards;
 
         //updates lists for waffles and enemies every frame
         updateEntityLists();
@@ -136,6 +136,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator EndBattle()
     {
         RunManager.Instance.level++;
+        FindObjectOfType<CardPlayManager>().handActive = false;
         for (int i = 0; i < waffleList.Count; i++)
         {
             activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(waffleList[i].transform.position + new Vector3(0f, 1.2f, 0f));
@@ -147,17 +148,41 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator battlePhase()
     {
+        if (waffleList.Count <= 0 || enemyList.Count <= 0)
+        {
+            yield return false;
+        }
+
+        for (int i = 0; i < waffleList.Count; i++)
+        {
+            waffleList[i].GetComponent<EntityClass>().CalculateStats();
+        }
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].GetComponent<EntityClass>().CalculateStats();
+        }
+
         canPlayCards = false;
         bell.isActive = false;
         battleStartable = false;
+
         for (int i = 0; i < waffleList.Count; i++)
         {
+            if (waffleList.Count <= 0 || enemyList.Count <= 0)
+            {
+                break;
+            }
             StartCoroutine(attack(enemyList[0], waffleList[i]));
             yield return new WaitUntil(() => notAttacking);
         }
 
         for (int i = 0; i < enemyList.Count; i++)
         {
+            if (waffleList.Count <= 0 || enemyList.Count <= 0)
+            {
+                break;
+            }
             StartCoroutine(attack(waffleList[0], enemyList[i]));
             yield return new WaitUntil(() => notAttacking);
         }
@@ -166,7 +191,8 @@ public class BattleManager : MonoBehaviour
         bell.isActive = true;
         canPlayCards = true;
 
-        for (int i = 0; i < Mathf.Clamp(5 - cardPlayManager.cards.Count, 0, 5); i++)
+        int count = Mathf.Clamp(5 - cardPlayManager.cardsInHand, 0, 5);
+        for (int i = 0; i < count; i++)
         {
             cardPlayManager.DrawCards(1);
             yield return new WaitForSeconds(0.1f);

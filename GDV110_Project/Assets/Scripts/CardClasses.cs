@@ -164,7 +164,7 @@ public class Upgrade
     }
 
     //Activate Item
-    public virtual void Activate(EntityClass entity)
+    public virtual void OnCalculateStats(EntityClass entity)
     {
         Debug.Log("Item Activated");
     }
@@ -311,6 +311,11 @@ public class ToppingCard : Card
 
     public override bool OnDrop()
     {
+        if(currentTarget == null)
+        {
+            return false;
+        }
+
         GameObject.FindObjectOfType<BattleManager>().gameStarted = true;
 
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f || currentTarget == null)
@@ -351,7 +356,7 @@ class StrengthUpgrade : Upgrade
         operation = _Operation;
     }
 
-    public override void Activate(EntityClass entity)
+    public override void OnCalculateStats(EntityClass entity)
     {
         switch (operation) 
         { 

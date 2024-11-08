@@ -40,7 +40,7 @@ public class ShopManager : MonoBehaviour
 
     public IEnumerator RestockShop(bool costs = false) //We Dont Charge The Player For Restocking The Shop Directly From The Method, Instead Do It On Button Call
     {
-        if (RunManager.Instance.money < restockPrice || !canRestock)
+        if ((RunManager.Instance.money < restockPrice || !canRestock) && costs == true)
         {
             yield break;
         }
@@ -52,6 +52,13 @@ public class ShopManager : MonoBehaviour
         {
             RunManager.Instance.money -= restockPrice;
         }
+
+        if (costs == true)
+        {
+            restockPrice++;
+        }
+
+        restockButtonText.text = $"Restock (${restockPrice})";
 
         //Destroy The Cards Already In The Shop To Roll Them
 
@@ -87,13 +94,6 @@ public class ShopManager : MonoBehaviour
             source.Play();
             yield return new WaitForSeconds(0.1f);
         }
-
-        if (costs == true)
-        {
-            restockPrice++;
-        }
-
-        restockButtonText.text = $"Restock (${restockPrice})";
         canRestock = true;
     }
 

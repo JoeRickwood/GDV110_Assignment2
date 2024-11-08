@@ -45,6 +45,9 @@ public class EntityClass : MonoBehaviour
     //Damages Entity
     public void TakeDamage(float _Damage)
     {
+        GameObject cur = Instantiate(Resources.Load<GameObject>("Star_Particle"), transform.position + new Vector3(0f, 0.3f), Quaternion.identity);
+        Destroy(cur, 2f);
+
         onTakeDamage?.Invoke(_Damage);
         stats[(int)StatType.Health].currentValue -= _Damage;
 
@@ -86,17 +89,17 @@ public class EntityClass : MonoBehaviour
 
     public void CalculateStats()
     {
-        for (int i = 0; i < entityUpgrades.Count; i++)
-        {
-            entityUpgrades[i].Activate(this);
-        }
-
         for (int i = 0; i < stats.Count; i++)
         {
-            if(i != (int)StatType.Health)
+            if (i != (int)StatType.Health)
             {
                 stats[i].currentValue = stats[i].baseValue;
-            }     
+            }
+        }
+
+        for (int i = 0; i < entityUpgrades.Count; i++)
+        {
+            entityUpgrades[i].OnCalculateStats(this);
         }
     }
 

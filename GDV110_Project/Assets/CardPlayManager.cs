@@ -6,18 +6,21 @@ public class CardPlayManager : MonoBehaviour
 {
     public int cardsDrawnPerTurn;
 
-    public List<Card> cards;
     public BattleManager battleManager;
 
     public GameObject physicalCardPrefab;
 
     public GameObject currentHeld;
+    public GameObject crumbParticleEffect;
     public Transform heldTransform;
     public LineRenderer dropLine;
+    public RectTransform deckTransform;
 
     public WaveLayoutGroup group;
 
     public bool handActive;
+
+    public int cardsInHand;
 
     Vector3 handPosActive;
     Vector3 handPosInActive;
@@ -97,6 +100,7 @@ public class CardPlayManager : MonoBehaviour
                 }
                 else
                 {
+                    cardsInHand--;
                     Destroy(currentHeld);
                 }
             }else
@@ -124,12 +128,15 @@ public class CardPlayManager : MonoBehaviour
 
     public void DrawCards(int count)
     {
+        Destroy(Instantiate(crumbParticleEffect, Camera.main.ScreenToWorldPoint(deckTransform.GetComponent<RectTransform>().position), Quaternion.identity), 3f);
+        cardsInHand += count;
         for (int i = 0; i < count; i++) 
         {
             Card card = RunManager.Instance.deck.DrawCard(0);
             if(card != null)
             {
                 GameObject cur = Instantiate(physicalCardPrefab, group.transform);
+                cur.transform.GetComponent<RectTransform>().position = deckTransform.position;
                 cur.GetComponent<PlayableCard>().UpdateCardData(card);
             }
         }

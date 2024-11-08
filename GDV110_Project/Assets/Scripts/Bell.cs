@@ -7,6 +7,7 @@ public class Bell : MonoBehaviour
     public OutlineOnMouseOver mouseOver;
     public Animator anim;
     public bool isActive = true;
+    public GameObject dingParticlePrefab;
 
     public Color activeColor;
     public Color inactiveColor;
@@ -16,6 +17,7 @@ public class Bell : MonoBehaviour
 
     public void Ding()
     {
+        Destroy(Instantiate(dingParticlePrefab, transform.position, Quaternion.Euler(-90f, 0f, 0f)), 2f);
         anim.SetTrigger("Ding");
         BattleManager.StartBattlePhase();
     }
