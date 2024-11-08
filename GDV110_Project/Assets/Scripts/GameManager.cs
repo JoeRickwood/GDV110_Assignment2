@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public static SettingsManager settingsManager;
 
+    [Header("Enemy Prefabs")]
+    public GameObject[] enemyPrefabs;
+
     [Header("Sound Effects")]
     public AudioSource source;
     public List<AudioClip> soundEffects;
@@ -64,6 +67,16 @@ public class GameManager : MonoBehaviour
     public Sprite GetStatIcon(int ID)
     {
         return statIcons.Length <= ID ? null : statIcons[ID];
+    }
+
+    public GameObject GetEnemyWithID(int _ID)
+    {
+        if(_ID >= enemyPrefabs.Length)
+        {
+            return null;
+        }
+
+        return enemyPrefabs[_ID];
     }
 
     public void OnValidate()

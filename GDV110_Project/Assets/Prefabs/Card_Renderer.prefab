@@ -234,6 +234,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speed: 20
+  maxScale: 0
+  minScale: 0
   isActive: 1
   soundType: 1
 --- !u!1 &3845466149670910758
@@ -294,6 +296,8 @@ MonoBehaviour:
   descriptionText: {fileID: 0}
   titleText: {fileID: 4508304739131049258}
   image: {fileID: 4507644623041302379}
+  greyedOutPanel: {fileID: 0}
+  border: {fileID: 5760684403072844553}
 --- !u!1 &3912072632133689255
 GameObject:
   m_ObjectHideFlags: 0

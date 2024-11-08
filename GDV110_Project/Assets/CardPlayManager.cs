@@ -38,9 +38,17 @@ public class CardPlayManager : MonoBehaviour
         if(!handActive)
         {
             group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosInActive, Time.deltaTime * 10f);
+            for (int i = 0; i < group.transform.childCount; i++)
+            {
+                group.transform.GetChild(i).GetComponent<CardRenderer>().greyedOutPanel.SetActive(true);
+            }
             return;
         }else
         {
+            for (int i = 0; i < group.transform.childCount; i++)
+            {
+                group.transform.GetChild(i).GetComponent<CardRenderer>().greyedOutPanel.SetActive(false);
+            }
             group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosActive, Time.deltaTime * 10f);
         }
 

@@ -25,16 +25,12 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        /*if (bell == null)
-        {
-            //bell = GameObject.Find("Bell");
-        }*/
-
         //Draw Cards
         RunManager.Instance.deck.Shuffle();
+        SpawnEnemies();
         cardPlayManager.DrawCards(7);
 
-        //find all waffles and enemies in the scene and adds them to their respective list (just needed for making the system, probably can be taken out when properly implemented because waffles and enemies won't exist before scene start)
+        //Find all waffles and enemies in the scene and adds them to their respective list (just needed for making the system, probably can be taken out when properly implemented because waffles and enemies won't exist before scene start)
         updateEntityLists();
         notAttacking = true;
         battleStartable = true;
@@ -49,10 +45,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (selectedEntity == bell && battleStartable == true)
-        {
-            //bell.GetComponent<Bell>().Ding();
-        }*/
+        FindObjectOfType<CardPlayManager>().handActive = battleStartable;
 
         //updates lists for waffles and enemies every frame
         updateEntityLists();
@@ -92,6 +85,21 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(battlePhase());
     }
 
+    public void SpawnEnemies()
+    {
+        for (int i = 0; i < Random.Range(1, 3 + (RunManager.Instance.level / 5)); i++)
+        {
+            GameObject toSpawn = GameManager.Instance.GetEnemyWithID(Random.Range(0, 3));
+
+            if(toSpawn != null)
+            {
+                GameObject obj = Instantiate(toSpawn, null);
+            }
+        }
+
+        updateEntityLists();
+    }
+
     //updates the lists for each entity by making a new list and ordering them based on the speed stat of the entities in the list
     void updateEntityLists()
     {
@@ -99,14 +107,14 @@ public class BattleManager : MonoBehaviour
         waffleList = new List<GameObject>(waffleList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList());
         for (int i = 0; i < waffleList.Count; i++)
         {
-            waffleList[i].transform.position = new Vector2(-2 - (i * 2), waffleList[i].transform.position.y);
+            waffleList[i].transform.position = Vector3.Lerp(waffleList[i].transform.position, new Vector2(-2 - (i * 2), Mathf.Clamp(waffleList[i].transform.position.y, -1f, 0f)), Time.deltaTime * 5f);
         }
 
         enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("enemy").ToList());
         enemyList = new List<GameObject>(enemyList.OrderByDescending(x => x.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue).ToList());
         for (int i = 0; i < enemyList.Count; i++)
         {
-            enemyList[i].transform.position = new Vector2(2 + (i * 2), enemyList[i].transform.position.y);
+            enemyList[i].transform.position = Vector3.Lerp(enemyList[i].transform.position, new Vector2(2 + (i * 2), Mathf.Clamp(enemyList[i].transform.position.y, -1f, 0f)), Time.deltaTime * 5f);
         }
     }
 
@@ -127,13 +135,13 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EndBattle()
     {
+        RunManager.Instance.level++;
         for (int i = 0; i < waffleList.Count; i++)
         {
             activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(waffleList[i].transform.position + new Vector3(0f, 1.2f, 0f));
             activationIndicator.Activate("$1");
             RunManager.Instance.money++;
-            RunManager.Instance.level++;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 
@@ -157,6 +165,11 @@ public class BattleManager : MonoBehaviour
         battleStartable = true;
         bell.isActive = true;
         canPlayCards = true;
-        cardPlayManager.DrawCards(1);
+
+        for (int i = 0; i < Mathf.Clamp(5 - cardPlayManager.cards.Count, 0, 5); i++)
+        {
+            cardPlayManager.DrawCards(1);
+            yield return new WaitForSeconds(0.1f);
+        }   
     }
 }

@@ -168,12 +168,16 @@ public class Upgrade
     {
         Debug.Log("Item Activated");
     }
+
+    public virtual void OnApplyToEntity(EntityClass entity)
+    {
+        Debug.Log($"Applied To Entity {entity.name}");
+    }
 }
 
 //CHARACTERS are loaded from the resources folder, 
 //The File Names Should Be 'Waffle_' Followed By The Waffle Type As A Prefab,
 //For Example 'Waffle_Classic.prefab'
-
 
 //Character Cards To Be Played On The Field To Create Waffles
 [System.Serializable]
@@ -291,7 +295,6 @@ public class ToppingCard : Card
 
         currentTarget = entities[currentIndex].GetComponent<EntityClass>();
 
-
         for (int i = 0; i < entities.Length; i++) 
         {
             if (entities[i] == currentTarget.gameObject)
@@ -321,6 +324,7 @@ public class ToppingCard : Card
         for (int i = 0; i < upgrade.Length; i++)
         {
             currentTarget.AddUpgrade(upgrade[i]);
+            upgrade[i].OnApplyToEntity(currentTarget);
         }
 
         currentTarget.GetComponent<SpriteOutline>().outlineSize = 0f;
@@ -370,8 +374,9 @@ class HealUpgrade : Upgrade
         healAmount = _HealAmount;
     }
 
-    public override void Activate(EntityClass entity)
+    public override void OnApplyToEntity(EntityClass entity)
     {
         entity.Heal(healAmount);
     }
+
 }

@@ -196,6 +196,7 @@ public class RunManager : MonoBehaviour
         seed = _Seed;
         random = new System.Random(seed);
         difficulty = _Difficulty;
+        money = 5;
 
         currentState = GameState.Fight;
 

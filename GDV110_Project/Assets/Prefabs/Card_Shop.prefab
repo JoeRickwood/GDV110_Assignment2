@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5520579638543243484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -649,8 +649,10 @@ MonoBehaviour:
     ID: 0
     price: 0
   descriptionText: {fileID: 0}
-  titleText: {fileID: 1824579575402033568}
+  titleText: {fileID: 2764495502646161735}
   image: {fileID: 5203319983190031598}
+  greyedOutPanel: {fileID: 0}
+  border: {fileID: 4646808218235982465}
 --- !u!1 &4529845490796312900
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +743,7 @@ GameObject:
   - component: {fileID: 1602020607987581255}
   - component: {fileID: 9198641627303359433}
   - component: {fileID: 1824579575402033568}
+  - component: {fileID: 4215089722023593731}
   m_Layer: 5
   m_Name: 'Title '
   m_TagString: Untagged
@@ -810,6 +813,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &4215089722023593731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594153130766824188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b5ac89d7fb0984d9857a449cc9bd0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2764495502646161735}
 --- !u!1 &5312687617815680449
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +992,6 @@ GameObject:
   - component: {fileID: 7539166489364281734}
   - component: {fileID: 7294176690621227003}
   - component: {fileID: 2764495502646161735}
-  - component: {fileID: 6964029065487704920}
   m_Layer: 5
   m_Name: Title_Copy
   m_TagString: Untagged
@@ -1045,19 +1060,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
---- !u!114 &6964029065487704920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331207965567239974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b5ac89d7fb0984d9857a449cc9bd0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1824579575402033568}
 --- !u!1 &6683220503660297176
 GameObject:
   m_ObjectHideFlags: 0

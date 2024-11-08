@@ -8,6 +8,8 @@ public class CardRenderer : MonoBehaviour
     public Text descriptionText;
     public Text titleText;
     public Image image;
+    public GameObject greyedOutPanel;
+    public Image border;
 
     public void UpdateCardData(Card _Card)
     {
@@ -25,6 +27,14 @@ public class CardRenderer : MonoBehaviour
             image.sprite = spr;
         }
 
-        
+        if(_Card.GetType() == typeof(CharacterCard))
+        {
+            border.color = new Color(0.87f, 0.26f, 0.18f, 1f);
+            titleText.color = Color.white;
+        }else
+        {
+            border.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+            titleText.color = new Color(1f, 0.37f, 0f, 1f);
+        }
     }
 }
