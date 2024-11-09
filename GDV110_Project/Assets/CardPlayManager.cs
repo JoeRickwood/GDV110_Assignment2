@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class CardPlayManager : MonoBehaviour
 {
@@ -18,29 +20,31 @@ public class CardPlayManager : MonoBehaviour
 
     public WaveLayoutGroup group;
 
+    [Header("Card Description")]
+    public RectTransform cardDescriptionObject;
+    public Text cardDescriptionText;
+
     public bool handActive;
 
     public int cardsInHand;
 
-    Vector3 handPosActive;
-    Vector3 handPosInActive;
+    float handPosActive;
+    float handPosInActive;
 
     //At The Start Of The Round, Reset The Played Deck
     private void Start()
     {
         RunManager.Instance.deck.ResetDeck();
 
-        handPosActive = group.GetComponent<RectTransform>().position;
-        handPosInActive = group.GetComponent<RectTransform>().position + new Vector3(0, -200, 0);
+        handPosActive = group.GetComponent<RectTransform>().position.y;
+        handPosInActive = group.GetComponent<RectTransform>().position.y + -200;
     }
 
     private void Update()
     {
-        group.spacing = 2000f / group.transform.childCount;
-
         if(!handActive)
         {
-            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosInActive, Time.deltaTime * 10f);
+            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, new Vector3(group.GetComponent<RectTransform>().position.x, handPosInActive), Time.deltaTime * 10f);
             for (int i = 0; i < group.transform.childCount; i++)
             {
                 group.transform.GetChild(i).GetComponent<CardRenderer>().greyedOutPanel.SetActive(true);
@@ -52,7 +56,7 @@ public class CardPlayManager : MonoBehaviour
             {
                 group.transform.GetChild(i).GetComponent<CardRenderer>().greyedOutPanel.SetActive(false);
             }
-            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, handPosActive, Time.deltaTime * 10f);
+            group.GetComponent<RectTransform>().position = Vector3.Lerp(group.GetComponent<RectTransform>().position, new Vector3(group.GetComponent<RectTransform>().position.x, handPosActive), Time.deltaTime * 10f);
         }
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -76,7 +80,7 @@ public class CardPlayManager : MonoBehaviour
             }
 
             currentHeld = raycastResults[0].gameObject;
-            currentHeld.transform.parent = heldTransform;
+            currentHeld.transform.SetParent(heldTransform);
             Debug.Log(currentHeld);
         }
 
@@ -87,7 +91,7 @@ public class CardPlayManager : MonoBehaviour
 
             if (raycastResults.Count < 1)
             {
-                currentHeld.transform.parent = group.transform;
+                currentHeld.transform.SetParent(group.transform);
                 currentHeld = null;
                 return;
             }
@@ -101,7 +105,20 @@ public class CardPlayManager : MonoBehaviour
                 else
                 {
                     cardsInHand--;
-                    Destroy(currentHeld);
+
+                    if(currentHeld.GetComponent<PlayableCard>().card.GetType() == typeof(ToppingCard))
+                    {
+                        ToppingCard c = (ToppingCard)currentHeld.GetComponent<PlayableCard>().card;
+
+                        currentHeld.GetComponent<PlayableCard>().Drop(c.currentTarget.transform.position);
+                    }
+                    else
+                    {
+                        currentHeld.GetComponent<PlayableCard>().Drop(Camera.main.ScreenToWorldPoint(currentHeld.GetComponent<RectTransform>().position));
+                    }
+
+                    currentHeld = null;
+                    //Destroy(currentHeld);
                 }
             }else
             {
@@ -120,8 +137,15 @@ public class CardPlayManager : MonoBehaviour
             float distanceY = (currentHeld.GetComponent<RectTransform>().position.y - Input.mousePosition.y) / 25f;
             currentHeld.GetComponent<RectTransform>().position = Vector3.Lerp(currentHeld.GetComponent<RectTransform>().position, Input.mousePosition, Time.deltaTime * 10f);
             currentHeld.GetComponent<RectTransform>().rotation = Quaternion.Euler(distanceY * 2f, 0f, distanceX);
-        }else
+
+            cardDescriptionObject.gameObject.SetActive(true);
+            cardDescriptionObject.GetComponent<RectTransform>().position = currentHeld.GetComponent<RectTransform>().position + new Vector3((currentHeld.GetComponent<RectTransform>().sizeDelta.x / 2f) * currentHeld.GetComponent<RectTransform>().lossyScale.x, (currentHeld.GetComponent<RectTransform>().sizeDelta.y / 2f) * currentHeld.GetComponent<RectTransform>().lossyScale.y);
+
+            cardDescriptionText.text = currentHeld.GetComponent<PlayableCard>().card.GetCardDescription();
+        }
+        else
         {
+            cardDescriptionObject.gameObject.SetActive(false);
             dropLine.enabled = false;
         }
     }

@@ -9,11 +9,21 @@ public class OutlineOnMouseOver : MonoBehaviour
 
     private void Update()
     {
-        if(!isActive)
+        if (!isActive)
         {
             outline.outlineSize = 0f;
             return;
         }
+
+        Collider2D col = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.2f);
+        if(col == GetComponent<Collider2D>())
+        {
+            mouseOver = true;
+        } else
+        {
+            mouseOver= false;
+        }
+
 
         if(mouseOver)
         {
@@ -22,15 +32,5 @@ public class OutlineOnMouseOver : MonoBehaviour
         {
             outline.outlineSize = 0f;
         }
-    }
-
-    private void OnMouseEnter()
-    {
-        mouseOver = true;
-    }
-
-    private void OnMouseExit()
-    {
-        mouseOver = false;    
     }
 }

@@ -106,11 +106,17 @@ public class RunManager : MonoBehaviour
             },
 
             new Card[] //Toppings
-            { 
+            {
                 new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 5, Operation.Add)),
-                new ToppingCard("Butter", 3, 3, new StrengthUpgrade(1, 2, Operation.Multiply)),
+                new ToppingCard("Butter", 3, 3, new HealthUpgrade(1, 5)),
                 new ToppingCard("Orange Juice", 4, 3, new HealUpgrade(1, 20)),
+                new ToppingCard("Jam", 6, 3, new ApplyDamagePreventionToEnemyUpgrade(4)),
             },
+
+            new Card[] //Passive Cards
+            {
+                new CantripCard("Service Bell", 5, 3, new ReverseTurnOrderUpgrade(2)),
+            }
         };
     }
 
@@ -200,6 +206,7 @@ public class RunManager : MonoBehaviour
 
         currentState = GameState.Fight;
 
+
         //Add Base Cards To Deck
         for (int i = 0; i < 2; i++)
         {
@@ -238,11 +245,11 @@ public class RunManager : MonoBehaviour
         return null;
     }
 
-    public Card GetRandomCard(CardTypeReturn cardTypeReturn = CardTypeReturn.Any)
+    public Card GetRandomCard(params CardTypeReturn[] cardTypeReturn)
     {
         //Use Random Generation From The Game To Give Card
 
-        int first = cardTypeReturn == CardTypeReturn.Any ? GetRandomInt(0, 2) : (int)cardTypeReturn;
+        int first = (int)cardTypeReturn[GetRandomInt(0, cardTypeReturn.Length)];
         int randomCard = GetRandomInt(0, allCards[first].Length);
 
         return allCards[first][randomCard].Clone(); //Clone Card At Index
@@ -280,7 +287,7 @@ public enum CardTypeReturn : int
 {
     Waffle = 0,
     Topping = 1,
-    Any = 2
+    Cantrip = 2
 }
 
 public enum Difficulty

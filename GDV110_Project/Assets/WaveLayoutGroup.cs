@@ -3,9 +3,14 @@ using UnityEngine;
 [ExecuteAlways]
 public class WaveLayoutGroup : MonoBehaviour
 {
+    RectTransform rect;
     public float curveScale;
-    public float spacing;
     public float rotScale;
+
+    private void Start()
+    {
+        rect = GetComponent<RectTransform>();
+    }
 
     private void Update()
     {
@@ -22,9 +27,9 @@ public class WaveLayoutGroup : MonoBehaviour
 
             float rotZ = (i - ((transform.childCount - 1) / 2f)) * -rotScale;
 
-            Vector3 newPos = pos + new Vector3((i - ((float)(transform.childCount - 1) / 2f)) * spacing, y, 0f);
+            Vector3 newPos = new Vector3(Mathf.Lerp(0f, rect.rect.width, (float)i / (float)transform.childCount), y, 0f);
 
-            transform.GetChild(i).GetComponent<RectTransform>().position = Vector3.Lerp(transform.GetChild(i).GetComponent<RectTransform>().position, newPos, Time.deltaTime * 20f);
+            transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition, newPos, Time.deltaTime * 20f);
             transform.GetChild(i).GetComponent<RectTransform>().rotation = Quaternion.Euler(0f, 0f, rotZ);
         }
     }

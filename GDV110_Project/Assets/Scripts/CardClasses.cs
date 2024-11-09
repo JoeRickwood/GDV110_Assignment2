@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public enum WaffleType
 {
@@ -142,6 +144,11 @@ public class Card
     public virtual void OnHover(GameObject cardObj) { }
 
     public virtual bool OnDrop() { return false; }
+
+    public virtual string GetCardDescription()
+    {
+        return "Card Description";
+    }
 }
 
 //Upgrades
@@ -172,6 +179,21 @@ public class Upgrade
     public virtual void OnApplyToEntity(EntityClass entity)
     {
         Debug.Log($"Applied To Entity {entity.name}");
+    }
+
+    public virtual void OnPlayStatic()
+    {
+        Debug.Log($"Played Static Card");
+    }
+
+    public virtual void OnAttack(EntityClass attacked, ref float damage)
+    {
+        Debug.Log($"Played Static Card");
+    }
+
+    public virtual string GetUpgradeString()
+    {
+        return "\n";
     }
 }
 
@@ -221,6 +243,11 @@ public class CharacterCard : Card
         cur.transform.position = pos;
 
         return true;
+    }
+
+    public override string GetCardDescription()
+    {
+        return $"Creates A {name}";
     }
 }
 
@@ -336,16 +363,67 @@ public class ToppingCard : Card
 
         return true;
     }
+
+    public override string GetCardDescription()
+    {
+        string str = "";
+
+        for (int i = 0; i < upgrade.Length; i++)
+        {
+            str += $"{upgrade[i].GetUpgradeString()}\n";
+        }
+
+        return str;
+    }
+}
+
+[System.Serializable]
+public class CantripCard : Card
+{
+    public Upgrade[] upgrade;
+
+    public CantripCard(string _Name, int _ID, int price, params Upgrade[] _Upgrade) : base(_Name, _ID, price)
+    {
+        level = 1;
+        upgrade = _Upgrade;
+    }
+
+    public override bool OnDrop()
+    {
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
+        {
+            return false;
+        }
+
+        for (int i = 0;i < upgrade.Length;i++) 
+        {
+            upgrade[i].OnPlayStatic();
+        }
+
+        return true;
+    }
+
+    public override string GetCardDescription()
+    {
+        string str = "";
+
+        for (int i = 0; i < upgrade.Length; i++)
+        {
+            str += $"{upgrade[i].GetUpgradeString()}\n";
+        }
+
+        return str;
+    }
 }
 
 
-enum Operation
+public enum Operation
 {
     Add,
     Multiply
 }
 
-class StrengthUpgrade : Upgrade
+public class StrengthUpgrade : Upgrade
 {
     int increase;
     Operation operation;
@@ -368,9 +446,14 @@ class StrengthUpgrade : Upgrade
                 break;
         }
     }
+
+    public override string GetUpgradeString()
+    {
+        return $"{(operation == Operation.Add ? "+" : "x")}{increase} Damage";
+    }
 }
 
-class HealUpgrade : Upgrade
+public class HealUpgrade : Upgrade
 {
     int healAmount;
   
@@ -384,4 +467,92 @@ class HealUpgrade : Upgrade
         entity.Heal(healAmount);
     }
 
+    public override string GetUpgradeString() 
+    {
+        return $"Heal Waffle For {healAmount} Health";
+    }
+}
+
+public class ReverseTurnOrderUpgrade : Upgrade
+{
+    public ReverseTurnOrderUpgrade(int _Price) : base(_Price, 2)
+    {
+
+    }
+
+    public override void OnPlayStatic()
+    {
+        List<GameObject> enemyList = GameObject.FindObjectOfType<BattleManager>().enemyList;
+
+        for (int i = enemyList.Count - 1; i >= 0; i--)
+        {
+            enemyList[i].GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue = i - enemyList.Count;
+            enemyList[i].GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue = i - enemyList.Count;
+        }
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Reverses Enemy Order";
+    }
+}
+
+public class ApplyDamagePreventionToEnemyUpgrade : Upgrade
+{
+    public ApplyDamagePreventionToEnemyUpgrade(int _Price) : base(_Price, 3)
+    {
+
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        attacked.AddUpgrade(new PreventDamageOnAttack(0, attacked));
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Prevents Attacked Enemies From Dealing Damage";
+    }
+}
+
+public class PreventDamageOnAttack : Upgrade
+{
+    EntityClass AppliedEntity;
+
+    public PreventDamageOnAttack(int _Price, EntityClass entClass) : base(_Price, 4)
+    {
+        AppliedEntity = entClass;
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        damage = 0;
+        AppliedEntity.RemoveUpgrade(this);
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Prevents This Entity From Dealing Damage";
+    }
+}
+
+public class HealthUpgrade : Upgrade
+{
+    int increase;
+
+    public HealthUpgrade(int _Price, int _Increase) : base(_Price, 5)
+    {
+        increase = _Increase;
+    }
+
+    public override void OnApplyToEntity(EntityClass entity)
+    {
+        entity.stats[(int)StatType.Health].baseValue += increase;
+        entity.stats[(int)StatType.Health].currentValue += increase;
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Increase Waffle Health By {increase}";
+    }
 }

@@ -87,7 +87,7 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        for (int i = 0; i < Random.Range(1, 3 + (RunManager.Instance.level / 5)); i++)
+        for (int i = 0; i < Random.Range(1 + (RunManager.Instance.level / 5), 3 + (RunManager.Instance.level / 5) * 1.2f); i++)
         {
             GameObject toSpawn = GameManager.Instance.GetEnemyWithID(Random.Range(0, 3));
 
@@ -122,14 +122,31 @@ public class BattleManager : MonoBehaviour
     IEnumerator attack(GameObject receiver, GameObject dealer)
     {
         notAttacking = false;
-        yield return new WaitForSeconds(dealer.GetComponent<EntityClass>().entityAttackDelay);
-        receiver.GetComponent<EntityClass>().TakeDamage(dealer.GetComponent<EntityClass>().stats[(int)StatType.Damage].currentValue);
 
-        if(receiver.GetComponent<EntityClass>().isDead == true)
+        yield return new WaitForSeconds(dealer.GetComponent<EntityClass>().entityAttackDelay);
+
+        float damage = dealer.GetComponent<EntityClass>().stats[(int)StatType.Damage].currentValue;
+
+        for (int i = 0;i < dealer.GetComponent<EntityClass>().entityUpgrades.Count; i++)
         {
-            activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(receiver.transform.position + new Vector3(0f, 1.2f, 0f));
-            activationIndicator.Activate("Dead");
+            dealer.GetComponent<EntityClass>().entityUpgrades[i].OnAttack(receiver.GetComponent<EntityClass>(), ref damage);
         }
+
+        if(damage > 0)
+        {
+            receiver.GetComponent<EntityClass>().TakeDamage(damage);
+
+            if (receiver.GetComponent<EntityClass>().isDead == true)
+            {
+                activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(receiver.transform.position + new Vector3(0f, 1.2f, 0f));
+                activationIndicator.Activate("Dead");
+            }
+        } else
+        {
+            activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(dealer.transform.position + new Vector3(0f, 1.2f, 0f));
+            activationIndicator.Activate("Skip");
+        }
+
         notAttacking = true;
     }
 

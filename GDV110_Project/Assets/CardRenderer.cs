@@ -31,9 +31,14 @@ public class CardRenderer : MonoBehaviour
         {
             border.color = new Color(0.87f, 0.26f, 0.18f, 1f);
             titleText.color = Color.white;
-        }else
+        }else if(_Card.GetType() == typeof(ToppingCard))
         {
             border.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+            titleText.color = new Color(1f, 0.37f, 0f, 1f);
+        }
+        else if (_Card.GetType() == typeof(CantripCard))
+        {
+            border.color = new Color(0.2f, 0.57f, 0.71f, 1f);
             titleText.color = new Color(1f, 0.37f, 0f, 1f);
         }
     }

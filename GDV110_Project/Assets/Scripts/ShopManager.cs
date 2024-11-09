@@ -78,7 +78,7 @@ public class ShopManager : MonoBehaviour
         {
             GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
             cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Topping));
+            cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Topping, CardTypeReturn.Cantrip));
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
             yield return new WaitForSeconds(0.1f);
