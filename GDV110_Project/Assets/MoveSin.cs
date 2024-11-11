@@ -15,14 +15,14 @@ public class MoveSin : MonoBehaviour
 
     private void Start()
     {
-        startPos = transform.position;
+        startPos = transform.localPosition;
     }
 
     private void Update()
     {
         t += Time.deltaTime * speed;
 
-        transform.position = startPos + (new Vector3(Mathf.Sin(t) * axis.x, Mathf.Sin(t) * axis.y, Mathf.Sin(t) * axis.z) * scale);
+        transform.localPosition = startPos + (new Vector3(Mathf.Sin(t) * axis.x, Mathf.Sin(t) * axis.y, Mathf.Sin(t) * axis.z) * scale);
     }
 
 }

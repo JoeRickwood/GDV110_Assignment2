@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public enum WaffleType
 {
     Classic,
-    Square
+    Square,
+    Isobel_Rainbow
 }
 
 //Main Deck
@@ -52,6 +52,12 @@ public class Deck
 
         Card c = currentDeck[index];
         currentDeck.RemoveAt(index);
+
+        if(currentDeck.Count <= 0)
+        {
+            ResetDeck();
+        }
+
         return c;
     }
 
@@ -127,11 +133,10 @@ public class Card
     public int ID;
     public int price;
 
-    public Card(string _Name, int _ID, int price)
+    public Card(string _Name, int _ID)
     {
         name = _Name;
         ID = _ID;
-        this.price = price;
     }
 
     public Card Clone()
@@ -149,6 +154,11 @@ public class Card
     {
         return "Card Description";
     }
+
+    public virtual void CalculatePrice()
+    {
+
+    }
 }
 
 //Upgrades
@@ -158,6 +168,9 @@ public class Upgrade
     public int price;
     public int ID;
     public EntityClass connectedEntity;
+
+
+    public Sprite entityApplySprite;
 
     public Upgrade Clone()
     {
@@ -191,6 +204,16 @@ public class Upgrade
         Debug.Log($"Played Static Card");
     }
 
+    public virtual void OnCombatEnd()
+    {
+        Debug.Log($"On Combat End");
+    }
+
+    public virtual void OnTakeDamage(ref float damage)
+    {
+        Debug.Log($"On Take Damage {damage}");
+    }
+
     public virtual string GetUpgradeString()
     {
         return "\n";
@@ -210,7 +233,7 @@ public class CharacterCard : Card
 
     GameObject characterPrefab = null;
 
-    public CharacterCard(string _Name, int _ID, int price, WaffleType _Type) : base(_Name, _ID, price)
+    public CharacterCard(string _Name, int _ID, WaffleType _Type) : base(_Name, _ID)
     {
         character = _Type;
         level = 1;
@@ -242,12 +265,67 @@ public class CharacterCard : Card
         pos.z = 0f;
         cur.transform.position = pos;
 
+        GameObject.FindObjectOfType<RoundWinScreen>().wafflesPlayedSprites.Add(cur.GetComponent<EntityClass>().entityIcon);
+
         return true;
     }
 
     public override string GetCardDescription()
     {
         return $"Creates A {name}";
+    }
+
+    public override void CalculatePrice()
+    {
+        switch (character) 
+        {
+            case WaffleType.Classic:
+                price = 5;
+                break;
+            case WaffleType.Square:
+                price = 4;
+                break;
+            case WaffleType.Isobel_Rainbow:
+                price = 20;
+                break;
+            default:
+                price = 4;
+                break;
+        }
+    }
+}
+
+public class CharacterCardIsobel : CharacterCard
+{
+    Gradient grad;
+    float t;
+
+    public CharacterCardIsobel(string _Name, int _ID, WaffleType _Type) : base(_Name, _ID, _Type)
+    {
+        grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[]
+        {
+            new GradientColorKey(Color.red, 0f),
+            new GradientColorKey(Color.green, 0.25f),
+            new GradientColorKey(Color.magenta, 75f),
+            new GradientColorKey(Color.red, 1f),
+        },
+        
+        new GradientAlphaKey[]
+        {
+            new GradientAlphaKey(1f, 0f),
+        });
+    }
+
+    public override void OnHover(GameObject cardObj)
+    {
+        t += Time.deltaTime * 0.3f;
+        if(t >= 1f)
+        {
+            t = 0f;
+        }
+
+        cardObj.GetComponent<CardRenderer>().border.color = grad.Evaluate(t);
     }
 }
 
@@ -259,7 +337,7 @@ public class ToppingCard : Card
 
     public EntityClass currentTarget;
 
-    public ToppingCard(string _Name, int _ID, int price, params Upgrade[] _Upgrade) : base(_Name, _ID, price)
+    public ToppingCard(string _Name, int _ID, params Upgrade[] _Upgrade) : base(_Name, _ID)
     {
         level = 1;
         upgrade = _Upgrade;
@@ -355,6 +433,7 @@ public class ToppingCard : Card
         //Add Upgrade To Entity
         for (int i = 0; i < upgrade.Length; i++)
         {
+            upgrade[i].entityApplySprite = GameManager.Instance.GetSprite(ID);
             currentTarget.AddUpgrade(upgrade[i]);
             upgrade[i].OnApplyToEntity(currentTarget);
         }
@@ -375,6 +454,14 @@ public class ToppingCard : Card
 
         return str;
     }
+
+    public override void CalculatePrice()
+    {
+        for (int i = 0;i < upgrade.Length;i++) 
+        {
+            price += upgrade[i].price;
+        }
+    }
 }
 
 [System.Serializable]
@@ -382,7 +469,7 @@ public class CantripCard : Card
 {
     public Upgrade[] upgrade;
 
-    public CantripCard(string _Name, int _ID, int price, params Upgrade[] _Upgrade) : base(_Name, _ID, price)
+    public CantripCard(string _Name, int _ID, params Upgrade[] _Upgrade) : base(_Name, _ID)
     {
         level = 1;
         upgrade = _Upgrade;
@@ -414,7 +501,16 @@ public class CantripCard : Card
 
         return str;
     }
+
+    public override void CalculatePrice()
+    {
+        for (int i = 0; i < upgrade.Length; i++)
+        {
+            price += upgrade[i].price;
+        }
+    }
 }
+
 
 
 public enum Operation
@@ -554,5 +650,242 @@ public class HealthUpgrade : Upgrade
     public override string GetUpgradeString()
     {
         return $"Increase Waffle Health By {increase}";
+    }
+}
+
+public class DrawCardsUpgrade : Upgrade
+{
+    int drawCount = 0;
+
+    public DrawCardsUpgrade(int _Price = 0, int _DrawCount = 0) : base(_Price, 6)
+    {
+        drawCount = _DrawCount;
+    }
+
+    public override void OnPlayStatic()
+    {
+        GameObject.FindObjectOfType<CardPlayManager>().DrawCards(drawCount);
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Draw {drawCount} Cards On Play";
+    }
+}
+
+public class DecayUpgrade : Upgrade
+{
+    int percentagePerTurn;
+
+    public DecayUpgrade(int _Price = 0, int _PercentagePerTurn = 0) : base(_Price, 6)
+    {
+        percentagePerTurn = _PercentagePerTurn;
+    }
+
+    public override void OnApplyToEntity(EntityClass entity)
+    {
+        connectedEntity = entity;
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        float amount = connectedEntity.stats[(int)StatType.Health].baseValue * (percentagePerTurn / 100f);
+        connectedEntity.TakeDamage(amount);
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Takes {percentagePerTurn}% Of max Health As Damage Each Turn";
+    }
+}
+public class TemporaryInvincibilityUpgrade : Upgrade
+{
+    public TemporaryInvincibilityUpgrade(int _Price) : base(_Price, 7)
+    {
+
+    }
+
+    public override void OnApplyToEntity(EntityClass entity)
+    {
+        connectedEntity = entity;
+    }
+
+    public override void OnTakeDamage(ref float damage)
+    {
+        damage = 0f;
+    }
+
+    public override void OnCombatEnd()
+    {
+        connectedEntity.RemoveUpgrade(this);
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"Makes A Waffle Temporarily Invincible";
+    }
+}
+
+public class DamageMultipleEnemiesUpgrade : Upgrade
+{
+    int chance;
+
+    public DamageMultipleEnemiesUpgrade(int _Price, int _Chance) : base(_Price, 8)
+    {
+        chance = _Chance;
+    }
+
+    public override void OnApplyToEntity(EntityClass entity)
+    {
+        connectedEntity = entity;
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        var b = GameObject.FindObjectOfType<BattleManager>();
+
+        bool success = UnityEngine.Random.Range(0, 100) < chance;
+
+        if(success)
+        {
+            int rand = UnityEngine.Random.Range(0, b.enemyList.Count);
+
+
+            if(b.enemyList[rand].GetComponent<EntityClass>() == attacked)
+            {
+                return;
+            }
+
+            float dmg = connectedEntity.stats[(int)StatType.Damage].currentValue;
+
+            for(int i = 0; i < connectedEntity.entityUpgrades.Count; i++) 
+            {
+                connectedEntity.entityUpgrades[i].OnAttack(b.enemyList[rand].GetComponent<EntityClass>(), ref dmg);
+            }
+
+            b.enemyList[rand].GetComponent<EntityClass>().TakeDamage(damage);
+        }
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"{chance}% To Deal Damage To Bonus A Random Enemy On Attack";
+    }
+}
+
+public class ChunkyDamageChanceUpgrade : Upgrade
+{
+    int increase;
+    Operation operation;
+    int chance;
+
+    public ChunkyDamageChanceUpgrade(int _Price, int _Increase, Operation _Operation, int _Chance) : base(_Price, 9)
+    {
+        increase = _Increase;
+        operation = _Operation;
+        chance = _Chance;
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        if(UnityEngine.Random.Range(0, 100) > chance)
+        {
+            return;
+        }
+
+        switch (operation)
+        {
+            case Operation.Add:
+                damage += increase;
+                break;
+            case Operation.Multiply:
+                damage *= increase;
+                break;
+        }
+    }
+
+    public override string GetUpgradeString()
+    {
+        return $"{chance}% Chance To Deal {(operation == Operation.Add ? "+" : "x")} {increase} Damage";
+    }
+}
+
+public class FadingStrengthUpgrade : Upgrade
+{
+    int increase;
+    Operation operation;
+    int decrease;
+
+    public FadingStrengthUpgrade(int _Price, int _Increase, Operation _Operation, int _Decrease) : base(_Price, 9)
+    {
+        increase = _Increase;
+        operation = _Operation;
+        decrease = _Decrease;
+    }
+
+    public override void OnApplyToEntity(EntityClass entity)
+    {
+        connectedEntity = entity;
+    }
+
+    public override void OnAttack(EntityClass attacked, ref float damage)
+    {
+        switch (operation)
+        {
+            case Operation.Add:
+                damage += increase;
+                break;
+            case Operation.Multiply:
+                damage *= increase;
+                break;
+        }
+    }
+
+    public override void OnCombatEnd()
+    {
+        increase -= decrease;
+
+        if(increase <= 0)
+        {
+            connectedEntity.RemoveUpgrade(this);
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"{(operation == Operation.Add ? "+" : "x")}{increase} Damage, Fades Over {Mathf.RoundToInt(increase / decrease)} Turns";
+    }
+}
+
+public class FillBoardUpgrade : Upgrade
+{
+    public FillBoardUpgrade(int _Price) : base(_Price, 10)
+    {
+
+    }
+
+    public override void OnPlayStatic()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject.FindObjectOfType<BattleManager>().gameStarted = true;
+
+            if (GameObject.FindObjectOfType<BattleManager>().waffleList.Count >= 4)
+            {
+                return;
+            }
+
+            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
+            {
+                return;
+            }
+
+            GameObject cur = GameObject.Instantiate(Resources.Load<GameObject>("Waffle_Lara_Minion"));
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0f;
+            pos.y -= 0.5f;
+            cur.transform.position = pos;
+
+            GameObject.FindObjectOfType<RoundWinScreen>().wafflesPlayedSprites.Add(cur.GetComponent<EntityClass>().entityIcon);        }
     }
 }

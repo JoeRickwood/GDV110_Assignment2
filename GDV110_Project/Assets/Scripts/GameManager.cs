@@ -129,9 +129,9 @@ public class SettingsManager
 
     public void ResetSettings(bool applyAfter = false)
     {
-        masterVolume = 80f;
-        sfxVolume = 40f;
-        musicVolume = 40f;
+        masterVolume = 0f;
+        sfxVolume = 0f;
+        musicVolume = 0f;
 
         screenResolution = new Resolution();
         screenResolution.width = Screen.width;

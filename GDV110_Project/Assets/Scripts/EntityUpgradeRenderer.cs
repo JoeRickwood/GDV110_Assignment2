@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +17,37 @@ public class EntityUpgradeRenderer : MonoBehaviour
     {
         for (int i = 0; i < upgradeGrid.childCount; i++)
         {
-            Destroy(upgradeGrid.GetChild(0).gameObject);
+            Destroy(upgradeGrid.GetChild(i).gameObject);
         }
+
+        List<Sprite> sprites = new List<Sprite>();
+        List<int> counts = new List<int>();
 
         for (int i = 0; i < GetComponent<EntityClass>().entityUpgrades.Count; i++)
         {
+            bool ret = true;
+            for(int j = 0; j < sprites.Count; j++)
+            {
+                if (GetComponent<EntityClass>().entityUpgrades[i].entityApplySprite == sprites[j])
+                {
+                    counts[j]++;
+                    ret = false;
+                    break;
+                }
+            }
+
+            if(ret == true)
+            {
+                sprites.Add(GetComponent<EntityClass>().entityUpgrades[i].entityApplySprite);
+                counts.Add(1);
+            }
+        }
+
+        for (int i = 0; i < sprites.Count; i++)
+        {
             GameObject cur = Instantiate(upgradeVisualPrefab, upgradeGrid);
-            cur.GetComponent<Image>().sprite = GameManager.Instance.GetStatIcon(GetComponent<EntityClass>().entityUpgrades[i].ID);
+            cur.GetComponent<Image>().sprite = sprites[i];
+            cur.transform.GetChild(0).GetComponent<Text>().text = $"X{counts[i]}";
         }
     }
 }

@@ -24,6 +24,7 @@ public class RunManager : MonoBehaviour
     public int randIteration;
 
     public int level;
+    public int health;
 
     public Deck deck;
 
@@ -93,6 +94,7 @@ public class RunManager : MonoBehaviour
         deck = new Deck();
     }
 
+
     //Adds All Upgrades To The Array
     public void InitializeCards()
     {
@@ -101,23 +103,43 @@ public class RunManager : MonoBehaviour
         {
             new Card[] //Waffles
             {
-                new CharacterCard("Classic Waffle", 0, 4, WaffleType.Classic),
-                new CharacterCard("Square Waffle", 2, 4, WaffleType.Square),
+                new CharacterCard("Classic Waffle", 0, WaffleType.Classic),
+                new CharacterCard("Square Waffle", 2, WaffleType.Square),
             },
 
             new Card[] //Toppings
             {
-                new ToppingCard("Maple Syrup", 1, 3, new StrengthUpgrade(1, 5, Operation.Add)),
-                new ToppingCard("Butter", 3, 3, new HealthUpgrade(1, 5)),
-                new ToppingCard("Orange Juice", 4, 3, new HealUpgrade(1, 20)),
-                new ToppingCard("Jam", 6, 3, new ApplyDamagePreventionToEnemyUpgrade(4)),
+                new ToppingCard("Maple Syrup", 1, new StrengthUpgrade(1, 2, Operation.Add)),
+                new ToppingCard("Butter", 3, new HealthUpgrade(3, 5)),
+                new ToppingCard("Orange Juice", 4, new HealUpgrade(2, 20)),
+                new ToppingCard("Jam", 6, new ApplyDamagePreventionToEnemyUpgrade(4)),
+                new ToppingCard("Lemon And Sugar", 8, new StrengthUpgrade(3, 2, Operation.Multiply), new DecayUpgrade(3, 25)),
+                new ToppingCard("Chocolate Coating", 9, new TemporaryInvincibilityUpgrade(5)),
+                new ToppingCard("Chopped Nuts", 10, new DamageMultipleEnemiesUpgrade(7, 50)),
+                new ToppingCard("Peanut Butter", 11, new ChunkyDamageChanceUpgrade(5, 2, Operation.Multiply, 50)),
+                new ToppingCard("Golden Syrup", 12, new FadingStrengthUpgrade(5, 12, Operation.Add, 4)),
             },
 
             new Card[] //Passive Cards
             {
-                new CantripCard("Service Bell", 5, 3, new ReverseTurnOrderUpgrade(2)),
-            }
+                new CantripCard("Service Bell", 5, new ReverseTurnOrderUpgrade(4)),
+                new CantripCard("Cinnemon Shaker", 7, new DrawCardsUpgrade(4, 2)),
+            },
+
+            new Card[] //Developer Cards
+            {
+                new CharacterCardIsobel("Iz Yippee Waffle", 13, WaffleType.Isobel_Rainbow),
+                new CantripCard("Laras Waffle Army", 14, new FillBoardUpgrade(20)),
+            }               
         };
+
+        for (int i = 0; i < allCards.Length; i++) 
+        { 
+            for (int j = 0; j < allCards[i].Length; j++) 
+            {
+                allCards[i][j].CalculatePrice();
+            }
+        }
     }
 
     //Loads Saved Run From Continue File
@@ -197,6 +219,7 @@ public class RunManager : MonoBehaviour
     //Creates New Run And Initializes The Random
     public void NewRun(int _Seed, Difficulty _Difficulty)
     {
+        health = 3;
         level = 1;
         randIteration = 0;
         seed = _Seed;
@@ -250,7 +273,7 @@ public class RunManager : MonoBehaviour
         //Use Random Generation From The Game To Give Card
 
         int first = (int)cardTypeReturn[GetRandomInt(0, cardTypeReturn.Length)];
-        int randomCard = GetRandomInt(0, allCards[first].Length);
+        int randomCard = GetRandomInt(0, first == 0 ? 2 : allCards[first].Length);
 
         return allCards[first][randomCard].Clone(); //Clone Card At Index
     }
@@ -287,7 +310,8 @@ public enum CardTypeReturn : int
 {
     Waffle = 0,
     Topping = 1,
-    Cantrip = 2
+    Cantrip = 2,
+    Developer = 3
 }
 
 public enum Difficulty

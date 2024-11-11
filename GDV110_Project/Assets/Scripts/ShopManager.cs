@@ -76,9 +76,19 @@ public class ShopManager : MonoBehaviour
         //Topping Cards
         for(int i = 0; i < toppingCardsSpawned; i++)
         {
-            GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
-            cur.GetComponent<ShopCard>().shop = this;
-            cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Topping, CardTypeReturn.Cantrip));
+            if(UnityEngine.Random.Range(0, 1000) <= 1)
+            {
+                GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
+                cur.GetComponent<ShopCard>().shop = this;
+                cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Developer));
+            }
+            else
+            {
+                GameObject cur = Instantiate(cardPrefab, toppingCardTransform);
+                cur.GetComponent<ShopCard>().shop = this;
+                cur.GetComponent<ShopCard>().UpdateCardData(RunManager.Instance.GetRandomCard(CardTypeReturn.Topping, CardTypeReturn.Cantrip));
+            }
+
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
             yield return new WaitForSeconds(0.1f);

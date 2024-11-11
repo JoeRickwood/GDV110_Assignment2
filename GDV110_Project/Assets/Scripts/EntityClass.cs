@@ -11,6 +11,8 @@ public class EntityClass : MonoBehaviour
     public GameObject battleManager;
     public GameObject entityHealthBar;
 
+    public Sprite entityIcon;
+
     public delegate void FloatDelegate(float damageCount);
     public delegate void UpgradeDelegate(Upgrade upgrade);
     public event FloatDelegate onTakeDamage;
@@ -43,8 +45,21 @@ public class EntityClass : MonoBehaviour
     }
 
     //Damages Entity
-    public void TakeDamage(float _Damage)
+    public void TakeDamage(float _Damage, bool triggerItemEffects = true)
     {
+        if(triggerItemEffects)
+        {
+            for (int i = 0; i < entityUpgrades.Count; i++)
+            {
+                entityUpgrades[i].OnTakeDamage(ref _Damage);
+            }
+        }
+
+        if(_Damage <= 0)
+        {
+            return;
+        }
+
         GameObject cur = Instantiate(Resources.Load<GameObject>("Star_Particle"), transform.position + new Vector3(0f, 0.3f), Quaternion.identity);
         Destroy(cur, 2f);
 
@@ -83,6 +98,7 @@ public class EntityClass : MonoBehaviour
     public void AddUpgrade(Upgrade _UpgradeToAdd)
     {
         entityUpgrades.Add(_UpgradeToAdd);
+        onItemAdded(_UpgradeToAdd);
 
         CalculateStats();
     }

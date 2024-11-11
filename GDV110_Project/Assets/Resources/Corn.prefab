@@ -143,6 +143,7 @@ MonoBehaviour:
   entityUpgrades: []
   battleManager: {fileID: 0}
   entityHealthBar: {fileID: 6995111531094027344, guid: 2dbd68139dc629346a03d299b0e1b718, type: 3}
+  entityIcon: {fileID: 2014356493, guid: 284579f7cb33e304cbcc8ecf8edb69ad, type: 3}
   stats:
   - baseValue: 10
     currentValue: 0

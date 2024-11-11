@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class BattleManager : MonoBehaviour
 {
@@ -9,19 +10,25 @@ public class BattleManager : MonoBehaviour
 
     public ActivationIndicator activationIndicator;
 
-    public GameObject returnToMenuBtn;
-    public GameObject moveToShopBtn;
-
     public CardPlayManager cardPlayManager;
+
+    public RoundWinScreen roundWinScreen;
+
+    public ObjectShake cameraShake;
 
     public List<GameObject> waffleList = new List<GameObject>();
     public List<GameObject> enemyList = new List<GameObject>();
+
+    public GameObject gameLossGraphic;
+    public GameObject gameWinGraphic;
 
     public bool notAttacking;
     public bool battleStartable;
     public bool canPlayCards;
     public bool gameStarted;
     public bool gameEnded;
+
+    public bool isActive;
 
     void Start()
     {
@@ -37,52 +44,59 @@ public class BattleManager : MonoBehaviour
         gameStarted = false;
         canPlayCards = true;
         gameEnded = false;
+        isActive = true;
 
-        returnToMenuBtn.SetActive(false);
-        moveToShopBtn.SetActive(false);
+        gameLossGraphic.SetActive(false);
+        gameWinGraphic.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!isActive)
+        {
+            return;
+        }
+
         FindObjectOfType<CardPlayManager>().handActive = canPlayCards;
 
         //updates lists for waffles and enemies every frame
         updateEntityLists();
 
-        if(waffleList.Count == 0)
-        {
-            bell.isActive = false;
-        } else if (waffleList.Count == 0 && enemyList.Count > 0 && gameStarted == true)
+        if (RunManager.Instance.health <= 0)
         {
             bell.isActive = false;
             canPlayCards = false;
+            isActive = false;
             gameEnded = true;
-            returnToMenuBtn.SetActive(true);
-            moveToShopBtn.SetActive(false);
+            FindObjectOfType<CardPlayManager>().handActive = false;
+            gameLossGraphic.SetActive(true);
+            gameLossGraphic.GetComponent<MoveToPosition>().isActive = true;
             //Battle Over Player Lost
         }
         else if (enemyList.Count == 0 && waffleList.Count > 0)
         {
             bell.isActive = false;
             canPlayCards = false;
-            returnToMenuBtn.SetActive(false);
-            moveToShopBtn.SetActive(true);
-            if (gameEnded == false)
-            {
-                StartCoroutine(EndBattle());
-            }
+            isActive = false;
+            EndBattle();
             gameEnded = true;
             //Battle Over
-        }else if(battleStartable)
-        {
-            bell.isActive = true;
         }
     }
 
     public void StartBattlePhase()
     {
         StartCoroutine(battlePhase());
+        for (int i = 0; i < waffleList.Count; i++)
+        {
+            for (int j = 0; j < waffleList[i].GetComponent<EntityClass>().entityUpgrades.Count; j++)
+            {
+                waffleList[i].GetComponent<EntityClass>().entityUpgrades[j].OnCombatEnd();
+            }
+            
+        }
     }
 
     public void SpawnEnemies()
@@ -94,6 +108,7 @@ public class BattleManager : MonoBehaviour
             if(toSpawn != null)
             {
                 GameObject obj = Instantiate(toSpawn, null);
+                GameObject.FindObjectOfType<RoundWinScreen>().enemiesKilledSprites.Add(obj.GetComponent<EntityClass>().entityIcon);
             }
         }
 
@@ -127,12 +142,12 @@ public class BattleManager : MonoBehaviour
 
         float damage = dealer.GetComponent<EntityClass>().stats[(int)StatType.Damage].currentValue;
 
-        for (int i = 0;i < dealer.GetComponent<EntityClass>().entityUpgrades.Count; i++)
+        for (int i = 0; i < dealer.GetComponent<EntityClass>().entityUpgrades.Count; i++)
         {
             dealer.GetComponent<EntityClass>().entityUpgrades[i].OnAttack(receiver.GetComponent<EntityClass>(), ref damage);
         }
 
-        if(damage > 0)
+        if (damage > 0)
         {
             receiver.GetComponent<EntityClass>().TakeDamage(damage);
 
@@ -150,15 +165,43 @@ public class BattleManager : MonoBehaviour
         notAttacking = true;
     }
 
-    IEnumerator EndBattle()
+    void EndBattle()
     {
         RunManager.Instance.level++;
         FindObjectOfType<CardPlayManager>().handActive = false;
+
+        if(RunManager.Instance.level == 11)
+        {
+            gameWinGraphic.SetActive(true);
+            gameWinGraphic.GetComponent<MoveToPosition>().isActive = true;
+            return;
+        }
+
+        StartCoroutine(EndBattleSecondPhase());
+    }
+
+    public void StartEndBattleSecondPhase(GameObject objToDisable)
+    {
+        objToDisable.SetActive(false);
+        StartCoroutine(EndBattleSecondPhase());
+    }
+
+    IEnumerator EndBattleSecondPhase()
+    {
+        roundWinScreen.RenderOutMenu();
+        RunManager.Instance.health = 3;
+
+        RunManager.Instance.money += 5;
+
+        for (int i = 0; i < waffleList.Count; i++)
+        {
+            RunManager.Instance.money++;
+        }
+
         for (int i = 0; i < waffleList.Count; i++)
         {
             activationIndicator.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(waffleList[i].transform.position + new Vector3(0f, 1.2f, 0f));
             activationIndicator.Activate("$1");
-            RunManager.Instance.money++;
             yield return new WaitForSeconds(1.5f);
         }
     }
@@ -196,10 +239,17 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if (waffleList.Count <= 0 || enemyList.Count <= 0)
+            if(waffleList.Count <= 0)
+            {
+                yield return new WaitForSeconds(1f);
+                RunManager.Instance.health--;
+                StartCoroutine(cameraShake.ShakeOverTime(0.2f));
+                continue;
+            }else if(enemyList.Count <= 0)
             {
                 break;
             }
+
             StartCoroutine(attack(waffleList[0], enemyList[i]));
             yield return new WaitUntil(() => notAttacking);
         }
