@@ -19,6 +19,7 @@ public class Bell : MonoBehaviour
     {
         Destroy(Instantiate(dingParticlePrefab, transform.position, Quaternion.Euler(-90f, 0f, 0f)), 2f);
         anim.SetTrigger("Ding");
+        GameManager.Instance.PlaySFX(SoundEffect.BellDing);
         BattleManager.StartBattlePhase();
     }
 

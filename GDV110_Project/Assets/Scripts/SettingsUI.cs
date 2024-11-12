@@ -5,32 +5,56 @@ public class SettingsUI : MonoBehaviour
 {
     [Header("General")]
     public GameObject textButton;
-
-    [Header("Open Animation")]
-    public AnimationCurve openCurve;
-    public RectTransform mainRect;
-    float t;
-    public float speed;
+    public OpenAnimation anim;
 
     [Header("Fullscreen Menu")]
     public Text fullscreenButton;
 
-
     [Header("Vsync Menu")]
     public Text vsyncButton;
+
+    [Header("Volume Menu")]
+    public Text musicVolume;
+    public Text sfxVolume;
 
     public bool open;
 
     public void OpenSettings(bool behaviorOpen = true)
     {
         open = behaviorOpen;
-        t = 0f;
+        anim.Open(behaviorOpen);
+
+        musicVolume.text = $"{GameManager.settingsManager.musicVolume + 80}";
+        sfxVolume.text = $"{GameManager.settingsManager.sfxVolume + 80}";
         //Create 
     }
 
     public void SetFullscreenMode(bool mode)
     {
         GameManager.settingsManager.fullscreen = mode;
+    }
+
+    public void changeSFXVolume(float change)
+    {
+        GameManager.settingsManager.sfxVolume += change;
+
+        GameManager.settingsManager.sfxVolume = Mathf.Clamp(GameManager.settingsManager.sfxVolume, -80f, 20f);
+
+        sfxVolume.text = $"{GameManager.settingsManager.sfxVolume + 80}";
+    }
+
+    public void changeMusicVolume(float change)
+    {
+        GameManager.settingsManager.musicVolume += change;
+
+        GameManager.settingsManager.musicVolume = Mathf.Clamp(GameManager.settingsManager.musicVolume, -80f, 20f);
+
+        musicVolume.text = $"{GameManager.settingsManager.musicVolume + 80}";
+    }
+
+    public void SetVsyncMode(bool mode)
+    {
+        GameManager.settingsManager.vsync = mode;
     }
 
     public void ApplySettings()
@@ -40,22 +64,6 @@ public class SettingsUI : MonoBehaviour
 
     private void Update()
     {
-        t += Time.deltaTime * speed;
-        t = Mathf.Clamp01(t);
-
-        if(open) //Settings Menu Open
-        {
-            mainRect.anchoredPosition = Vector3.Lerp(new Vector3(0, -mainRect.sizeDelta.y, 0), new Vector3(0, mainRect.sizeDelta.y / 2, 0), openCurve.Evaluate(t));
-            mainRect.gameObject.SetActive(true);
-        }else //Settings Menu Closed
-        {
-            mainRect.anchoredPosition = Vector3.Lerp(new Vector3(0, mainRect.sizeDelta.y / 2, 0), new Vector3(0, -mainRect.sizeDelta.y, 0), openCurve.Evaluate(t));
-            if(t >= 1f)
-            {
-                mainRect.gameObject.SetActive(false);
-            }
-        }
-
         fullscreenButton.GetComponent<Text>().text = $"FULLSCREEN {(GameManager.settingsManager.fullscreen ? "True" : "False")}";
         vsyncButton.GetComponent<Text>().text = $"VSYNC {(GameManager.settingsManager.vsync ? "True" : "False")}";
     }

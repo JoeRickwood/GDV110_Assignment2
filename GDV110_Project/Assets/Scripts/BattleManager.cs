@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
     public GameObject gameLossGraphic;
     public GameObject gameWinGraphic;
 
+    public Text waffleCountText;
+
     public bool notAttacking;
     public bool battleStartable;
     public bool canPlayCards;
@@ -35,7 +37,7 @@ public class BattleManager : MonoBehaviour
         //Draw Cards
         RunManager.Instance.deck.Shuffle();
         SpawnEnemies();
-        cardPlayManager.DrawCards(7);
+        cardPlayManager.DrawCards(5);
 
         //Find all waffles and enemies in the scene and adds them to their respective list (just needed for making the system, probably can be taken out when properly implemented because waffles and enemies won't exist before scene start)
         updateEntityLists();
@@ -84,19 +86,13 @@ public class BattleManager : MonoBehaviour
             gameEnded = true;
             //Battle Over
         }
+
+        waffleCountText.text = $"Waffle Slots Filled {waffleList.Count}/4";
     }
 
     public void StartBattlePhase()
     {
         StartCoroutine(battlePhase());
-        for (int i = 0; i < waffleList.Count; i++)
-        {
-            for (int j = 0; j < waffleList[i].GetComponent<EntityClass>().entityUpgrades.Count; j++)
-            {
-                waffleList[i].GetComponent<EntityClass>().entityUpgrades[j].OnCombatEnd();
-            }
-            
-        }
     }
 
     public void SpawnEnemies()
@@ -149,7 +145,7 @@ public class BattleManager : MonoBehaviour
 
         if (damage > 0)
         {
-            receiver.GetComponent<EntityClass>().TakeDamage(damage);
+            receiver.GetComponent<EntityClass>().TakeDamage(damage, true);
 
             if (receiver.GetComponent<EntityClass>().isDead == true)
             {
@@ -263,6 +259,15 @@ public class BattleManager : MonoBehaviour
         {
             cardPlayManager.DrawCards(1);
             yield return new WaitForSeconds(0.1f);
-        }   
+        }
+
+
+        for (int i = 0; i < waffleList.Count; i++)
+        {
+            for (int j = 0; j < waffleList[i].GetComponent<EntityClass>().entityUpgrades.Count; j++)
+            {
+                waffleList[i].GetComponent<EntityClass>().entityUpgrades[j].OnCombatEnd();
+            }
+        }
     }
 }

@@ -16,6 +16,8 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public ShopManager shop;
     public EnlargeOnMouseOver mouseOverEnlarge;
 
+    public Tooltip tooltip;
+
     public bool mouseOver;
     public bool selected;
     public bool bought;
@@ -73,6 +75,7 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             //Buy Card
             bought = true;
+            tooltip.hover = false;
             mouseOverEnlarge.isActive = false;
             RunManager.Instance.deck.AddCardStatic(data);
             RunManager.Instance.money -= data.price;

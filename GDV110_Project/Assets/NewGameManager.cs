@@ -68,6 +68,6 @@ public class NewGameManager : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }

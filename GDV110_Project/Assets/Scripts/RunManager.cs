@@ -15,6 +15,7 @@ public class RunManager : MonoBehaviour
 
     public void EndRun()
     {
+        Destroy(gameObject);
         transform.parent = null;
         Instance = null;
     }
@@ -112,7 +113,7 @@ public class RunManager : MonoBehaviour
                 new ToppingCard("Maple Syrup", 1, new StrengthUpgrade(1, 2, Operation.Add)),
                 new ToppingCard("Butter", 3, new HealthUpgrade(3, 5)),
                 new ToppingCard("Orange Juice", 4, new HealUpgrade(2, 20)),
-                new ToppingCard("Jam", 6, new ApplyDamagePreventionToEnemyUpgrade(4)),
+                new ToppingCard("Jam", 6, new StrengthUpgrade(3, 2, Operation.Add), new HealthUpgrade(4, 10)),
                 new ToppingCard("Lemon And Sugar", 8, new StrengthUpgrade(3, 2, Operation.Multiply), new DecayUpgrade(3, 25)),
                 new ToppingCard("Chocolate Coating", 9, new TemporaryInvincibilityUpgrade(5)),
                 new ToppingCard("Chopped Nuts", 10, new DamageMultipleEnemiesUpgrade(7, 50)),
@@ -123,13 +124,16 @@ public class RunManager : MonoBehaviour
             new Card[] //Passive Cards
             {
                 new CantripCard("Service Bell", 5, new ReverseTurnOrderUpgrade(4)),
-                new CantripCard("Cinnemon Shaker", 7, new DrawCardsUpgrade(4, 2)),
+                new CantripCard("Cinnamon Shaker", 7, new DrawCardsUpgrade(4, 2)),
             },
 
             new Card[] //Developer Cards
             {
                 new CharacterCardIsobel("Iz Yippee Waffle", 13, WaffleType.Isobel_Rainbow),
                 new CantripCard("Laras Waffle Army", 14, new FillBoardUpgrade(20)),
+                new CantripCard("Sofias Fork", 15, new SofiasForkUpgrade(20)),
+                new CharacterCard("Lil Guy", 16, WaffleType.Lil_Guy),
+                new CantripCard("Joes Hypnotic Coffee", 17, new EnemyWaffleSwapUpgrade(20)),
             }               
         };
 

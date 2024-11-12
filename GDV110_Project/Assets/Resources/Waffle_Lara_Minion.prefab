@@ -333,6 +333,7 @@ MonoBehaviour:
   battleManager: {fileID: 0}
   entityHealthBar: {fileID: 6995111531094027344, guid: 2dbd68139dc629346a03d299b0e1b718, type: 3}
   entityIcon: {fileID: 21300000, guid: 0af4482f1d9aa404e85132b15c0c97dd, type: 3}
+  hurtSound: 5
   stats:
   - baseValue: 5
     currentValue: 0

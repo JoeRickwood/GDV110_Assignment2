@@ -6,9 +6,12 @@ using UnityEngine.Audio;
 
 public enum SoundEffect : int
 {
+    None,
     CardPlace,
     CardClick,
     ActivationTrigger,
+    BellDing,
+    WaffleHurt,
     MaxSoundEffect
 }
 
@@ -55,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     public void PlaySFX(SoundEffect effect)
     {
+        if(effect == SoundEffect.MaxSoundEffect || effect == SoundEffect.None)
+        {
+            return;
+        }
+
         source.PlayOneShot(soundEffects[(int)effect], 1f);
         Debug.Log($"Played Sound {soundEffects[(int)effect]}");
     }
@@ -129,15 +137,14 @@ public class SettingsManager
 
     public void ResetSettings(bool applyAfter = false)
     {
-        masterVolume = 0f;
-        sfxVolume = 0f;
-        musicVolume = 0f;
+        sfxVolume = -40f;
+        musicVolume = -40f;
 
         screenResolution = new Resolution();
         screenResolution.width = Screen.width;
         screenResolution.height = Screen.height;
 
-        fullscreen = false;
+        fullscreen = true;
         vsync = true;
 
         if(applyAfter == true)
@@ -296,7 +303,7 @@ public class SettingsManager
     public void ApplySettings()
     {
         //Apply Audio Settings
-        AudioListener.volume = masterVolume;
+        //AudioListener.volume = masterVolume;
         musicAudioMixer.SetFloat("Volume", musicVolume);
         sfxAudioMixer.SetFloat("Volume", sfxVolume);
 

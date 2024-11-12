@@ -17,6 +17,7 @@ public class EntityClass : MonoBehaviour
     public delegate void UpgradeDelegate(Upgrade upgrade);
     public event FloatDelegate onTakeDamage;
     public event UpgradeDelegate onItemAdded;
+    public SoundEffect hurtSound;
 
     public List<Stat> stats;
 
@@ -47,24 +48,22 @@ public class EntityClass : MonoBehaviour
     //Damages Entity
     public void TakeDamage(float _Damage, bool triggerItemEffects = true)
     {
+        float dmg = _Damage;
+
         if(triggerItemEffects)
         {
             for (int i = 0; i < entityUpgrades.Count; i++)
             {
-                entityUpgrades[i].OnTakeDamage(ref _Damage);
+                entityUpgrades[i].OnTakeDamage(ref dmg);
             }
-        }
-
-        if(_Damage <= 0)
-        {
-            return;
         }
 
         GameObject cur = Instantiate(Resources.Load<GameObject>("Star_Particle"), transform.position + new Vector3(0f, 0.3f), Quaternion.identity);
         Destroy(cur, 2f);
 
-        onTakeDamage?.Invoke(_Damage);
-        stats[(int)StatType.Health].currentValue -= _Damage;
+        GameManager.Instance.PlaySFX(hurtSound);
+        onTakeDamage?.Invoke(dmg);
+        stats[(int)StatType.Health].currentValue -= dmg;
 
         if(stats[(int)StatType.Health].currentValue <= 0) 
         {
@@ -125,6 +124,11 @@ public class EntityClass : MonoBehaviour
         {
             stats[i].currentValue = stats[i].baseValue;
         }
+    }
+
+    public void OnItemAdded()
+    {
+        onItemAdded.Invoke(null);
     }
 
     //Removes upgrade from the list of upgrades on the entity

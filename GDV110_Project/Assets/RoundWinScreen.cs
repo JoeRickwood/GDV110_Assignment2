@@ -13,6 +13,9 @@ public class RoundWinScreen : MonoBehaviour
     public Transform wafflesPlayedTransform;
     public Transform enemiesKilledTransform;
 
+    public Text waffleMoneyText;
+    public Text totalText;
+
     private void Start()
     {
         wafflesPlayedSprites = new List<Sprite>();
@@ -26,6 +29,9 @@ public class RoundWinScreen : MonoBehaviour
 
     public IEnumerator RenderOutMenuCoroutine()
     {
+        waffleMoneyText.text = $"Remaining Waffles : ${FindObjectOfType<BattleManager>().waffleList.Count}";
+        totalText.text = $"Total : ${FindObjectOfType<BattleManager>().waffleList.Count + 5}";
+
         for (int i = 0; i < wafflesPlayedSprites.Count; i++)
         {
             GameObject go = new GameObject($"Waffles Played {i}", typeof(RectTransform), typeof(Image), typeof(CanvasRenderer));

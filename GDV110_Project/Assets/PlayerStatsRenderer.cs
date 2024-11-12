@@ -12,7 +12,7 @@ public class PlayerStatsRenderer : MonoBehaviour
 
     private void Update()
     {
-        levelText.text = $"Level {RunManager.Instance.level}";
+        levelText.text = $"Level {RunManager.Instance.level}/10";
         moneyText.text = $"${RunManager.Instance.money}";
 
         for (int i = 0; i < heartTransform.childCount; i++)

@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public enum WaffleType
 {
     Classic,
     Square,
-    Isobel_Rainbow
+    Isobel_Rainbow,
+    Lil_Guy
 }
 
 //Main Deck
@@ -255,13 +254,28 @@ public class CharacterCard : Card
             return false;
         }
 
-        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2.5f)
         {
             return false;
         }
 
-        GameObject cur = GameObject.Instantiate(characterPrefab);
+        float speedValue = 0;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        for (int i = 0; i < GameObject.FindObjectOfType<BattleManager>().waffleList.Count; i++)
+        {
+            if(pos.x > GameObject.FindObjectOfType<BattleManager>().waffleList[i].transform.position.x)
+            {
+                if(GameObject.FindObjectOfType<BattleManager>().waffleList[i].GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue + 1 > speedValue)
+                {
+                    speedValue = GameObject.FindObjectOfType<BattleManager>().waffleList[i].GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue + 1;
+                }
+            }
+        }
+
+        GameObject cur = GameObject.Instantiate(characterPrefab);
+        cur.GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue = speedValue;
+        cur.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue = speedValue;
         pos.z = 0f;
         cur.transform.position = pos;
 
@@ -423,7 +437,7 @@ public class ToppingCard : Card
 
         GameObject.FindObjectOfType<BattleManager>().gameStarted = true;
 
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f || currentTarget == null)
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2.5f || currentTarget == null)
         {
             currentTarget.GetComponent<SpriteOutline>().outlineSize = 0f;
             return false;
@@ -477,7 +491,7 @@ public class CantripCard : Card
 
     public override bool OnDrop()
     {
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2f)
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -2.5f)
         {
             return false;
         }
@@ -623,6 +637,10 @@ public class PreventDamageOnAttack : Upgrade
     public override void OnAttack(EntityClass attacked, ref float damage)
     {
         damage = 0;
+    }
+
+    public override void OnCombatEnd()
+    {
         AppliedEntity.RemoveUpgrade(this);
     }
 
@@ -717,7 +735,9 @@ public class TemporaryInvincibilityUpgrade : Upgrade
 
     public override void OnCombatEnd()
     {
+        Debug.Log("here");
         connectedEntity.RemoveUpgrade(this);
+        connectedEntity.OnItemAdded();
     }
 
     public override string GetUpgradeString()
@@ -769,7 +789,7 @@ public class DamageMultipleEnemiesUpgrade : Upgrade
 
     public override string GetUpgradeString()
     {
-        return $"{chance}% To Deal Damage To Bonus A Random Enemy On Attack";
+        return $"{chance}% To Deal Damage To Bonus Damage To A Random Enemy On Attack";
     }
 }
 
@@ -851,7 +871,7 @@ public class FadingStrengthUpgrade : Upgrade
         }
     }
 
-    public override string ToString()
+    public override string GetUpgradeString()
     {
         return $"{(operation == Operation.Add ? "+" : "x")}{increase} Damage, Fades Over {Mathf.RoundToInt(increase / decrease)} Turns";
     }
@@ -887,5 +907,70 @@ public class FillBoardUpgrade : Upgrade
             cur.transform.position = pos;
 
             GameObject.FindObjectOfType<RoundWinScreen>().wafflesPlayedSprites.Add(cur.GetComponent<EntityClass>().entityIcon);        }
+    }
+}
+
+public class SofiasForkUpgrade : Upgrade
+{
+    public SofiasForkUpgrade(int _Price) : base(_Price, 10)
+    {
+
+    }
+
+    public override void OnPlayStatic()
+    {
+        if(GameObject.FindObjectOfType<BattleManager>().enemyList.Count <= 1)
+        {
+            return;
+        }
+
+        //InstaKill Enemy
+        int rand = UnityEngine.Random.Range(0, GameObject.FindObjectOfType<BattleManager>().enemyList.Count);
+
+        GameObject.FindObjectOfType<BattleManager>().enemyList[rand].GetComponent<EntityClass>().TakeDamage(GameObject.FindObjectOfType<BattleManager>().enemyList[rand].GetComponent<EntityClass>().stats[(int)StatType.Health].baseValue);
+    }
+
+    public override string GetUpgradeString()
+    {
+        return "Instantly Kills Random Enemy\nAs Long As Theres More Than 1";
+    }
+}
+
+public class EnemyWaffleSwapUpgrade : Upgrade
+{
+    public EnemyWaffleSwapUpgrade(int _Price) : base(_Price, 11)
+    {
+
+    }
+
+    public override void OnPlayStatic()
+    {
+        if(GameObject.FindObjectOfType<BattleManager>().waffleList.Count <= 0)
+        {
+            return;
+        }
+
+        GameObject enemy = GameObject.FindObjectOfType<BattleManager>().enemyList[0];
+        enemy.GetComponent<SpriteRenderer>().flipX = !enemy.GetComponent<SpriteRenderer>().flipX;
+        float enemySpeed = enemy.GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue;
+        string enemyTag = enemy.tag;
+
+        GameObject waffle = GameObject.FindObjectOfType<BattleManager>().waffleList[0];
+        waffle.GetComponent<SpriteRenderer>().flipX = !waffle.GetComponent<SpriteRenderer>().flipX;
+        float waffleSpeed = waffle.GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue;
+        string waffleTag = waffle.tag;
+
+        enemy.tag = waffleTag;
+        enemy.GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue = waffleSpeed;
+        enemy.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue = waffleSpeed;
+
+        waffle.tag = enemyTag;
+        waffle.GetComponent<EntityClass>().stats[(int)StatType.Speed].baseValue = enemySpeed;
+        waffle.GetComponent<EntityClass>().stats[(int)StatType.Speed].currentValue = enemySpeed;
+    }
+
+    public override string GetUpgradeString()
+    {
+        return "Swaps The First Waffle And Enemy";
     }
 }

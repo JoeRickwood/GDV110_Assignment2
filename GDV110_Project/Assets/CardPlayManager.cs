@@ -166,6 +166,16 @@ public class CardPlayManager : MonoBehaviour
         }
     }
 
+    public void DiscardHand()
+    {
+        for (int i = 0; i < cardsInHand; i++)
+        {
+            Destroy(group.transform.GetChild(i).gameObject);
+        }
+
+        cardsInHand = 0;
+    }
+
     static List<RaycastResult> GetEventSystemRaycastResults()
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
