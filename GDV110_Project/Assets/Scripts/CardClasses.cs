@@ -27,7 +27,6 @@ public class Deck
     public void ResetDeck()
     {
         currentDeck = new List<Card>();
-
         for (int i = 0; i < staticDeck.Count; i++)
         {
             currentDeck.Add(staticDeck[i]);
@@ -49,12 +48,13 @@ public class Deck
             return null;
         }
 
-        Card c = currentDeck[index];
+        Card c = currentDeck[index].Clone();
         currentDeck.RemoveAt(index);
 
         if(currentDeck.Count <= 0)
         {
             ResetDeck();
+            Shuffle();
         }
 
         return c;
@@ -300,6 +300,9 @@ public class CharacterCard : Card
                 price = 4;
                 break;
             case WaffleType.Isobel_Rainbow:
+                price = 20;
+                break;
+            case WaffleType.Lil_Guy:
                 price = 20;
                 break;
             default:
@@ -789,7 +792,7 @@ public class DamageMultipleEnemiesUpgrade : Upgrade
 
     public override string GetUpgradeString()
     {
-        return $"{chance}% To Deal Damage To Bonus Damage To A Random Enemy On Attack";
+        return $"{chance}% To Damage A Bonus Random Enemy On Attack";
     }
 }
 
@@ -873,7 +876,7 @@ public class FadingStrengthUpgrade : Upgrade
 
     public override string GetUpgradeString()
     {
-        return $"{(operation == Operation.Add ? "+" : "x")}{increase} Damage, Fades Over {Mathf.RoundToInt(increase / decrease)} Turns";
+        return $"{(operation == Operation.Add ? "+" : "x")}{increase} Damage, Fades Over {Mathf.RoundToInt((float)increase / (float)decrease)} Turns";
     }
 }
 

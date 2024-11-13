@@ -64,7 +64,7 @@ public class SettingsUI : MonoBehaviour
 
     private void Update()
     {
-        fullscreenButton.GetComponent<Text>().text = $"FULLSCREEN {(GameManager.settingsManager.fullscreen ? "True" : "False")}";
-        vsyncButton.GetComponent<Text>().text = $"VSYNC {(GameManager.settingsManager.vsync ? "True" : "False")}";
+        fullscreenButton.GetComponent<Text>().text = $"FULLSCREEN {(GameManager.settingsManager.fullscreen ? "On" : "Windowed")}";
+        vsyncButton.GetComponent<Text>().text = $"VSYNC {(GameManager.settingsManager.vsync ? "On" : "Off")}";
     }
 }

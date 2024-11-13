@@ -41,7 +41,6 @@ public class EntityClass : MonoBehaviour
 
     void Update()
     {
-        entityHealthBar.transform.localScale = new Vector2((stats[(int)StatType.Health].currentValue / stats[(int)StatType.Health].baseValue) / 2f, 0.05f);
         entityHealthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + healthbarHeight);
     }
 

@@ -32,11 +32,21 @@ public class BattleManager : MonoBehaviour
 
     public bool isActive;
 
+    [Header("Tutorial")]
+    public bool isTutorial;
+
     void Start()
     {
         //Draw Cards
         RunManager.Instance.deck.Shuffle();
-        SpawnEnemies();
+        if(!isTutorial)
+        {
+            SpawnEnemies();
+        }else
+        {
+            updateEntityLists();
+        }
+        
         cardPlayManager.DrawCards(5);
 
         //Find all waffles and enemies in the scene and adds them to their respective list (just needed for making the system, probably can be taken out when properly implemented because waffles and enemies won't exist before scene start)
@@ -85,6 +95,12 @@ public class BattleManager : MonoBehaviour
             EndBattle();
             gameEnded = true;
             //Battle Over
+        }else if(!gameStarted)
+        {
+            bell.isActive = false;
+        }else if(battleStartable)
+        {
+            bell.isActive = true;
         }
 
         waffleCountText.text = $"Waffle Slots Filled {waffleList.Count}/4";

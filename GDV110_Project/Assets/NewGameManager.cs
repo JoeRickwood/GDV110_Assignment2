@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class NewGameManager : MonoBehaviour
 {
+    public bool autoStart = false;
+    public int sceneIndex = 3;
+
     public ScreenTransition transition;
 
     int currentDifficultyValue;
@@ -25,28 +28,35 @@ public class NewGameManager : MonoBehaviour
             Difficulty.Hard
         };
 
-
-        increaseDifficulty.onClick.AddListener(() =>
+        if (autoStart)
         {
-            currentDifficultyValue++;
-            if(currentDifficultyValue > difficultyArray.Length - 1)
-            {
-                currentDifficultyValue = 0;
-            }
-
-            difficultyText.text = $"Difficulty : {Enum.GetName(typeof(Difficulty), difficultyArray[currentDifficultyValue])}";
-        });
-
-        decreaseDifficulty.onClick.AddListener(() =>
+            StartNewGame();
+        }
+        else
         {
-            currentDifficultyValue--;
-            if (currentDifficultyValue < 0)
+            increaseDifficulty.onClick.AddListener(() =>
             {
-                currentDifficultyValue = difficultyArray.Length - 1;
-            }
+                currentDifficultyValue++;
+                if (currentDifficultyValue > difficultyArray.Length - 1)
+                {
+                    currentDifficultyValue = 0;
+                }
 
-            difficultyText.text = $"Difficulty : {Enum.GetName(typeof(Difficulty), difficultyArray[currentDifficultyValue])}";
-        });
+                difficultyText.text = $"Difficulty : {Enum.GetName(typeof(Difficulty), difficultyArray[currentDifficultyValue])}";
+            });
+
+            decreaseDifficulty.onClick.AddListener(() =>
+            {
+                currentDifficultyValue--;
+                if (currentDifficultyValue < 0)
+                {
+                    currentDifficultyValue = difficultyArray.Length - 1;
+                }
+
+                difficultyText.text = $"Difficulty : {Enum.GetName(typeof(Difficulty), difficultyArray[currentDifficultyValue])}";
+            });
+        }
+        
     }
 
     public void StartNewGame()
@@ -68,6 +78,6 @@ public class NewGameManager : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(sceneIndex);
     }
 }

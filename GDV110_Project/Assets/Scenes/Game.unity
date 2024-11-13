@@ -3503,6 +3503,7 @@ MonoBehaviour:
   gameStarted: 0
   gameEnded: 0
   isActive: 0
+  isTutorial: 0
 --- !u!4 &1263426195
 Transform:
   m_ObjectHideFlags: 0
@@ -7254,6 +7255,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1192335804}
     m_Modifications:
+    - target: {fileID: 1156116917756701211, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
+      propertyPath: m_Text
+      value: Level 10/10
+      objectReference: {fileID: 0}
     - target: {fileID: 1200243905286368103, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7285,6 +7290,14 @@ PrefabInstance:
     - target: {fileID: 3777990073866217383, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371412424600882665, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 146.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371412424600882665, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00022125244
       objectReference: {fileID: 0}
     - target: {fileID: 8070051994336705304, guid: 89a35c40aeec8a54ab2db8b5bc83f013, type: 3}
       propertyPath: m_Pivot.x

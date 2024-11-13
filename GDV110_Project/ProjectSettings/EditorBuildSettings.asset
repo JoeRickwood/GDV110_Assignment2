@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Shop.unity
     guid: ccb8ce90cb08ba84e9ea1b7f29ff310f
   - enabled: 1
-    path: Assets/Scenes/Test_Joe.unity
+    path: Assets/Scenes/Game.unity
     guid: 4ab139eef82d930458b0ea55b82a67ec
   - enabled: 1
-    path: Assets/Scenes/Battle.unity
-    guid: 80f7140622e031a4a9dfaf30257a4804
+    path: Assets/Scenes/NewGameTutorial.unity
+    guid: ddd5455afc4fc6848b12ea1a6b4b4ed3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 66281bac50e6172438f95df34718cde0
   m_configObjects: {}

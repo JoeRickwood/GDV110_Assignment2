@@ -43,7 +43,7 @@ public class RunManager : MonoBehaviour
 
     public float DifficultyValue()
     {
-        return Mathf.Pow(level, 1.0f + ((int)(difficulty) / 10f));
+        return Mathf.Pow(level, 0.9f + ((int)(difficulty) / 13f));
     }
 
     //Converts From A Hexadecimal Value Back To A Integer
@@ -130,10 +130,10 @@ public class RunManager : MonoBehaviour
             new Card[] //Developer Cards
             {
                 new CharacterCardIsobel("Iz Yippee Waffle", 13, WaffleType.Isobel_Rainbow),
-                new CantripCard("Laras Waffle Army", 14, new FillBoardUpgrade(20)),
-                new CantripCard("Sofias Fork", 15, new SofiasForkUpgrade(20)),
+                new CantripCard("Lara's Waffle Army", 14, new FillBoardUpgrade(20)),
+                new CantripCard("Sofia's Fork", 15, new SofiasForkUpgrade(20)),
                 new CharacterCard("Lil Guy", 16, WaffleType.Lil_Guy),
-                new CantripCard("Joes Hypnotic Coffee", 17, new EnemyWaffleSwapUpgrade(20)),
+                new CantripCard("Joe's Hypnotic Coffee", 17, new EnemyWaffleSwapUpgrade(20)),
             }               
         };
 

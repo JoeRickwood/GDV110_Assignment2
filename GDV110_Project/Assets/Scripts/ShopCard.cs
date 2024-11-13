@@ -76,6 +76,7 @@ public class ShopCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             //Buy Card
             bought = true;
             tooltip.hover = false;
+            tooltip.cardDescriptionObject.gameObject.SetActive(false);
             mouseOverEnlarge.isActive = false;
             RunManager.Instance.deck.AddCardStatic(data);
             RunManager.Instance.money -= data.price;
